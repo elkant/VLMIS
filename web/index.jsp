@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <!--<html  manifest="treatment.appcache">-->
 <html  >
-	<head>
+	         <head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<title>VL</title>
@@ -225,7 +225,7 @@ padding: 5px 25px;
                                         </div>
                                     </h3>
                                     <section>
-                                        <h2 style='text-align: center;'>User Registration</h2>
+                                        <h2 style='text-align: center;'>Patient Registration</h2>
                                         <div class='form-group col-md-3'>
 
 
@@ -236,8 +236,10 @@ padding: 5px 25px;
 
                                         <div class='form-group col-md-3'>
                                             <label><font color='red'>*</font><b>Date of Birth</b></label>
-                                            <input readonly="true" onchange="validateTarehe('Date_of_Birth','Date_Initiated_On_ART','Date Of Birth','Date Initiated On ART');" onchange='getAge();' placeholder='Date of Birth' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_of_Birth' id='Date_of_Birth' />
+                                            <input readonly="true" onchange="validateTarehe('Date_of_Birth','Date_Started_on_IPT','Date Of Birth','Date Started IPT');AllowFutureDateOnly('Last_Clinical_Visit_Date','Date_of_Birth');AllowFutureDateOnly('Date_Initiated_On_ART','Date_of_Birth');validateTarehe('Date_of_Birth','Date_Initiated_On_ART','Date Of Birth','Date Initiated On ART');validateTarehe('Date_of_Birth','Last_Clinical_Visit_Date','Date Of Birth','Last Clinical Visit Date');" onchange='getAge();' placeholder='Date of Birth' data-date-end-date='0d'  autocomplete='off'  class='form-control dates' type='text' name='Date_of_Birth' id='Date_of_Birth'  />
                                         <input type='hidden' name='age' id='age'>
+                                       
+                                        
                                         </div>
 
                                         <div class='form-group col-md-3'>
@@ -263,15 +265,12 @@ padding: 5px 25px;
 
                                         <div class='form-group col-md-3'>
                                             <label><font color='red'>*</font><b>Date Initiated On ART</b></label>
-                                            <input readonly="true" onchange="validateTarehe('Date_of_Birth','Date_Initiated_On_ART','Date Of Birth','Date Initiated On ART');" placeholder='Date Initiated On ART' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Initiated_On_ART' id='Date_Initiated_On_ART' />
+                                            <input readonly="true" onchange="isDSDValid();AllowFutureDateOnly('Last_Clinical_Visit_Date','Date_Initiated_On_ART');validateTarehe('Date_of_Birth','Date_Initiated_On_ART','Date Of Birth','Date Initiated On ART');" placeholder='Date Initiated On ART' data-date-end-date='0d'  autocomplete='off'  class='form-control dates' type='text' name='Date_Initiated_On_ART' id='Date_Initiated_On_ART' />
                                         </div>
 
-                                        <div class='form-group col-md-3'>
-                                            <label><b>Current Regimen</b></label><select class='form-control' name='Current_Regimen' id='Current_Regimen' ><option value=''>Select Current Regimen</option>
-
-
-
-                                            </select></div>
+                                      
+                                        
+                                        
 
                                     </section>
                                     
@@ -281,15 +280,21 @@ padding: 5px 25px;
                                               <i class='glyphicon glyphicon-link'></i></div><div class='media-body'><div class='bd-wizard-step-title'>ART</div><div class='bd-wizard-step-subtitle'></div></div></div></h3>
                                     <section>
 
-                                        <h2  style='text-align: center;'>ARVs and TB Screening</h2>
+                                        <h2  style='text-align: center;'>ARV Drugs and TB Screening</h2>
                                         <div class='form-group col-md-3'>
-                                            <label><font color='red'>*</font><b>Visit Date <font color='orange'>(last clinic date)</font></b></label>
-                                            <input onchange="PredictnextDate();" readonly="true" placeholder='Last Clinical Visit Date' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Last_Clinical_Visit_Date' id='Last_Clinical_Visit_Date' /></div>
+                                            <label><font color='red'>*</font><b>Date Given ARV Drugs<font color='orange'>(last clinic date)</font></b></label>
+                                            <input onchange="PredictnextDate();validateTarehe('Date_of_Birth','Last_Clinical_Visit_Date','Date Of Birth','Date Given ARV');UpdatePatientStatus();" readonly="true" placeholder='Last ART pickup Date' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Last_Clinical_Visit_Date' id='Last_Clinical_Visit_Date' />
+                                        </div>
 
-                                       
+                                         <div class='form-group col-md-3'>
+                                            <label><font color='red'>*</font><b>Current Regimen</b></label>
+                                            <select class='form-control' name='Current_Regimen' id='Current_Regimen' ><option value=''>Select Current Regimen</option>
+
+                                            </select>
+                                        </div>
 
                                         <div class='form-group col-md-3'><label><font color='red'>*</font><b>Duration Of ARV Drugs <font color='orange'>(in Days)</font></b></label>
-                                            <input onkeyup="validateDrugsDuration();PredictnextDate();" maxlength="3" placeholder='Duration Of ARV Drugs' autocomplete='on'  class='form-control' type='number' name='Days_of_Dispense' id='Days_of_Dispense' /></div>
+                                            <input onkeyup="validateDrugsDuration();PredictnextDate();UpdatePatientStatus();" maxlength="3" placeholder='Duration Of ARV Drugs' autocomplete='on'  class='form-control' type='number' name='Days_of_Dispense' id='Days_of_Dispense' /></div>
 
                                         <div style='display:none;' class='form-group col-md-3'><label><font color='red'>*</font><b>Months of Dispense</b></label><select class='form-control' name='Months_of_Dispense' id='Months_of_Dispense' ><option value=''>Select Months of Dispense</option>
                                                 <option value='1'>1</option>
@@ -297,10 +302,12 @@ padding: 5px 25px;
                                                 <option value='3'>3</option>
                                                 <option value='4'>4</option>
                                                 <option value='5'>5</option>
-                                                <option value='6'>6</option></select></div>
+                                                <option value='6'>6</option></select>
+                                        </div>
 
-                                        <div class='form-group col-md-3'><label><font color='red'>*</font><b>Next appointment Date</b><span id="sikuyadawa"></span></label>
-                                            <input onchange="PredictnextDate();" readonly="true" placeholder='Next appointment Date'  autocomplete='off'  class='form-control dates' type='text' name='Next_appointment_Date' id='Next_appointment_Date' /></div>
+                                        <div class='form-group col-md-3'>
+                                            <label><font color='red'>*</font><b>Next appointment Date</b><span id="sikuyadawa"></span></label>
+                                            <input onchange="validateTarehe('Last_Clinical_Visit_Date','Next_appointment_Date','Last ARV Pickup Date','Next Appointment Date');PredictnextDate();pataSikuYaWiki();" readonly="true" placeholder='Next appointment Date'  autocomplete='off'  class='form-control dates' type='text' name='Next_appointment_Date' id='Next_appointment_Date' /></div>
 
                                          <div class='form-group col-md-3'><label><font color='red'>*</font><b>TB Screening Outcome</b></label><select class='form-control' name='Screened_For_TB' id='Screened_For_TB' ><option value=''>Select TB Screening Outcome</option>
                                                 <option value='Negative TB Screen'>Negative TB Screen</option>
@@ -310,14 +317,24 @@ padding: 5px 25px;
                                                 <option value='Negative and started INH'>Negative and started INH</option></select>
                                          </div>
                                         
-                                        <div class='form-group col-md-3'><label><font color='red'>*</font><b>Monthly Patient Status</b></label><select class='form-control' name='Monthly_Patient_Status' id='Monthly_Patient_Status' ><option value=''>Select Monthly Patient Status</option>
-                                                <option value='Active '>Active </option>
-                                                <option value='LTFU ( > 28 days Defaulter )'>LTFU ( > 28 days Defaulter )</option>
-                                                <option value='Transferred Out'>Transferred Out</option>
-                                                <option value='Dead'>Dead</option>
-                                                <option value='Stopped Treatment'>Stopped Treatment</option>
+                                        <div class='form-group col-md-3'><label><b>Patient Status</b></label>
+                                            <select readonly="true" class='form-control' name='Monthly_Patient_Status' id='Monthly_Patient_Status' >
+                                                <option value=''>Not Given ARVs</option>
+<!--                                                <option value='Active '>Active on Treatment</option>
                                                 <option value='< 28 Days Defaulter'>< 28 Days Defaulter</option>
-                                            </select></div>
+                                                <option value='LTFU ( > 28 days Defaulter )'>LTFU ( > 28 days Defaulter )</option>-->
+                                            </select>
+                                        </div>
+                                        <div class='form-group col-md-3'>
+                                         
+                                            
+                                            
+                                        </div>
+                                        <div class='form-group col-md-3'>
+                                          <br/>  
+                                            <label onclick='resetART();' class='btn btn-success'><b>Clear ART Fields</b></label>
+                                            
+                                        </div>
 
                                     </section>
 
@@ -327,24 +344,37 @@ padding: 5px 25px;
                                     <section>
                                         <h2  style='text-align: center;'>IPT</h2>
 
-                                        <div class='form-group col-md-3'><label><font color='red'>*</font><b>Started on IPT?</b></label><select class='form-control' name='Started_on_IPT' id='Started_on_IPT' ><option value=''>Select Started on IPT?</option>
+                                        <div class='form-group col-md-3'><label><font color='red'>*</font><b>Started on IPT?</b></label>
+                                            <select onchange="IsStartedIPT();validateTarehe('Date_of_Birth','Date_Started_on_IPT','Date Of Birth','Date Started IPT');" class='form-control' name='Started_on_IPT' id='Started_on_IPT' ><option value=''>Select Started on IPT?</option>
                                                 <option value='Yes'>Yes</option>
-                                                <option value='No'>No</option></select></div>
+                                                <option value='No'>No</option>
+                                            </select>
+                                                <!--<option value='To Confirm Later'>To Confirm Later</option></select>-->
+                                        </div>
 
-                                        <div class='form-group col-md-3'><label><b>Date Started on IPT</b></label>
-                                            <input readonly="true" placeholder='Date Started on IPT' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Started_on_IPT' id='Date_Started_on_IPT' /></div>
+                                        <div class='if_started_ipt form-group col-md-3' style="display:none;">
+                                            <label><b>Date Started on IPT</b></label>
+                                            <input onchange="validateTarehe('Date_Started_on_IPT','Date_of_IPT_Outcome','Date Started IPT','Date Completed IPT Outcome');" readonly="true" placeholder='Date Started on IPT' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Started_on_IPT' id='Date_Started_on_IPT' /></div>
 
-                                        <div class='form-group col-md-3'><label><b>IPT Outcome</b></label><select class='form-control' name='IPT_Outcome' id='IPT_Outcome' ><option value=''>Select IPT Outcome</option>
+                                        <div class='if_started_ipt form-group col-md-3' style="display:none;">
+                                            <label><b>IPT Outcome</b></label>
+                                            <select onchange="IsCompletedIPT();IsDiscontinuedIPT();" class='form-control' name='IPT_Outcome' id='IPT_Outcome' ><option value=''>Select IPT Outcome</option>
                                                 <option value='LTFU'>LTFU</option>
                                                 <option value='Completed'>Completed</option>
                                                 <option value='Died'>Died</option>
                                                 <option value='Transferred Out'>Transferred Out</option>
-                                                <option value='Discontinued'>Discontinued</option></select></div>
+                                                <option value='Discontinued'>Discontinued</option></select>
+                                        </div>
 
-                                        <div class='form-group col-md-3'><label><b>Date Completed IPT</b></label>
-                                            <input readonly="true" placeholder='Date Completed IPT' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_of_IPT_Outcome' id='Date_of_IPT_Outcome' /></div>
+                                        <div class='if_completed_ipt form-group col-md-3' style="display:none;">
+                                            <label><b>Date of IPT Outcome</b></label>
+                                            <input onchange="validateTarehe('Date_Started_on_IPT','Date_of_IPT_Outcome','Date Started IPT','Date Completed IPT Outcome');" readonly="true" placeholder='Date Completed IPT' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_of_IPT_Outcome' id='Date_of_IPT_Outcome' />
+                                        </div>
 
-                                        <div class='form-group col-md-3'><label><b>Reason Discontinued</b></label><input placeholder='Reason Discontinued' autocomplete='off'  class='form-control' type='text' name='Reason_Not_Completed' id='Reason_Not_Completed' /></div>
+                                        <div  class='if_discontinued_ipt form-group col-md-3' style="display:none;">
+                                        <label><b>Reason Discontinued</b></label>
+                                        <input placeholder='Reason Discontinued' autocomplete='off'  class='form-control' type='text' name='Reason_Not_Completed' id='Reason_Not_Completed' />
+                                        </div>
 
                                     </section>
                                     <h3>
@@ -358,25 +388,29 @@ padding: 5px 25px;
                                         <h2  style='text-align: center;'>ViralLoad</h2>
                                         <div class='form-group col-md-3'>
 
-                                            <label><font color='red'>*</font><b>First Viral Load Date</b></label><input placeholder='First Viral Load Date' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='First_Viral_Load_Date' id='First_Viral_Load_Date' />
+                                            <label><font color='red'>*</font><b>Initial Viral Load Date</b></label>
+                                            <input onchange="validateTarehe('First_Viral_Load_Date','Date_Last_VL_Conducted','Date initial viral load conducted','Date Last viral load Conducted');" placeholder='First Viral Load Date' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='First_Viral_Load_Date' id='First_Viral_Load_Date' />
                                         </div>
 
-                                        <div class='form-group col-md-3'><label><b>Date Last VL Sample Collected</b></label>
-                                            <input readonly="true" placeholder='Date Last VL Conducted' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Last_VL_Conducted' id='Date_Last_VL_Conducted' /></div>
+                                        <div class='form-group col-md-3'>
+                                            <label><b>Date Last VL Sample Collected</b></label>
+                                            <input onchange="validateTarehe('First_Viral_Load_Date','Date_Last_VL_Conducted','Date initial viral load conducted','Date Last viral load Conducted');" readonly="true" placeholder='Date Last VL Conducted' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Last_VL_Conducted' id='Date_Last_VL_Conducted' /></div>
 
-                                        <div class='form-group col-md-3'><label><b>Justification For VL</b></label><select class='form-control' name='Justification' id='Justification' ><option value=''>Select Justification</option>
+                                        <div class='form-group col-md-3'><label><b>Justification For Last VL</b></label><select class='form-control' name='Justification' id='Justification' ><option value=''>Select Justification</option>
                                                 <option value='Routine VL'>Routine VL</option>
                                                 <option value='Baseline'>Baseline</option>
                                                 <option value='Confirmation of Treatment Failure (Repeat VL)'>Confirmation of Treatment Failure (Repeat VL)</option>
                                                 <option value='Single Drug Substitution'>Single Drug Substitution</option>
-                                                <option value='Clinical Failure'>Clinical Failure</option></select></div>
-
-                                        <div class='form-group col-md-3'>
-                                            <label><b>VL Results</b></label>
-                                            <input placeholder='VL Results' autocomplete='off'  class='form-control' type='text' name='VL_Results' id='VL_Results' />
+                                                <option value='Clinical Failure'>Clinical Failure</option></select>
                                         </div>
 
-                                        <div class='form-group col-md-3'><label><b>Patient PMTCT Status</b></label>
+                                        <div class='form-group col-md-3'>
+                                            <label><b>Last VL Results  </b> 
+                                            <input  placeholder='VL Results in copies/ml' autocomplete='off' onkeypress='return numbers(event);'  class='form-control' type='text' name='VL_Results' id='VL_Results' />
+                                        <font color="orange"> <input  onclick='UpdateLDL();' type="checkbox" value='< LDL copies/ml' id='ldl'> < LDL copies/ml </font></label>
+                                        </div>
+
+                                        <div class='ispmtct form-group col-md-3'><label><b>PMTCT status when VL Sample was Collected?</b></label>
                                             <select class='form-control' name='PMTCT_Status' id='PMTCT_Status' >
                                                 <option value=''>Select PMTCT Status</option>
                                                 <option value='Pregnant'>Pregnant</option>
@@ -387,41 +421,9 @@ padding: 5px 25px;
                                                 
                        
                                     </section>
-                                    <h3>
-                                        <div class='media1'>
-                                            <div class='bd-wizard-step-icon'><i class='glyphicon glyphicon-remove-sign'></i></div>
-                                            <div class='media-body'><div class='bd-wizard-step-title'>Care Ending</div><div class='bd-wizard-step-subtitle'></div></div></div></h3>
-                                    <section>
-
-                                        <h2  style='text-align: center;'>Lost To Followup and Restarted on ART</h2>
-
-                                        <div class='form-group col-md-3'><label><b>Date Restarted on ART</b></label>
-                                          
-                                            <input readonly="true" placeholder='Date Restarted on ART' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Restarted_on_ART' id='Date_Restarted_on_ART' /></div>
-
-                                        <div class='form-group col-md-3'><label><b>Date LTFU</b></label><input placeholder='Date LTFU' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_LTFU' id='Date_LTFU' /></div>
-
-                                        <div class='form-group col-md-3'><label><b>Reason For LTFU</b></label><select class='form-control' name='Reason_For_LTFU' id='Reason_For_LTFU' ><option value=''>Select Reason For LTFU</option>
-                                                <option value='Out of reach'>Out of reach</option>
-                                                <option value='Self Transfer Out'>Self Transfer Out</option>
-                                                <option value='Travel ( Occupational/Upcountry)'>Travel ( Occupational/Upcountry)</option>
-                                                <option value='Lack/Wrong Locator infor'>Lack/Wrong Locator infor</option>
-                                                <option value='Stigma/Denial of Status'>Stigma/Denial of Status</option>
-                                                <option value='Relocated'>Relocated</option>
-                                                <option value='Discontinued Treatment ( Including PSS issues )'>Discontinued Treatment ( Including PSS issues )</option>
-                                                <option value='Alcoholism'>Alcoholism</option></select></div>
-
-                                        <div class='form-group col-md-3'><label><b>Cause of Death</b></label><select class='form-control' name='Cause_of_Death' id='Cause_of_Death' ><option value=''>Select Cause of Death</option>
-                                                <option value='HIV disease resulting in TB'>HIV disease resulting in TB</option>
-                                                <option value='HIV disease resulting in other infectious and parasitic disease'>HIV disease resulting in other infectious and parasitic disease</option>
-                                                <option value='HIV disease resulting in cancer'>HIV disease resulting in cancer</option>
-                                                <option value='Other HIV disease, resulting in other diseases or conditions leading to death'>Other HIV disease, resulting in other diseases or conditions leading to death</option>
-                                                <option value='Other natural causes'>Other natural causes</option>
-                                                <option value='Non-natural causes'>Non-natural causes</option>
-                                                <option value='Unknown Cause'>Unknown Cause</option></select></div>
-
-                                    </section>
-                                    <h3 style>
+                                    
+                                    
+                                     <h3 style>
                                         <div class='media1'>
                                             <div class='bd-wizard-step-icon'><i class='glyphicon glyphicon-stats'></i></div>
                                             <div class='media-body'>
@@ -433,20 +435,101 @@ padding: 5px 25px;
                                     </h3>
                                     <section>
 
-                                        <h2  style='text-align: center;'>Differentiated Care</h2>
+                                        <h2  style='text-align: center;'>Differentiated Care Model</h2>
 
-                                        <div class='form-group col-md-3'><label><b>Stability</b></label><select class='form-control' name='Stability' id='Stability' ><option value=''>Select Stability</option>
+                                        <div class='ispatient1yr form-group col-md-3'><label><b>Stability</b></label>
+                                            <select onchange='IsStable();' class='form-control' name='Stability' id='Stability' ><option value=''>Select Stability</option>
                                                 <option value='Stable'>Stable</option>
                                                 <option value='Unstable'>Unstable</option>
-                                                <option value='Uncategorized'>Uncategorized</option></select></div>
+                                                <option value='Uncategorized'>Uncategorized</option></select>
+                                        </div>
 
-                                        <div class='form-group col-md-3'><label><b>DC Model</b></label><select class='form-control' name='DC_Model' id='DC_Model' ><option value=''>Select DC Model</option>
+                                        <div  class='isstable form-group col-md-3' style='display:none;'>
+                                            <label><b>DC Model</b></label><select class='form-control' name='DC_Model' id='DC_Model' ><option value=''>Select DC Model</option>
                                                 <option value='Fast Track (FT)'>Fast Track (FT)</option>
                                                 <option value='Community ART Distribution Group (CADG)'>Community ART Distribution Group (CADG)</option>
                                                 <option value='Community ART Distribution Points (CADP)'>Community ART Distribution Points (CADP)</option>
                                                 <option value='Facility ART Distribution Groups (FADG)'>Facility ART Distribution Groups (FADG)</option>
-                                                <option value='Standard Care'>Standard Care</option></select></div>
+                                                <option value='Standard Care'>Standard Care</option></select>
+                                        </div>
+                                        
+                                        
+                                         <div  class='dsdwarning1yr form-group col-md-3' style='display:none;'>
+                                             <h4 style='width:100%;' font color='orange'><i class='glyphicon glyphicon-alert' ></i> Patient has not completed 1 year since starting ART and thus not eligible for differentiated Care</h4>
+                                         </div>
+                                        
+                                        
                                     </section>
+                                    
+                                    
+                                    <h3>
+                                        <div class='media1'>
+                                            <div class='bd-wizard-step-icon'><i class='glyphicon glyphicon-remove-sign'></i></div>
+                                            <div class='media-body'><div class='bd-wizard-step-title'>Care Ending</div><div class='bd-wizard-step-subtitle'></div></div>
+                                                
+                                        </div>
+                                    </h3>
+                                    <section>
+
+                                        <h2  style='text-align: center;'>Lost To Followup or  Restarted on ART</h2>
+
+                                        
+
+                                        
+
+                                        
+                                        <div class='form-group col-md-3'>
+                                                <label><b>Reason For Care Ending</b></label>
+                                                <select oncahnge='isLTFU();isDEAD();isRestartART();' class='form-control' name='care_ending_reason' id='care_ending_reason' >
+                                                <option value=''>Select Reason for Care Ending</option>
+                                                <option value='LTFU'>LTFU ( > 28 days Defaulter )</option>
+                                                <option value='Transferred Out'>Transferred Out</option>
+                                                <option value='Dead'>Dead</option>
+                                                <option value='Stopped Treatment'>Stopped Treatment</option>
+                                                </select>
+                                        </div>
+                                        
+                                        <div class='isltfu form-group col-md-3' style='display:none;'>
+                                            <label><b>Date LTFU</b></label>
+                                            <input placeholder='Date LTFU' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_LTFU' id='Date_LTFU' />
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class='isltfu form-group col-md-3' style='display:none;'>
+                                            <label><b>Reason For LTFU</b></label><select class='form-control' name='Reason_For_LTFU' id='Reason_For_LTFU' ><option value=''>Select Reason For LTFU</option>
+                                                <option value='Out of reach'>Out of reach</option>
+                                                <option value='Self Transfer Out'>Self Transfer Out</option>
+                                                <option value='Travel ( Occupational/Upcountry)'>Travel ( Occupational/Upcountry)</option>
+                                                <option value='Lack/Wrong Locator infor'>Lack/Wrong Locator infor</option>
+                                                <option value='Stigma/Denial of Status'>Stigma/Denial of Status</option>
+                                                <option value='Relocated'>Relocated</option>
+                                                <option value='Discontinued Treatment ( Including PSS issues )'>Discontinued Treatment ( Including PSS issues )</option>
+                                                <option value='Alcoholism'>Alcoholism</option></select>
+                                        </div>
+
+                                        <div class='isdead form-group col-md-3' style='display:none;'>
+                                            <label><b>Cause of Death</b></label>
+                                            
+                                            <select class='form-control' name='Cause_of_Death' id='Cause_of_Death' ><option value=''>Select Cause of Death</option>
+                                                <option value='HIV disease resulting in TB'>HIV disease resulting in TB</option>
+                                                <option value='HIV disease resulting in other infectious and parasitic disease'>HIV disease resulting in other infectious and parasitic disease</option>
+                                                <option value='HIV disease resulting in cancer'>HIV disease resulting in cancer</option>
+                                                <option value='Other HIV disease, resulting in other diseases or conditions leading to death'>Other HIV disease, resulting in other diseases or conditions leading to death</option>
+                                                <option value='Other natural causes'>Other natural causes</option>
+                                                <option value='Non-natural causes'>Non-natural causes</option>
+                                                <option value='Unknown Cause'>Unknown Cause</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class='isrestartart form-group col-md-3' style='display:none'>
+                                            
+                                        <label><b>Date Restarted on ART</b></label>
+                                        <input readonly="true" placeholder='Date Restarted on ART' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Restarted_on_ART' id='Date_Restarted_on_ART' />
+                                        </div>
+
+                                    </section>
+                                   
 
 
                                 </div>
@@ -457,7 +540,7 @@ padding: 5px 25px;
                                 
                                 
                                 <div class="form-group col-md-5"  >
-                                    <label  ><b>Uploaded By</b></label>
+                                    <label  ><b>Data Entered By</b></label>
                                    
                                         <select  onchange="" required  name="counsellor" id="counsellor" class="form-control" >
                                             <option value=''>Select user</option>
