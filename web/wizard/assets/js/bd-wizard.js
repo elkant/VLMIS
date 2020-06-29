@@ -1,14 +1,8 @@
 //Wizard Init
 var form = $("#treatmentform");
 
-//form.validate({
-//    errorPlacement: function errorPlacement(error, element) { element.before(error); },
-//    rules: {
-//        confirm: {
-//            equalTo: "#password"
-//        }
-//    }
-//});
+
+
 
 $("#wizard").steps({
     headerTag: "h3",
@@ -21,11 +15,17 @@ $("#wizard").steps({
     {  
         //list all the data types
         
-var _facility=$('#facility').val();
+
+var _facility=$('#facilityname').val();
+
 var _ccc_number=$('#ccc_number').val();
+
 var _Date_of_Birth=$('#Date_of_Birth').val();
+
 var _Sex=$('#Sex').val();
+
 var _Population_Type=$('#Population_Type').val();
+
 var _Date_Initiated_On_ART=$('#Date_Initiated_On_ART').val();
 
 var _Last_Clinical_Visit_Date=$('#Last_Clinical_Visit_Date').val();
@@ -53,12 +53,15 @@ var _PMTCT_Status=$('#PMTCT_Status').val();
 
 var _Date_Restarted_on_ART=$('#Date_Restarted_on_ART').val();
 var _Date_LTFU=$('#Date_LTFU').val();
+var _care_ending_reason=$('#care_ending_reason').val();
 var _Reason_For_LTFU=$('#Reason_For_LTFU').val();
 var _Cause_of_Death=$('#Cause_of_Death').val();
 
 
 var _Stability=$('#Stability').val();
 var _DC_Model=$('#DC_Model').val();
+
+
 
         
 //_________________________________At step 1 ________________________________        
@@ -72,7 +75,19 @@ var _DC_Model=$('#DC_Model').val();
              
              
              
-        if(cccno==='')
+        if(_facility==='')
+        {
+       // $("#wizard-t-0").click();  
+        
+        updatemaujumbe('error','Select Facility Name');
+        
+        retvl=false;
+        
+        $("#facilityname").focus();
+        $("#facilityname").css('border-color','red'); 
+        
+        }
+       else if(cccno==='')
         {
        // $("#wizard-t-0").click();  
         
@@ -84,6 +99,22 @@ var _DC_Model=$('#DC_Model').val();
         $("#ccc_number").css('border-color','red'); 
         
         }
+        else if(!isCCCComplete())
+        {
+            if(_facility==='14177_Family Health options Kenya (Nakuru)' ){
+         
+            updatemaujumbe('error','Enter Patient CCC Number in 10-14 Digit standard');
+                
+            }
+            else {
+         updatemaujumbe('error','Enter Patient CCC Number in 10 digit standard');
+            }
+        
+        
+        
+        $("#ccc_number").focus();   
+          retvl=false;  
+        }
         
         else  if(_Date_of_Birth==='')
         {
@@ -93,7 +124,7 @@ var _DC_Model=$('#DC_Model').val();
         
         retvl=false;
         
-        $("#Date_of_Birth").focus();
+        //$("#Date_of_Birth").focus();
         $("#Date_of_Birth").css('border-color','red'); 
         
         }
@@ -134,7 +165,7 @@ var _DC_Model=$('#DC_Model').val();
         
         retvl=false;
         
-        $("#Date_Initiated_On_ART").focus();
+       // $("#Date_Initiated_On_ART").focus();
         $("#Date_Initiated_On_ART").css('border-color','red'); 
         
         }
@@ -158,7 +189,8 @@ var _DC_Model=$('#DC_Model').val();
             $("#Date_of_Birth").css('border-color','#33b775'); 
             $("#Sex").css('border-color','#33b775'); 
             $("#Population_Type").css('border-color','#33b775');
-             updatemaujumbe('error','');
+            $("#facilityname").css('border-color','#33b775');
+             updatemaujumbe('default','');
             
         }
         
@@ -181,7 +213,7 @@ var _DC_Model=$('#DC_Model').val();
         
         retvl=false;
         
-        $("#Last_Clinical_Visit_Date").focus();
+       // $("#Last_Clinical_Visit_Date").focus();
         $("#Last_Clinical_Visit_Date").css('border-color','red'); 
         
         }
@@ -219,7 +251,7 @@ var _DC_Model=$('#DC_Model').val();
         
         retvl=false;
         
-        $("#Next_appointment_Date").focus();
+        //$("#Next_appointment_Date").focus();
         $("#Next_appointment_Date").css('border-color','red'); 
         
         }
@@ -242,13 +274,66 @@ var _DC_Model=$('#DC_Model').val();
         
         }
         
+        
+        else 
+            if(_care_ending_reason==='LTFU' && _Date_LTFU==='')
+            {
+           
+        updatemaujumbe('error','Enter Date Patient Lost To Follow up');
+        
+        retvl=false;
+        
+        $("#Date_LTFU").focus();
+        $("#Date_LTFU").css('border-color','red'); 
+             
+                
+            }           
+            
+  else if(_care_ending_reason==='LTFU' && _Reason_For_LTFU==='')
+            {
+           
+        updatemaujumbe('error','Enter Reason patient was Lost To Follow up');
+        
+        retvl=false;
+        
+        $("#Reason_For_LTFU").focus();
+        $("#Reason_For_LTFU").css('border-color','red'); 
+             
+                
+            }
+            
+            
+            
+             else if(_care_ending_reason==='Dead' && _Cause_of_Death==='')
+            {
+           
+        updatemaujumbe('error','Enter Reason patient dead');
+        
+        retvl=false;
+        
+        $("#Cause_of_Death").focus();
+        $("#Cause_of_Death").css('border-color','red'); 
+             
+                
+            }
+        
+        
         else {
             
  $("#Days_of_Dispense").css('border-color','#33b775');            
  $("#Next_appointment_Date").css('border-color','#33b775');            
  $("#Current_Regimen").css('border-color','#33b775');            
- $("#Screened_For_TB").css('border-color','#33b775');            
-            
+ $("#Screened_For_TB").css('border-color','#33b775');    
+ 
+ //LTFU section
+ 
+        $("#Date_Restarted_on_ART").css('border-color','#33b775');
+         $("#Date_LTFU").css('border-color','#33b775');
+         $("#care_ending_reason").css('border-color','#33b775');
+         $("#Reason_For_LTFU").css('border-color','#33b775');
+         $("#Cause_of_Death").css('border-color','#33b775');
+ 
+    updatemaujumbe('default','');        
 
             retvl=true; 
             
@@ -330,18 +415,14 @@ var _DC_Model=$('#DC_Model').val();
         $("#IPT_Outcome").css('border-color','#33b775');    
         $("#Date_of_IPT_Outcome").css('border-color','#33b775');    
         $("#Reason_Not_Completed").css('border-color','#33b775');    
-            
+          updatemaujumbe('default','');  
             
           retvl=true;   
             
         }
         
         
-//var _Started_on_IPT=$('#Started_on_IPT').val();
-//var _Date_Started_on_IPT=$('#Date_Started_on_IPT').val();
-//var _IPT_Outcome=$('#IPT_Outcome').val();
-//var _Date_of_IPT_Outcome=$('#Date_of_IPT_Outcome').val();
-//var _Reason_Not_Completed=$('#Reason_Not_Completed').val(); 
+
         
         return retvl;
     }
@@ -362,6 +443,18 @@ var _DC_Model=$('#DC_Model').val();
                 
                 
             }
+            
+            else if(_First_Viral_Load_Date!=='' && _Date_Last_VL_Conducted!=='' && daysDiff(_Date_Last_VL_Conducted,_First_Viral_Load_Date)<180 )
+            {
+                  updatemaujumbe('error','Viral Load cannot be done should be done 6 months after the initial Viral Load');
+        
+        retvl=false;
+        
+        //$("#First_Viral_Load_Date").focus();
+        $("#First_Viral_Load_Date").css('border-color','red'); 
+                
+            }
+            
             //_________Check if the last Viral Load has been populated before populating the last updated
             else if(_First_Viral_Load_Date==='' && _Date_Last_VL_Conducted!=='' )
             {
@@ -384,8 +477,8 @@ var _DC_Model=$('#DC_Model').val();
         
         retvl=false;
         
-        $("#Screened_For_TB").focus();
-        $("#Screened_For_TB").css('border-color','red'); 
+        $("#Justification").focus();
+        $("#Justification").css('border-color','red'); 
                 
              retvl=false;     
             }
@@ -411,13 +504,14 @@ var _DC_Model=$('#DC_Model').val();
 //var _Date_Last_VL_Conducted=$('#Date_Last_VL_Conducted').val();
 //var _Justification=$('#Justification').val();
 //var _VL_Results=$('#VL_Results').val();
-//var _PMTCT_Status=$('#PMTCT_Status').val();    
+//var _PMTCT_Status=$('#PMTCT_Status').val(); 
+ 
 $("#First_Viral_Load_Date").css('border-color','#33b775'); 
 $("#Date_Last_VL_Conducted").css('border-color','#33b775'); 
 $("#Justification").css('border-color','#33b775'); 
 $("#VL_Results").css('border-color','#33b775'); 
 $("#PMTCT_Status").css('border-color','#33b775'); 
-                
+updatemaujumbe('default','');                
                 
             retvl=true;     
             }
@@ -430,7 +524,7 @@ $("#PMTCT_Status").css('border-color','#33b775');
         
  //________________________________________________________Differentiated Care________________________________________________
  
- else if (newIndex===4){
+ else if (newIndex===5){
             
             var retvl=true; 
             
@@ -449,16 +543,26 @@ $("#PMTCT_Status").css('border-color','#33b775');
             }           
             
        else {
-           
              
                 
-               retvl=true; 
-                
-                
+         retvl=true; 
+                //
+         $("#DC_Model").css('border-color','#33b775');
+         updatemaujumbe('default','');       
             }
             
  return retvl;
         }
+      
+        
+        
+        
+        
+   
+        
+        
+        
+        
         
    else {
             
@@ -471,20 +575,28 @@ $("#PMTCT_Status").css('border-color','#33b775');
     
     
     }
-   ,onFinished: function (event, currentIndex)
+   
+    , onFinishing: function (event, currentIndex)
+    {
+    
+ 
+   return true;
+    
+    
+    }
+    ,onFinished: function (event, currentIndex)
     {
         
     
-        alert("Passed Validation!");
+       
+        
+        submitDataToPouch();
          
     }
 });
 
 
-//var _Date_Restarted_on_ART=$('#Date_Restarted_on_ART').val();
-//var _Date_LTFU=$('#Date_LTFU').val();
-//var _Reason_For_LTFU=$('#Reason_For_LTFU').val();
-//var _Cause_of_Death=$('#Cause_of_Death').val();
+
 //
 //
 //var _Stability=$('#Stability').val();
@@ -513,20 +625,24 @@ function updatemaujumbe(ujumbetype,ujumbe)
    
     if(ujumbetype==='error')
     {  
-        $("#maujumbe").html("<font color='red'>"+ujumbe+"</font>");
+        $(".maujumbe").html(" <font color='red'> <i class='glyphicon glyphicon-alert'></i> "+ujumbe+"</font>");
     }
     else if (ujumbetype==='warning') 
     {
-     $("#maujumbe").html("<font color='orange'>"+ujumbe+"</font>");   
+     $(".maujumbe").html(" <font color='orange'><i class='glyphicon exclamation-sign'></i> "+ujumbe+"</font>");   
     }
     else if (ujumbetype==='success')
     {
-      $("#maujumbe").html("<font color='green'>"+ujumbe+"</font>");   
+      $(".maujumbe").html("  <font color='green'><i class='glyphicon exclamation-check'></i> "+ujumbe+"</font>");   
+    }
+    else if (ujumbetype==='default') {
+      $(".maujumbe").html("  <font color='green'>"+ujumbe+"</font>");    
+        
     }
     
 }
 
-$('#maujumbe').each(function() {
+$('.maujumbe').each(function() {
     var elem = $(this);
     setInterval(function() {
         if (elem.css('visibility') === 'hidden') {
@@ -534,14 +650,17 @@ $('#maujumbe').each(function() {
         } else {
             elem.css('visibility', 'hidden');
         }    
-    }, 500);
+    }, 900);
 });
 
 
 
 function getAge() 
 {
+    
     var sikuyakuzaliwa=$("#Date_of_Birth").val(); 
+    
+    //console.log("called get Age"+ sikuyakuzaliwa);
     if(sikuyakuzaliwa!=='')
     {
     var today = new Date();
@@ -566,7 +685,7 @@ function validatePopulationType(){
    // $("#modality option[value='anc1']").attr("disabled",true); 
    var miaka=$("#age").val();
    var sex=$("#Sex").val();
-  
+  //console.log('miaka ni ngapi '+miaka);
    
    if(miaka!==''){
    
@@ -602,9 +721,17 @@ function validatePopulationType(){
     //validate by gender
     
       if (sex==='Male')
-     {      
-    $("#Population_Type option[value='FSW']").attr("disabled",true); 
+     {
+         
+         
+    $("#Population_Type option[value='FSW']").attr("disabled",true);
+    if (miaka>15){
     $("#Population_Type option[value='MSM']").attr("disabled",false); 
+                 }
+                 else {
+                $("#Population_Type option[value='MSM']").attr("disabled",true);        
+                     
+                 }
     
     $("#PMTCT_Status option[value='Pregnant']").attr("disabled",true); 
     $("#PMTCT_Status option[value='Breastfeeding']").attr("disabled",true);
@@ -620,10 +747,20 @@ function validatePopulationType(){
     {
       
     $("#Population_Type option[value='MSM']").attr("disabled",true); 
+    if (miaka>15){
     $("#Population_Type option[value='FSW']").attr("disabled",false); 
-    
+                 
     $("#PMTCT_Status option[value='Pregnant']").attr("disabled",false); 
     $("#PMTCT_Status option[value='Breastfeeding']").attr("disabled",false);
+                 }
+                 else {
+                     
+              $("#Population_Type option[value='FSW']").attr("disabled",true); 
+                 
+    $("#PMTCT_Status option[value='Pregnant']").attr("disabled",true); 
+    $("#PMTCT_Status option[value='Breastfeeding']").attr("disabled",true);        
+                     
+                 }
     $(".ispmtct").show();
     }
     
@@ -662,7 +799,7 @@ nwdt=$("#"+latestdate).val();
         else 
     
     {
-        updatemaujumbe('error',''); 
+        updatemaujumbe('default',''); 
         $("#"+latestdate).css('border-color','#33b775'); 
         $("#"+latestdate).css('border-color','#33b775'); 
          Retvl='valid';
@@ -673,28 +810,40 @@ nwdt=$("#"+latestdate).val();
  return  Retvl;   
 }
 
-function isCCCComplete()
-{
-    
+    function isCCCComplete()
+     {
+    var retval=false;
 var ccc_number=$("#ccc_number").val();
 var idadiyano=ccc_number.length;
 
-if(idadiyano!==10){
+var hosi=$('#facilityname').val();
+
+ if(idadiyano!==10){
     
 $("#ccc_number").css('border-color','red'); 
 
 $("#noofdigits").html("<font color='red'>["+idadiyano+" digits]</font>");
+    retval=false;
+                   }
+    else if(hosi==='14177_Family Health options Kenya (Nakuru)' && (idadiyano<10 || idadiyano>14 ))
+                   {
+               $("#ccc_number").css('border-color','red'); 
 
-                  }
-             else {
+$("#noofdigits").html("<font color='red'>["+idadiyano+" digits]</font>");        
+                       
+                   }
+             else  {
     
 $("#ccc_number").css('border-color','#33b775'); 
 $("#noofdigits").html("<font color='green'>["+idadiyano+" digits]</font>");
     
-                  }
+    retval=true;
     
-  
-}
+                   }
+    
+ return  retval;
+ 
+      }
 
 function validateDrugsDuration()
 {
@@ -710,16 +859,16 @@ var expectedmasiku=masikuzadawa.substring(0,3);
 $("#Days_of_Dispense").val(expectedmasiku);
 
                 }
-                  //if days are more than 180 days
-                  else  if(masikuzadawa>180)
+                  //if days are more than 200 days
+                  else  if(masikuzadawa>200)
                  {
     
- updatemaujumbe('error',"Drugs Duration cannot be greater than 180 Days ( 6 months ) ");
+ updatemaujumbe('error',"Drugs Duration cannot be greater than 200 Days ( 6 months ) ");
        $("#Days_of_Dispense").focus(); 
        $("#Days_of_Dispense").css('border-color','red'); 
 
                   }
-                  //if days are more than 180 days
+                  //if days are more than 200 days
                   else  if(masikuzadawa<14)
                  {
     
@@ -744,7 +893,7 @@ $("#Days_of_Dispense").val(expectedmasiku);
                 
     
 $("#Days_of_Dispense").css('border-color','#33b775'); 
-updatemaujumbe('error',"");
+updatemaujumbe('default',"");
     
                   }
     
@@ -800,7 +949,7 @@ function pataSikuYaWiki()
     if(trh!=='')
     {
   $("#sikuyadawa").html(" <font color='orange'>"+jina_sikuyawiki(sikuyawiki(trh))+"</font>"); 
-  console.log("Siku ya dawa"+jina_sikuyawiki(sikuyawiki(trh)));
+  //console.log("Siku ya dawa"+jina_sikuyawiki(sikuyawiki(trh)));
     }
     
     
@@ -874,19 +1023,22 @@ function UpdatePatientStatus(){
     retvalue='< 28 Days Defaulter';  
     $("#Monthly_Patient_Status").html("<option value='< 28 Days Defaulter'>< 28 Days Defaulter</option>");
     //$("#Population_Type option[value='FSW']").attr("disabled",false);
+    isEligibleForLTFU();
     
                                 }
  
  else  if(daysDiff(nextappdate,leo)>=0 )
                                 {
      $("#Monthly_Patient_Status").html("<option value='Active '>Active On Treatment</option>");   
-    retvalue='< 28 Days Defaulter';   
+    retvalue='< 28 Days Defaulter'; 
+    isEligibleForLTFU();
                                 }
                                 
                                  else  if(daysDiff(nextappdate,leo)<28 )
                                 {
      $("#Monthly_Patient_Status").html("<option value='LTFU ( > 28 days Defaulter )'>LTFU</option>");   
     retvalue='LTFU ( > 28 days Defaulter )';   
+    isEligibleForLTFU();
                                 }
                                 
                               
@@ -945,7 +1097,14 @@ $('#Monthly_Patient_Status').val("");
     
 }
 
-
+function resetVL(){
+    
+ $('#Date_Last_VL_Conducted').val("");
+ $('#Justification').val("");
+ $('#VL_Results').val("");
+   
+    
+}
 
 function  IsStartedIPT(){
     
@@ -1021,17 +1180,30 @@ function  IsDiscontinuedIPT(){
 function UpdateLDL(){
     
     var ld=$("#ldl").val();
-    console.log("LDL ni "+ld)
+   // console.log("LDL ni "+ld)
     
     if($('#ldl:checkbox:checked').length > 0)
     {
     $("#VL_Results").val(ld);
       }
+    
+      
+      
       else {
           
          $("#VL_Results").val('');  
           
       }
+    
+}
+
+function isLDLChecked(){
+      if( $("#VL_Results").val()==='< LDL copies/ml')
+    {
+        
+    $('#ldl').prop('checked', true);
+    
+    } 
     
 }
 
@@ -1151,6 +1323,32 @@ function  IsStable(){
                      
                  }
                  
+                 function isEligibleForLTFU() 
+                 {
+                 //care_ending_reason
+                 //This will display Reason For LTFU and Date LTFU  
+                  //isltfu     care_ending_reason=LTFU
+                 var cer=$("#Monthly_Patient_Status").val();
+            // console.log(" Care Ending Bit Is "+cer);
+                 
+                 if(cer==='LTFU ( > 28 days Defaulter )')
+                 {
+                  $('.iscareend_able').show();   
+                    
+                           console.log(" Care Ending Bit should show ");
+                 }
+                 else 
+                 {
+                  console.log(" Care Ending Bit cannot show ");
+                   $('.iscareend_able').hide(); 
+                   $('#care_ending_reason').val("");
+                     
+                 }   
+                  
+                 
+                     
+                 }
+                 
 
 
 //if_started_ipt       Started_on_IPT=Yes
@@ -1163,7 +1361,7 @@ function  IsStable(){
 
 //var _Date_Restarted_on_ART=$('#Date_Restarted_on_ART').val();
 //var _Date_LTFU=$('#Date_LTFU').val();
-//var _Reason_For_LTFU=$('#Reason_For_LTFU').val();
+//var _Reason_For_LTFU=$('#care_ending_reason').val();
 //var _Cause_of_Death=$('#Cause_of_Death').val();
 
 //UpdatePatientStatus();

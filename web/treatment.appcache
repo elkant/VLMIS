@@ -1,10 +1,10 @@
 CACHE MANIFEST
-# 2019-05-16 v1.2.2.23
+# 2019-05-16 v1.2.2.39
 progressbar.json
 htsrri.png
 drugs1.json
 indicators.json
-sites2.json
+sites3.json
 css/dataTables.bootstrap.min.css
 css/jquery.dataTables.min.css
 css/bootstrap.css
@@ -16,7 +16,8 @@ js/bootstrap.js
 js/scripts.js
 js/bootstrap-datepicker.min.js
 js/select2.js
-js/pouchdb-7.1.1.js
+js/pouchdb-7.2.1.js
+js/pouchdb.upsert.js
 js/datatables.min.js
 js/html2canvas.js
 js/FileSaver.js
@@ -28,11 +29,11 @@ images/sort_asc_disabled.png
 images/sort_both.png
 images/sort_desc.png
 images/sort_desc_disabled.png
-images/wp.png
+images/vl.png
 images/fwl.png
 wizard/assets/js/bd-wizard.js
-wizard/assets/js/jquery.steps.min.js
-wizard/assets/js/popper.min
+wizard/assets/js/jquery.steps.js
+wizard/assets/js/popper.min.js
 wizard/assets/scss/bd-wizard.scss
 wizard/assets/css/bd-wizard.css
 wizard/assets/css/bd-wizard.css.map

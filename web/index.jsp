@@ -8,12 +8,12 @@
 
 
 <!DOCTYPE html>
-<!--<html  manifest="treatment.appcache">-->
-<html  >
+<html  manifest="treatment.appcache">
+<!--<html  >-->
 	         <head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>VL</title>
+		<title>VLMIS</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
                 <link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -24,10 +24,10 @@
                 <link rel="shortcut icon" href="images/vl.png">
                 <link href="wizard/assets/css/mafonti.css" rel="stylesheet">
                 
-                <!--<link rel="stylesheet" href="wizard/assets/css/materialdesignicons.min.css">-->
+                <link rel="stylesheet" href="wizard/assets/css/materialdesignicons.min.css">
   <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
   <link rel="stylesheet" href="wizard/assets/css/bd-wizard.css">  
-  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">        
+  <!--<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">-->        
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -88,7 +88,7 @@ padding: 5px 25px;
     <div class="container-fluid">
         
         <div class="navbar-header">
-            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default" > <i class="glyphicon glyphicon-stats"></i>Non EMR Treatment Data collection module</button>
+            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default" > <i class="glyphicon glyphicon-scale"></i> VL Data Management System (VLMIS) 1.0.4</button>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -113,13 +113,14 @@ padding: 5px 25px;
                   <li><a id="clearcachebtn"  title=""   href="" onclick='clearsws();'<i class="glyphicon glyphicon-log-in"></i> Clear Cache</a></li>
                   <!--<li><a id="cleardatabtn"  title=""    onclick='cleardata();'<i class="glyphicon glyphicon-fire"></i>Delete all Data</a></li>-->
                  <li ><a  title="Add Widget" data-toggle="modal"  id="exportdataanchor2" href="#addWidgetModal1"><i class="glyphicon glyphicon-cloud-upload"></i> Export all Data</a></li>
-                 <li ><a  title="Add Widget" data-toggle="modal"  id="exportdataanchor2" href="#addWidgetModal1"><i class="glyphicon glyphicon-cloud-upload"></i>Pull data from server</a></li>
+                 <li ><a  title="Add Widget" data-toggle="modal"  id="exportdataanchor3" href="#addWidgetModal3"><i class="glyphicon glyphicon-cloud-download"></i>Pull data from server</a></li>
                  <li ><a  title="Add Widget" data-toggle="modal"  id='loginbtn' href="#accesscodemodal">.</a></li>
                  <li>
                   <a  title="Help" data-toggle="modal" href="#help">
                             <i class="glyphicon glyphicon-question-sign"></i>
                             Help
-                        </a></li>
+                        </a>
+                 </li>
                               <li><a href="#" style="display:none;" onclick="closeapp();"><i class="glyphicon glyphicon-lock"></i> Exit</a></li>
             </ul>
         </div>
@@ -156,7 +157,7 @@ padding: 5px 25px;
                     <div class="btn-group btn-group-justified">
                         <a href="#" id='refreshpage' class="btn btn-success col-sm-2">
                             <i class="glyphicon glyphicon-file"></i>
-                             Non EMR Treatment Data Collection Module
+                             VL Data Management System (VLMIS) 1.0.4
                         </a>
                        
                          
@@ -191,7 +192,7 @@ padding: 5px 25px;
 
                     <!--tabs-->
                     <div class="panel">
-                        <h2 style='text-align:center;' id='maujumbe'></h2>
+                        
                         <ul class=" nav nav-tabs " id="myTab">
                             <li class="active newdata col-xs-4"><a href="#dataentry" id="newdatabutton" data-toggle="tab">  <i class="glyphicon glyphicon-plus"></i> Data</a></li>
                             <!--<li class="active editdata" style='display:none;' ><a href="#dataentry" id="newdatabutton" data-toggle="tab">  <i class="glyphicon glyphicon-edit"></i> Edit Data</a></li>-->
@@ -210,7 +211,7 @@ padding: 5px 25px;
                        
                         <div class="panel-body" style="width:100%;padding:2px;">
                             <form class="form form-vertical" action="#" method="post" id="treatmentform">
-                                
+                                <h4 style='text-align:center;padding:5px; width:100%;' class='maujumbe ' ></h4>
                                 
                                 <div id='wizard'>
                                     <h3>
@@ -225,7 +226,8 @@ padding: 5px 25px;
                                         </div>
                                     </h3>
                                     <section>
-                                        <h2 style='text-align: center;'>Patient Registration</h2>
+                                     <h3  style='text-align: center;background-color:#ccffcc ;font-weight: bold;padding:3px;'>Patient Registration</h3>
+                                       
                                         <div class='form-group col-md-3'>
 
 
@@ -236,7 +238,7 @@ padding: 5px 25px;
 
                                         <div class='form-group col-md-3'>
                                             <label><font color='red'>*</font><b>Date of Birth</b></label>
-                                            <input readonly="true" onchange="validateTarehe('Date_of_Birth','Date_Started_on_IPT','Date Of Birth','Date Started IPT');AllowFutureDateOnly('Last_Clinical_Visit_Date','Date_of_Birth');AllowFutureDateOnly('Date_Initiated_On_ART','Date_of_Birth');validateTarehe('Date_of_Birth','Date_Initiated_On_ART','Date Of Birth','Date Initiated On ART');validateTarehe('Date_of_Birth','Last_Clinical_Visit_Date','Date Of Birth','Last Clinical Visit Date');" onchange='getAge();' placeholder='Date of Birth' data-date-end-date='0d'  autocomplete='off'  class='form-control dates' type='text' name='Date_of_Birth' id='Date_of_Birth'  />
+                                            <input readonly="true" onchange="validateTarehe('Date_of_Birth','Date_Started_on_IPT','Date Of Birth','Date Started IPT');AllowFutureDateOnly('Last_Clinical_Visit_Date','Date_of_Birth');AllowFutureDateOnly('Date_Initiated_On_ART','Date_of_Birth');validateTarehe('Date_of_Birth','Date_Initiated_On_ART','Date Of Birth','Date Initiated On ART');validateTarehe('Date_of_Birth','Last_Clinical_Visit_Date','Date Of Birth','Last Clinical Visit Date');getAge();" placeholder='Date of Birth' data-date-end-date='0d'  autocomplete='off'  class='form-control dates' type='text' name='Date_of_Birth' id='Date_of_Birth'  />
                                         <input type='hidden' name='age' id='age'>
                                        
                                         
@@ -280,10 +282,11 @@ padding: 5px 25px;
                                               <i class='glyphicon glyphicon-link'></i></div><div class='media-body'><div class='bd-wizard-step-title'>ART</div><div class='bd-wizard-step-subtitle'></div></div></div></h3>
                                     <section>
 
-                                        <h2  style='text-align: center;'>ARV Drugs and TB Screening</h2>
+                                        <h4  style='text-align: center;background-color:#ccffcc ;font-weight: bold; padding:5px;'> ARV Drugs and TB Screening  </h4>
+                                        <h5 style="text-align:center;"><label onclick='resetART();' class='btn btn-success'><b><i class="glyphicon glyphicon-plus"></i>New ART Encounter</b></label></h5>
                                         <div class='form-group col-md-3'>
-                                            <label><font color='red'>*</font><b>Date Given ARV Drugs<font color='orange'>(last clinic date)</font></b></label>
-                                            <input onchange="PredictnextDate();validateTarehe('Date_of_Birth','Last_Clinical_Visit_Date','Date Of Birth','Date Given ARV');UpdatePatientStatus();" readonly="true" placeholder='Last ART pickup Date' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Last_Clinical_Visit_Date' id='Last_Clinical_Visit_Date' />
+                                            <label><font color='red'>*</font><b>Date Given ARVs<font color='orange'> (last clinic date)</font></b></label>
+                                            <input onchange="PredictnextDate();validateTarehe('Date_of_Birth','Last_Clinical_Visit_Date','Date Of Birth','Date Given ARV');UpdatePatientStatus();" readonly="true" placeholder='Last ARV pickup Date' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Last_Clinical_Visit_Date' id='Last_Clinical_Visit_Date' />
                                         </div>
 
                                          <div class='form-group col-md-3'>
@@ -318,13 +321,78 @@ padding: 5px 25px;
                                          </div>
                                         
                                         <div class='form-group col-md-3'><label><b>Patient Status</b></label>
-                                            <select readonly="true" class='form-control' name='Monthly_Patient_Status' id='Monthly_Patient_Status' >
+                                            <select  onchange='isEligibleForLTFU();' readonly="true" class='form-control' style='border:1px solid #ffffff;' name='Monthly_Patient_Status' id='Monthly_Patient_Status' >
                                                 <option value=''>Not Given ARVs</option>
 <!--                                                <option value='Active '>Active on Treatment</option>
                                                 <option value='< 28 Days Defaulter'>< 28 Days Defaulter</option>
                                                 <option value='LTFU ( > 28 days Defaulter )'>LTFU ( > 28 days Defaulter )</option>-->
                                             </select>
                                         </div>
+                                        
+                                        
+                                         <div class='iscareend_able form-group col-md-3' style='display:none'>
+                                             
+                                            <!--isRestartART(); has been disabled for now. The assumption is that If one is lost to followup , the next round is when the patient will be seemed to be restarted ON ART -->
+                                             
+                                                <label><b>Care End patient</b></label>
+                                                <select onchange='isLTFU();isDEAD();' class='form-control' name='care_ending_reason' id='care_ending_reason' >
+                                                <option value=''>Select Reason for Care Ending</option>
+                                                <option value='LTFU'>LTFU ( > 28 days Defaulter )</option>
+                                                <option value='Transferred Out'>Transferred Out</option>
+                                                <option value='Dead'>Dead</option>
+                                                <option value='Stopped Treatment'>Stopped Treatment</option>
+                                                </select>
+                                        </div>
+                                        
+                                        <div class='isltfu form-group col-md-3' style='display:none;'>
+                                            <label><b>Date LTFU</b></label>
+                                            <input readonly='true' placeholder='Date LTFU' data-date-end-date='-30d' autocomplete='off'  class='form-control dates' type='text' name='Date_LTFU' id='Date_LTFU' />
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class='isltfu form-group col-md-3' style='display:none;'>
+                                            <label><b>Reason For LTFU</b></label><select class='form-control' name='Reason_For_LTFU' id='Reason_For_LTFU' ><option value=''>Select Reason For LTFU</option>
+                                                <option value='Out of reach'>Out of reach</option>
+                                                <option value='Self Transfer Out'>Self Transfer Out</option>
+                                                <option value='Travel ( Occupational/Upcountry)'>Travel ( Occupational/Upcountry)</option>
+                                                <option value='Lack/Wrong Locator infor'>Lack/Wrong Locator infor</option>
+                                                <option value='Stigma/Denial of Status'>Stigma/Denial of Status</option>
+                                                <option value='Relocated'>Relocated</option>
+                                                <option value='Discontinued Treatment ( Including PSS issues )'>Discontinued Treatment ( Including PSS issues )</option>
+                                                <!--<option value='Alcoholism'>Alcoholism</option>-->
+                                                </select>
+                                        </div>
+
+                                        <div class='isdead form-group col-md-3' style='display:none;'>
+                                            <label><b>Cause of Death</b></label>
+                                            
+                                            <select class='form-control' name='Cause_of_Death' id='Cause_of_Death' ><option value=''>Select Cause of Death</option>
+                                                <option value='HIV disease resulting in TB'>HIV disease resulting in TB</option>
+                                                <option value='HIV disease resulting in other infectious and parasitic disease'>HIV disease resulting in other infectious and parasitic disease</option>
+                                                <option value='HIV disease resulting in cancer'>HIV disease resulting in cancer</option>
+                                                <option value='Other HIV disease, resulting in other diseases or conditions leading to death'>Other HIV disease, resulting in other diseases or conditions leading to death</option>
+                                                <option value='Other natural causes'>Other natural causes</option>
+                                                <option value='Non-natural causes'>Non-natural causes</option>
+                                                <option value='Unknown Cause'>Unknown Cause</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class='isrestartart form-group col-md-3' style='display:none'>
+                                        <label><b>Date Restarted on ART</b></label>
+                                        <input readonly="true" placeholder='Date Restarted on ART' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Restarted_on_ART' id='Date_Restarted_on_ART' />
+                                        </div>
+
+                             <div id="arthistory" style="display:none;">
+                                        <table  class='table table-striped table-bordered'>
+                                 <thead>
+                                      <tr><th colspan='3' style='text-align:center;background-color:gray;' >ARV History</th></tr>
+                                     <tr><th style='width:30%;'>Visit Date</th><th style='width:50%;'>Regimen</th><th style='width:20%;'>Expected Return</th></tr></thead>
+                              <tbody></tbody>
+                             </table>   
+                                 </div>
+                                        
+                                        
                                         <div class='form-group col-md-3'>
                                          
                                             
@@ -332,18 +400,26 @@ padding: 5px 25px;
                                         </div>
                                         <div class='form-group col-md-3'>
                                           <br/>  
-                                            <label onclick='resetART();' class='btn btn-success'><b>Clear ART Fields</b></label>
+                                            
                                             
                                         </div>
 
                                     </section>
 
+                                    
+                                    
+                                    
+   <!--IPT________________________________________________________________________________IPT-->                               
+                                    
+                                    
+                                    
                                     <h3>
                                         <div class='media1'><div class='bd-wizard-step-icon'><i class='glyphicon glyphicon-circle-arrow-up'></i></div><div class='media-body'><div class='bd-wizard-step-title'>IPT</div><div class='bd-wizard-step-subtitle'></div></div></div>
                                     </h3>
                                     <section>
-                                        <h2  style='text-align: center;'>IPT</h2>
-
+                                       
+ <h3  style='text-align: center;background-color:#ccffcc ;font-weight: bold;padding:3px;'>IPT</h3>
+                                    
                                         <div class='form-group col-md-3'><label><font color='red'>*</font><b>Started on IPT?</b></label>
                                             <select onchange="IsStartedIPT();validateTarehe('Date_of_Birth','Date_Started_on_IPT','Date Of Birth','Date Started IPT');" class='form-control' name='Started_on_IPT' id='Started_on_IPT' ><option value=''>Select Started on IPT?</option>
                                                 <option value='Yes'>Yes</option>
@@ -359,8 +435,9 @@ padding: 5px 25px;
                                         <div class='if_started_ipt form-group col-md-3' style="display:none;">
                                             <label><b>IPT Outcome</b></label>
                                             <select onchange="IsCompletedIPT();IsDiscontinuedIPT();" class='form-control' name='IPT_Outcome' id='IPT_Outcome' ><option value=''>Select IPT Outcome</option>
-                                                <option value='LTFU'>LTFU</option>
                                                 <option value='Completed'>Completed</option>
+                                                <option value=''>Continueing</option>
+                                                <option value='LTFU'>LTFU</option>
                                                 <option value='Died'>Died</option>
                                                 <option value='Transferred Out'>Transferred Out</option>
                                                 <option value='Discontinued'>Discontinued</option></select>
@@ -377,23 +454,35 @@ padding: 5px 25px;
                                         </div>
 
                                     </section>
+   
+   
+   
+   <!--VL___________________________________________________________________________________________________________VL-->
+   
+   
+   
                                     <h3>
                                         <div class='media1'>
                                             <div class='bd-wizard-step-icon'><i class=' glyphicon glyphicon-baby-formula'></i></div>
                                             <div class='media-body'>
                                                 <div class='bd-wizard-step-title'>VL</div><div class='bd-wizard-step-subtitle'></div>
 
-                                            </div></div></h3>
+                                            </div>
+                                                
+                                        </div>
+                                    </h3>
                                     <section>
-                                        <h2  style='text-align: center;'>ViralLoad</h2>
+                                        <!--<h2  style='text-align: center;'>ViralLoad</h2>-->
+     <h3  style='text-align: center;background-color:#ccffcc ;font-weight: bold;padding:3px;'>Viral Load</h3>
+                                 <h5 style="text-align:center;"><label onclick='resetVL();' class='btn btn-success'><b><i class="glyphicon glyphicon-plus"></i>New VL Sample</b></label></h5>   
                                         <div class='form-group col-md-3'>
 
                                             <label><font color='red'>*</font><b>Initial Viral Load Date</b></label>
-                                            <input onchange="validateTarehe('First_Viral_Load_Date','Date_Last_VL_Conducted','Date initial viral load conducted','Date Last viral load Conducted');" placeholder='First Viral Load Date' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='First_Viral_Load_Date' id='First_Viral_Load_Date' />
+                                            <input readonly='true' onchange="validateTarehe('First_Viral_Load_Date','Date_Last_VL_Conducted','Date initial viral load conducted','Date Last viral load Conducted');" placeholder='First Viral Load Date' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='First_Viral_Load_Date' id='First_Viral_Load_Date' />
                                         </div>
 
                                         <div class='form-group col-md-3'>
-                                            <label><b>Date Last VL Sample Collected</b></label>
+                                            <label><b>Date Most Recent VL Sample Collected</b></label>
                                             <input onchange="validateTarehe('First_Viral_Load_Date','Date_Last_VL_Conducted','Date initial viral load conducted','Date Last viral load Conducted');" readonly="true" placeholder='Date Last VL Conducted' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Last_VL_Conducted' id='Date_Last_VL_Conducted' /></div>
 
                                         <div class='form-group col-md-3'><label><b>Justification For Last VL</b></label><select class='form-control' name='Justification' id='Justification' ><option value=''>Select Justification</option>
@@ -405,9 +494,9 @@ padding: 5px 25px;
                                         </div>
 
                                         <div class='form-group col-md-3'>
-                                            <label><b>Last VL Results  </b> 
+                                            <label><b>Last VL Results  </b> </label>
                                             <input  placeholder='VL Results in copies/ml' autocomplete='off' onkeypress='return numbers(event);'  class='form-control' type='text' name='VL_Results' id='VL_Results' />
-                                        <font color="orange"> <input  onclick='UpdateLDL();' type="checkbox" value='< LDL copies/ml' id='ldl'> < LDL copies/ml </font></label>
+                                        <font color="orange"> <input  onclick='UpdateLDL();' type="checkbox" value='< LDL copies/ml' id='ldl'> < LDL copies/ml </font>
                                         </div>
 
                                         <div class='ispmtct form-group col-md-3'><label><b>PMTCT status when VL Sample was Collected?</b></label>
@@ -418,11 +507,18 @@ padding: 5px 25px;
                                             <option value='Not Applicable'>Not Applicable</option>
                                             </select>
                                         </div>
-                                                
+         <div id="vlhistory" style="display:none;">
+                             <table  class='table table-striped table-bordered'>
+                                 <thead>
+                                     <tr><th colspan='3' style='text-align:center;background-color:gray;' >Viral Load History</th></tr>
+                                     <tr><th style='width:30%;'>Date</th><th style='width:50%;'>Justification</th><th style='width:20%;'>Results</th></tr></thead>
+                              <tbody></tbody>
+                             </table>  
+         </div>
                        
                                     </section>
                                     
-                                    
+  <!--DSD_______________________________________________________________________________________________________________DSD-->                                  
                                      <h3 style>
                                         <div class='media1'>
                                             <div class='bd-wizard-step-icon'><i class='glyphicon glyphicon-stats'></i></div>
@@ -434,8 +530,9 @@ padding: 5px 25px;
                                         </div>
                                     </h3>
                                     <section>
-
-                                        <h2  style='text-align: center;'>Differentiated Care Model</h2>
+ <h3  style='text-align: center;background-color:#ccffcc ;font-weight: bold;padding:3px;'>Differentiated Care Model</h3>
+                                    
+                                        <!--<h2  style='text-align: center;'>Differentiated Care Model</h2>-->
 
                                         <div class='ispatient1yr form-group col-md-3'><label><b>Stability</b></label>
                                             <select onchange='IsStable();' class='form-control' name='Stability' id='Stability' ><option value=''>Select Stability</option>
@@ -462,78 +559,29 @@ padding: 5px 25px;
                                     </section>
                                     
                                     
-                                    <h3>
+<!--                                    <h3>
                                         <div class='media1'>
                                             <div class='bd-wizard-step-icon'><i class='glyphicon glyphicon-remove-sign'></i></div>
                                             <div class='media-body'><div class='bd-wizard-step-title'>Care Ending</div><div class='bd-wizard-step-subtitle'></div></div>
                                                 
                                         </div>
-                                    </h3>
-                                    <section>
+                                    </h3>-->
+                                    <!--<section>-->
 
-                                        <h2  style='text-align: center;'>Lost To Followup or  Restarted on ART</h2>
-
-                                        
+                                        <!--<h2  style='text-align: center;'>Lost To Follow up or  Restarted on ART</h2>-->
 
                                         
 
                                         
-                                        <div class='form-group col-md-3'>
-                                                <label><b>Reason For Care Ending</b></label>
-                                                <select oncahnge='isLTFU();isDEAD();isRestartART();' class='form-control' name='care_ending_reason' id='care_ending_reason' >
-                                                <option value=''>Select Reason for Care Ending</option>
-                                                <option value='LTFU'>LTFU ( > 28 days Defaulter )</option>
-                                                <option value='Transferred Out'>Transferred Out</option>
-                                                <option value='Dead'>Dead</option>
-                                                <option value='Stopped Treatment'>Stopped Treatment</option>
-                                                </select>
-                                        </div>
-                                        
-                                        <div class='isltfu form-group col-md-3' style='display:none;'>
-                                            <label><b>Date LTFU</b></label>
-                                            <input placeholder='Date LTFU' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_LTFU' id='Date_LTFU' />
-                                        </div>
-                                        
-                                        
-                                        
-                                        <div class='isltfu form-group col-md-3' style='display:none;'>
-                                            <label><b>Reason For LTFU</b></label><select class='form-control' name='Reason_For_LTFU' id='Reason_For_LTFU' ><option value=''>Select Reason For LTFU</option>
-                                                <option value='Out of reach'>Out of reach</option>
-                                                <option value='Self Transfer Out'>Self Transfer Out</option>
-                                                <option value='Travel ( Occupational/Upcountry)'>Travel ( Occupational/Upcountry)</option>
-                                                <option value='Lack/Wrong Locator infor'>Lack/Wrong Locator infor</option>
-                                                <option value='Stigma/Denial of Status'>Stigma/Denial of Status</option>
-                                                <option value='Relocated'>Relocated</option>
-                                                <option value='Discontinued Treatment ( Including PSS issues )'>Discontinued Treatment ( Including PSS issues )</option>
-                                                <option value='Alcoholism'>Alcoholism</option></select>
-                                        </div>
 
-                                        <div class='isdead form-group col-md-3' style='display:none;'>
-                                            <label><b>Cause of Death</b></label>
-                                            
-                                            <select class='form-control' name='Cause_of_Death' id='Cause_of_Death' ><option value=''>Select Cause of Death</option>
-                                                <option value='HIV disease resulting in TB'>HIV disease resulting in TB</option>
-                                                <option value='HIV disease resulting in other infectious and parasitic disease'>HIV disease resulting in other infectious and parasitic disease</option>
-                                                <option value='HIV disease resulting in cancer'>HIV disease resulting in cancer</option>
-                                                <option value='Other HIV disease, resulting in other diseases or conditions leading to death'>Other HIV disease, resulting in other diseases or conditions leading to death</option>
-                                                <option value='Other natural causes'>Other natural causes</option>
-                                                <option value='Non-natural causes'>Non-natural causes</option>
-                                                <option value='Unknown Cause'>Unknown Cause</option>
-                                            </select>
-                                        </div>
                                         
-                                        <div class='isrestartart form-group col-md-3' style='display:none'>
-                                            
-                                        <label><b>Date Restarted on ART</b></label>
-                                        <input readonly="true" placeholder='Date Restarted on ART' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Restarted_on_ART' id='Date_Restarted_on_ART' />
-                                        </div>
-
-                                    </section>
+                                       
+                                    <!--</section>-->
                                    
 
 
                                 </div>
-
+<h4 style='text-align:center;padding:5px;' class='maujumbe' id='maujumbe'></h4>
           
 
  
@@ -546,6 +594,7 @@ padding: 5px 25px;
                                             <option value=''>Select user</option>
 
                                         </select>
+                                      <input type='hidden' name='rowid' id='rowid'>
                                     
                                 </div>
                                 <div class="form-group col-md-5"  >
@@ -606,10 +655,10 @@ Total_Linkage
                                   
                                   
                                      
-                                <table class="table table-striped table-bordered">
-                                       <tr><td colspan="3" class="col-xs-12">               
+                                <!--<table class="table table-striped table-bordered">-->
+                                       <!--<tr><td colspan="3" class="col-xs-12">-->               
                                 <div class="control-group col-xs-12">
-                               <div id="utumani" class="alert-info">Note: Please enter data for all input fields.</div>
+                               <div id="utumani" class="alert-info"></div>
                                    <br/>
                                     <div class="controls">
                                         <button type="submit" id='savebutton' onmouseover="setrowid();" onclick="validateweeklydata();" style="margin-left: 0%;display:none;" class="btn-lg btn-success active">
@@ -625,9 +674,9 @@ Total_Linkage
                                     </div>
                                     
                                 </div>
-                                        </td></tr>
+                                        <!--</td></tr>-->
                                         
-                                </table>
+                                <!--</table>-->
                             </form>
                         </div>
                         <!--/panel content-->
@@ -1048,43 +1097,81 @@ Total_Linkage
                 <h4 class="modal-title">Help</h4>
             </div>
             <div class="modal-body">
-                <p>This  application is created for aiding users in collecting Facility Attendance Tool</p>
+                <h3><b>Viral Load Data Management Information System (VLMIS)</b></h3>
+                <p>The primary aim of this system is to ensure Afya Nyota Supported ART sites without EMR can monitor and report Viral Load and IPT data accurately as required by PEPFAR. 
+Therefore, patients who are currently on ART should have all their  records routinely updated in the system. This will directly or indirectly help the facilities to generate monthly reports on Viral Load , TB Prevention, TB Screening,  TX New and TX_ML</p>
                     <h3>Activating User</h3>
                  <p> The first time of installing/running the application,You should specify the name of the system users from the availed list.</p>
                 
-                <h3>Data Elements</h3>
+                <h3>System Overview</h3>
                 <p>The specific elements that we are interested in are;</p>
                 <ul>
 
-<li> Date Test Conducted </li>
-<li> Facility Name </li>
-<li> Name of Counsellor- Name of HTS Counsellor</li>
-<li> Register Number - <i>Refers to the number allocated to the HTS register, e.g. 01, 02, 03 etc. Meaning each HTS register being used at the facility should be allocated a number different from the other</i></li>
-<li> Patient Serial Number -<i>Is the number given to the client in the HTS register based on annual serialization system in the HTS register (column a).</i> </li>
-<li> Age </li>
-<li> Sex </li>
-<li> HTS Testing Modality - The Modality where client was tested in. This does not include the PMTCT</li>
-<li> HTS Test Results <i>(Positive/Negative)</i> </li>
-<li> Is the Patient Linked </li> 
-<li> The Facility where the patient is linked in </li>
-<li> The Patient CCC number</li>
-<li>Reason why Patient is not linked</li>
-<li> If patient Declined to be linked, give reason</li>
-<li> If Patient was not linked because of death, give reason for death</li>
+<li>Made for non EMR Sites</li>
+<li>Can work fully offline and on both Computer and a mobile phone</li>
+<li>By design, requires a user to stick to one device ( either Phone or Computer)  and maintain same browser</li>
+<li>Data should be exported frequently to avoid data loss</li>
+<li>Requires Internet during first time access and Export of data</li>
+
 
 
 
 
                 </ul>
                 
-                <h3>Test and Start</h3>
-                <p>This section will help you to enter data started ART details. For the records that where linked within our Project health facilities, you can search their ccc numbers and if you do not find them, type the ccc numbers and fill the date tested and the Date started on ART details  </p>
+                <h3>First Time Access</h3>
+                <ul>
+                <li>Enter the Access code  that was shared via email</li>
+<li>Enter full name and facility supporting</li>
+
+<li>Incase you want to change the facility supporting, go to user’s tab, Select the current username, delete it and create a new user account </li>
+                 </ul>
                 
-             <h3>Loading Facilities</h3>
+                <h3>Update ARV For an already Registered Patient</h3>
+                
+                
+                    
+    <p>To add a new ART Update for a patient already registered;</p>
+    <ul>
+<li>Go to Edit Tab</li>
+<li>Search the Patient by typing their CCC number</li>
+<li>Click the Edit button on the edit column to load their details</li>
+<li>On the Patients Data entry/edit wizard, Go to step 2 ( ARV and TB Screening)</li>
+<li>By Default, the section will be displaying the last visit ARV and TB details</li>
+<li>Click New ART Encounter</li>
+<li>Enter the new ARV details</li>
+<li>Once done, proceed to the last step and click finish</li>
+ </ul>
+    
+    
+           <h3>Update VL for an already registered Patient</h3>
+                
+                
+                    
+    <p>To add a new Viral Load update for a patient already registered;</p>
+    <ul>
+<li>Go to Edit Tab</li>
+<li>Search the Patient by typing their CCC number</li>
+<li>Click the Edit button on the edit column to load their details</li>
+<li>On the patients data entry/edit wizard, go to step 4 ( Viral Load )</li>
+<li>By default, the system will be displaying the last entered  VL details for that patient</li>
+<li>Enter the new VL details</li>
+<li>Once done, proceed to the last step and click finish</li>
+ </ul>
+                
+<!--             <h3>Loading Facilities</h3>
                  <p> The first time of installing/running the application,health facilities are downloaded and saved on the host device (mobile phone or computer browser). This requires internet connectivity. After the download, sites should appear on the facility drop down list.</p>
+                 -->
+                 
                  <h3>Data Export</h3>
-                <p>Data is saved on your mobile device and should be shared to a server for analysis </p>
-                <p>If there is Any un-exported that has  been saved offline, the user will be reminded to create an export by seeing yellow text showing number of sites whose data has not been exported .</p>
+                <p>Data Entered is saved at the browser of the device that the user is using.To export this data to the central server; </p>
+                <ul>
+
+<li>Click the Export Data button <i>( available if there is un-exported data ) </i></li>
+<li>Click the button Click here to Export Data and wait for the export successful message</li>
+<li>Note: This activity requires you to be connected to Internet</li>
+<li>Users are encouraged to export data frequently to avoid data loss</li>
+               </ul>
             </div>
             <div class="modal-footer">
                 <a href="#" data-dismiss="modal" class="btn">Close</a>
@@ -1157,7 +1244,8 @@ Total_Linkage
           
                 
                 <script src="js/select2.js"></script>
-                <script src="js/pouchdb-7.1.1.js"></script>
+                <script src="js/pouchdb-7.2.1.js"></script>
+                <script src="js/pouchdb.upsert.js"></script>
                  
                 <script type="text/javascript" src="js/jquery.fileDownload.js"></script>
                 <script type="text/javascript" src="js/datatables.min.js"></script>
@@ -1210,7 +1298,7 @@ Total_Linkage
         var facilities="<option value=''>Select Facility</option>";
         
               $.ajax({
-                    url:'sites2.json',                            
+                    url:'sites3.json',                            
                     type:'get',  
                     dataType: 'json',  
                     success: function(data) {
@@ -1317,25 +1405,38 @@ function getdrugs(){
       
       //Pouch Db names
       
-      var nonemr_patients='nonemr_patients';
-      var nonemr_ipt='nonemr_ipt';
+      var nonemr_all='nonemr_all';
       var nonemr_curr='nonemr_curr';
+      var nonemr_ipt='nonemr_ipt';
       var nonemr_vl='nonemr_vl';
-      var nonemr_txml_ltfu='nonemr_txml_ltfu';
       var nonemr_diffcare='nonemr_diffcare';
+      var nonemr_txml_ltfu='nonemr_txml_ltfu';
+      
       
       
       //_________________________Create functions for adding Users to teh hSystem _______________________________
       //_________________________Patients _______________________________
-      
- var nonemr_patients_db = new PouchDB(nonemr_patients);
+   
+//var PDB = require('pouchdb');
+//PDB.plugin(require('pouchdb-upsert'));
+    
+    
+    //_____________________________________________________________ALL Data Records_________________________________________________________________________________________________
+    
+    
+   
+ 
+
+
+    
+ var nonemr_all_db = new PouchDB(nonemr_all);
  
 var remoteCouch = false;
-var nonemr_patients_details;
+var nonemr_all_details;
 
  
- function add_nonemr_patients(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Monthly_Patient_Status,timestamp,user_id) {
-   nonemr_patients_details = {
+ function add_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,  timestamp,user_id,syncstatus) {
+   nonemr_all_details = {
 //id should consist of Patientcccno and also datevisit conducted
 id_:id,
 mflcode:mflcode,
@@ -1346,16 +1447,61 @@ Sex:Sex,
 Population_Type:Population_Type,
 Date_Initiated_On_ART:Date_Initiated_On_ART,
 Current_Regimen:Current_Regimen,
-Monthly_Patient_Status:Monthly_Patient_Status,  
+ 
+ 
+ 
+ 
+ 
+Last_Clinical_Visit_Date:Last_Clinical_Visit_Date,
+Screened_For_TB:Screened_For_TB,
+Days_of_Dispense:Days_of_Dispense,
+Months_of_Dispense:Months_of_Dispense,
+Next_appointment_Date:Next_appointment_Date,
+Monthly_Patient_Status:Monthly_Patient_Status, //should be blank for now
+
+//LTFU
+Reason_For_LTFU:Reason_For_LTFU,
+Date_LTFU:Date_LTFU,
+care_ending_reason:care_ending_reason,
+Cause_of_Death:Cause_of_Death,
+Date_Restarted_on_ART:Date_Restarted_on_ART,
+
+//IPT
+
+
+Started_on_IPT:Started_on_IPT,
+Date_Started_on_IPT:Date_Started_on_IPT,
+IPT_Outcome:IPT_Outcome,
+Date_of_IPT_Outcome:Date_of_IPT_Outcome,
+Reason_Not_Completed:Reason_Not_Completed,
+
+//VL
+
+First_Viral_Load_Date:First_Viral_Load_Date,
+Date_Last_VL_Conducted:Date_Last_VL_Conducted,
+Justification:Justification,
+PMTCT_Status:PMTCT_Status,
+VL_Results:VL_Results,
+
+//DSD
+
+Stability:Stability,
+DC_Model:DC_Model,
+well_unwell:well_unwell,
+
+
+ 
+ 
 timestamp:timestamp,
 user_id:user_id,
+syncstatus:syncstatus,  
 completed: false
   };
-  nonemr_patients_db.put(nonemr_patients_details, function callback(err, result) 
+  nonemr_all_db.put(nonemr_patients_details, function callback(err, result) 
   {
     if (!err) 
     {
-      console.log('nonemr_patients data added succesfully');
+      console.log('nonemr_all data added succesfully');
     }
     else{
         console.log(err);  
@@ -1364,12 +1510,88 @@ completed: false
         
     }
     
-    setTimeout(delayedrefresh,1500);
+  
   });
 }
       
    
+//_________________________________________________Code For Updating____________________________________   
+   function update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,  timestamp,user_id,syncstatus)
+   {
    
+ 
+
+nonemr_all_db.upsert(id, function (doc) {
+
+   //doc.id_=id;
+doc.mflcode=mflcode;
+doc.Facility=facility;
+doc.ccc_number=ccc_number;
+doc.Date_of_Birth=Date_of_Birth;
+doc.Sex=Sex;
+doc.Population_Type=Population_Type;
+doc.Date_Initiated_On_ART=Date_Initiated_On_ART;
+doc.Current_Regimen=Current_Regimen;
+//curr
+
+doc.Last_Clinical_Visit_Date=Last_Clinical_Visit_Date;
+doc.Screened_For_TB=Screened_For_TB;
+doc.Days_of_Dispense=Days_of_Dispense;
+doc.Months_of_Dispense=Months_of_Dispense;
+doc.Next_appointment_Date=Next_appointment_Date;
+doc.Monthly_Patient_Status=Monthly_Patient_Status; //should be blank for now
+
+//LTFU
+doc.Reason_For_LTFU=Reason_For_LTFU;
+doc.Date_LTFU=Date_LTFU;
+doc.care_ending_reason=care_ending_reason;
+doc.Cause_of_Death=Cause_of_Death;
+doc.Date_Restarted_on_ART=Date_Restarted_on_ART;
+
+//IPT
+
+
+doc.Started_on_IPT=Started_on_IPT;
+doc.Date_Started_on_IPT=Date_Started_on_IPT;
+doc.IPT_Outcome=IPT_Outcome;
+doc.Date_of_IPT_Outcome=Date_of_IPT_Outcome;
+doc.Reason_Not_Completed=Reason_Not_Completed;
+
+//VL
+
+doc.First_Viral_Load_Date=First_Viral_Load_Date;
+doc.Date_Last_VL_Conducted=Date_Last_VL_Conducted;
+doc.Justification=Justification;
+doc.PMTCT_Status=PMTCT_Status;
+doc.VL_Results=VL_Results;
+
+//DSD
+
+doc.Stability=Stability;
+doc.DC_Model=DC_Model;
+doc.well_unwell=well_unwell;
+
+
+
+doc.timestamp=timestamp;
+doc.user_id=user_id;
+doc.syncstatus=syncstatus; 
+  
+  return doc;
+}).then(function (res) {
+  // success, res is {rev: '1-xxx', updated: true, id: 'myDocId'}
+   console.log('nonemr_all data added succesfully'+res);
+}).catch(function (err) {
+  // error
+  console.log(err);  
+  alert(''+err);
+}); 
+  
+
+  
+}
+   
+  
 //________________________Current On ART _____________________________   
    
 
@@ -1379,21 +1601,37 @@ var remoteCouch = false;
 var nonemr_curr_details;
 
 
-function add_nonemr_curr(Visit_Id,visitdate,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,timestamp,user_id) {
+function add_nonemr_curr(Visit_Id,ccc_number,Current_Regimen,visitdate,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,timestamp,user_id) {
    nonemr_curr_details = {
 //id should consist of Patientcccno and also datevisit conducted
 id_:Visit_Id,
+ccc_number:ccc_number,
 visitdate:visitdate,
+Current_Regimen:Current_Regimen,
 Last_Clinical_Visit_Date:Last_Clinical_Visit_Date,
 Screened_For_TB:Screened_For_TB,
 Days_of_Dispense:Days_of_Dispense,
 Months_of_Dispense:Months_of_Dispense,
 Next_appointment_Date:Next_appointment_Date,
-Monthly_Patient_Status:Monthly_Patient_Status,
+Monthly_Patient_Status:Monthly_Patient_Status, //should be blank for now
+
+Reason_For_LTFU:Reason_For_LTFU,
+Date_LTFU:Date_LTFU,
+care_ending_reason:care_ending_reason,
+Cause_of_Death:Cause_of_Death,
+Date_Restarted_on_ART:Date_Restarted_on_ART,
+
 timestamp:timestamp,
 user_id:user_id,     
 completed: false
   };
+  
+  
+  
+  
+ 
+  
+  
   nonemr_curr_db.put(nonemr_curr_details, function callback(err, result) 
   {
     if (!err) 
@@ -1402,15 +1640,59 @@ completed: false
     }
     else 
     {
-        console.log(err);  
-        
-     alert("Duplicate Error!.You have already entered data for that patient.Consider editing instead "+err);
-        
+    console.log(err);  
+    alert("Duplicate Error!.You have already entered data for that patient.Consider editing instead "+err);
     }
     
-    setTimeout(delayedrefresh,1500);
+   
   });
 }
+
+
+
+//_________________________________________________Code For Updating____________________________________   
+   function update_nonemr_curr(Visit_Id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,timestamp,user_id,syncstatus) {
+   
+ 
+
+nonemr_curr_db.upsert(Visit_Id, function (doc) {
+
+   //doc.id_=id;
+doc.ccc_number=ccc_number;
+
+doc.Last_Clinical_Visit_Date=Last_Clinical_Visit_Date;
+doc.Current_Regimen=Current_Regimen;
+doc.Screened_For_TB=Screened_For_TB;
+doc.Days_of_Dispense=Days_of_Dispense;
+doc.Months_of_Dispense=Months_of_Dispense;
+doc.Next_appointment_Date=Next_appointment_Date;
+doc.Monthly_Patient_Status=Monthly_Patient_Status; //should be blank for now
+
+doc.Reason_For_LTFU=Reason_For_LTFU;
+doc.Date_LTFU=Date_LTFU;
+doc.care_ending_reason=care_ending_reason;
+doc.Cause_of_Death=Cause_of_Death;
+doc.Date_Restarted_on_ART=Date_Restarted_on_ART;
+
+doc.timestamp=timestamp;
+doc.user_id=user_id;
+doc.syncstatus=syncstatus; 
+  
+  return doc;
+}).then(function (res) 
+{
+  // success, res is {rev: '1-xxx', updated: true, id: 'myDocId'}
+   console.log('nonemr_curr data updated succesfully'+res);
+}).catch(function (err) 
+{
+  // error
+  console.log(err);  
+  alert(''+err);
+}); 
+  
+ 
+}
+   
 
 
 
@@ -1424,11 +1706,12 @@ var nonemr_ipt_details;
 
 
 
-function add_nonemr_ipt(Visit_Id,Clinical_Visit_Date,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,timestamp,user_id) {
+function add_nonemr_ipt(Visit_Id,ccc_number,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,timestamp,user_id,syncstatus) {
    nonemr_ipt_details = {
          //id should consist of Patientcccno and also datevisit conducted
 id_:Visit_Id,
-Clinical_Visit_Date:Clinical_Visit_Date,
+ccc_number:ccc_number,
+
 Started_on_IPT:Started_on_IPT,
 Date_Started_on_IPT:Date_Started_on_IPT,
 IPT_Outcome:IPT_Outcome,
@@ -1451,10 +1734,46 @@ completed: false
         
     }
     
-    setTimeout(delayedrefresh,1500);
+    
   });
 }
+
+ 
+//_________________________________________________Code For Updating____________________________________   
+   function update_nonemr_ipt(Visit_Id,ccc_number,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,timestamp,user_id,syncstatus) {
    
+ 
+
+nonemr_ipt_db.upsert(Visit_Id, function (doc) 
+{
+
+doc.ccc_number=ccc_number;
+
+doc.Started_on_IPT=Started_on_IPT;
+doc.Date_Started_on_IPT=Date_Started_on_IPT;
+doc.IPT_Outcome=IPT_Outcome;
+doc.Date_of_IPT_Outcome=Date_of_IPT_Outcome;
+doc.Reason_Not_Completed=Reason_Not_Completed;
+
+doc.timestamp=timestamp;
+doc.user_id=user_id;
+doc.syncstatus=syncstatus; 
+  
+  return doc;
+}).then(function (res) 
+{
+  // success, res is {rev: '1-xxx', updated: true, id: 'myDocId'}
+   console.log('nonemr_ipt data updated succesfully'+res);
+}).catch(function (err) 
+{
+  // error
+  console.log(err);  
+  alert(''+err);
+}); 
+  
+ 
+}
+ 
 
 
 //________________________________________________VL____________________________________________
@@ -1465,13 +1784,14 @@ var remoteCouch = false;
 var nonemr_vl_details;
 
 
-function add_nonemr_vl(Visit_Id,visitdate,First_Viral_Load_Date,Date_Sample_Collected,Justification,PMTCT_Status,VL_Results,timestamp,user_id) {
+function add_nonemr_vl(Visit_Id,ccc_number,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,timestamp,user_id,syncstatus) {
    nonemr_vl_details = {
 //id should consist of Patientcccno and also datevisit conducted
 id_:Visit_Id,
-visitdate:visitdate,
+
+ccc_number:ccc_number,
 First_Viral_Load_Date:First_Viral_Load_Date,
-Date_Sample_Collected:Date_Sample_Collected,
+Date_Last_VL_Conducted:Date_Last_VL_Conducted,
 Justification:Justification,
 PMTCT_Status:PMTCT_Status,
 VL_Results:VL_Results,
@@ -1492,8 +1812,47 @@ completed: false
         
     }
     
-    setTimeout(delayedrefresh,1500);
+   
   });
+}
+
+
+
+
+ 
+//_________________________________________________Code For Updating____________________________________   
+   function update_nonemr_vl(Visit_Id,ccc_number,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,timestamp,user_id,syncstatus) {
+   
+ 
+
+nonemr_vl_db.upsert(Visit_Id, function (doc) 
+{
+
+
+doc.ccc_number=ccc_number;
+doc.First_Viral_Load_Date=First_Viral_Load_Date;
+doc.Date_Last_VL_Conducted=Date_Last_VL_Conducted;
+doc.Justification=Justification;
+doc.PMTCT_Status=PMTCT_Status;
+doc.VL_Results=VL_Results;
+
+doc.timestamp=timestamp;
+doc.user_id=user_id;
+doc.syncstatus=syncstatus; 
+  
+  return doc;
+}).then(function (res) 
+{
+  // success, res is {rev: '1-xxx', updated: true, id: 'myDocId'}
+   console.log('nonemr_vl data updated succesfully'+res);
+}).catch(function (err) 
+{
+  // error
+  console.log(err);  
+  alert(''+err);
+}); 
+  
+ 
 }
 
 
@@ -1507,15 +1866,17 @@ var remoteCouch = false;
 var nonemr_txml_ltfu_details;
 
 
-function add_nonemr_txml_ltfu(id,visitdate,Date_LTFU,Reason_For_LTFU,Cause_of_Death,Date_Restarted_on_ART,timestamp,user_id) {
+function add_nonemr_txml_ltfu(id,ccc_number,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,timestamp,user_id,syncstatus) {
    nonemr_txml_ltfu_details = {
 //id should consist of Patientcccno and also datevisit conducted
 id_:id,
-visitdate:visitdate,
+ccc_number:ccc_number,
+
 Date_LTFU:Date_LTFU,
-Reason_For_LTFU:Reason_For_LTFU,
+care_ending_reason:care_ending_reason,
 Cause_of_Death:Cause_of_Death,
 Date_Restarted_on_ART:Date_Restarted_on_ART,
+
 timestamp:timestamp,
 user_id:user_id,
 completed: false
@@ -1533,9 +1894,48 @@ completed: false
         
     }
     
-    setTimeout(delayedrefresh,1500);
+   
   });
 }
+
+
+
+
+function update_non_emr_txml_ltfu(id,ccc_number,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,timestamp,user_id,syncstatus) {
+   
+ 
+
+non_emr_txml_ltfu_db.upsert(id, function (doc) 
+{
+
+doc.visitdate=visitdate;
+doc.ccc_number=ccc_number;
+
+doc.Date_LTFU=Date_LTFU;
+doc.care_ending_reason=care_ending_reason;
+doc.Cause_of_Death=Cause_of_Death;
+doc.Date_Restarted_on_ART=Date_Restarted_on_ART;
+
+doc.timestamp=timestamp;
+doc.user_id=user_id;
+doc.syncstatus=syncstatus; 
+  
+  return doc;
+}).then(function (res) 
+{
+  // success, res is {rev: '1-xxx', updated: true, id: 'myDocId'}
+   console.log('non_emr_txml_ltfu data updated succesfully'+res);
+}).catch(function (err) 
+{
+  // error
+  console.log(err);  
+  alert(''+err);
+}); 
+  
+ 
+}
+
+
 
 
 //__________________________________________Differenciated Care______________________________________________
@@ -1547,10 +1947,11 @@ var remoteCouch = false;
 var nonemr_diffcare_details;
 
 
-function add_nonemr_diffcare(id,visitdate,Stability,DC_Model,well_unwell,timestamp,user_id) {
+function add_nonemr_diffcare(id,ccc_number,visitdate,Stability,DC_Model,well_unwell,timestamp,user_id,syncstatus) {
    nonemr_diffcare_details = {
 //id should consist of Patientcccno and also datevisit conducted
 id_:id,
+ccc_number:ccc_number,
 visitdate:visitdate,
 Stability:Stability,
 DC_Model:DC_Model,
@@ -1572,8 +1973,42 @@ completed: false
         
     }
     
-    setTimeout(delayedrefresh,1500);
+   
   });
+}
+
+
+
+function update_nonemr_diffcare(id,ccc_number,visitdate,Stability,DC_Model,well_unwell,timestamp,user_id,syncstatus) {
+   
+ 
+
+nonemr_diffcare_db.upsert(id, function (doc) 
+{
+
+doc.ccc_number=ccc_number;
+doc.visitdate=visitdate;
+doc.Stability=Stability;
+doc.DC_Model=DC_Model;
+doc.well_unwell=well_unwell;
+
+doc.timestamp=timestamp;
+doc.user_id=user_id;
+doc.syncstatus=syncstatus; 
+  
+  return doc;
+}).then(function (res) 
+{
+  // success, res is {rev= '1-xxx', updated= true, id= 'myDocId'}
+   console.log('nonemr_diffcare data updated succesfully'+res);
+}).catch(function (err) 
+{
+  // error
+  console.log(err);  
+  alert(''+err);
+}); 
+  
+ 
 }
 
 
@@ -1916,60 +2351,6 @@ var dailydatadb = new PouchDB('workload_client_data',{auto_compaction: true});
 var remoteCouch = false;
 var weeklydata;
 
-//receive the artist, song title and lyrics text
-function insertdailydata(id,facilityname,counsellor,date_tested,opd_t,screened,screenrate,opd_eligible,opd_tested,opd_positive,opd_Yield,pmtct_tested,pmtct_positive,pmtct_Yield,index_tested,index_positive,index_yield,self_test,Referred_Prep,gbv,Total_Tested,Total_Positive,Total_Yield,Total_Linked,Total_Linkage,timestamp,user, syncstatus) {
-   
-   
-        dailydata = {
-       _id: id, //made of startdate_enddate_facilitymfl_frequency //frequency could be _annual or _weekly
-       facility:facilityname,
-       counselorname:counsellor,      
-       date_tested:date_tested,
-       opd_t:opd_t,
-       screened:screened,
-       screenrate:screenrate,
-       opd_eligible:opd_eligible,
-       opd_tested:opd_tested,
-       opd_positive:opd_positive,
-       opd_Yield:opd_Yield,
-       pmtct_tested:pmtct_tested,
-       pmtct_positive:pmtct_positive,
-       pmtct_Yield:pmtct_Yield,
-       index_tested:index_tested,
-       index_positive:index_positive,
-       index_yield:index_yield,
-       self_test:self_test,
-       Referred_Prep:Referred_Prep,
-       gbv:gbv,
-       Total_Tested:Total_Tested,
-       Total_Positive:Total_Positive,
-       Total_Yield:Total_Yield,
-       Total_Linked:Total_Linked,
-       Total_Linkage:Total_Linkage,
-       timestamp:timestamp,
-       user:user,
-       syncstatus:syncstatus,        
-       completed: false
-  };
-  dailydatadb.put(dailydata, function callback(err, result) {
-      
-      console.log("Result:  "+result+" error: "+err);
-      
-    if (!err) 
-    {
-      console.log('daily data added succesfully');
-      
-    }
-    else {
-        
-       $("#headerid").html("<font color='red'><b>Record Not Saved. You have already entered another record with similar serial number, register no. and modality</b></font>");
-         alert("Duplicate Error!.You have already entered data for that date. Consider editing the data");
-        
-            console.log('Saving Error: Data for that data has been entered ');   
-        
-         }
-  });
-}	
 
 
 
@@ -2009,6 +2390,7 @@ var PMTCT_Status=null;
 var Date_Restarted_on_ART=null;
 var Date_LTFU=null;
 var Reason_For_LTFU=null;
+var care_ending_reason=null;
 var Cause_of_Death=null;
 var Stability=null;
 var DC_Model=null;
@@ -2016,7 +2398,7 @@ var DC_Model=null;
 
    //added 201605 
     var progressbarstoskip=[];
-     var allindicatorsarray=["rowid","facilityname","counsellor","mflcode","ccc_number","Date_of_Birth","Sex","Population_Type","Date_Initiated_On_ART","Current_Regimen","Last_Clinical_Visit_Date","Screened_For_TB","Days_of_Dispense","Months_of_Dispense","Next_appointment_Date","Monthly_Patient_Status","Started_on_IPT","Date_Started_on_IPT","IPT_Outcome","Date_of _IPT_Outcome","Reason_Not_Completed","First_Viral_Load_Date","Date_Last_VL_Conducted","Justification","VL_Results","PMTCT_Status","Date_Restarted_on_ART","Date_LTFU","Reason_For_LTFU","Cause_of_Death","Stability","DC_Model"];
+     var allindicatorsarray=["rowid","facilityname","counsellor","ccc_number","Date_of_Birth","Sex","Population_Type","Date_Initiated_On_ART","Current_Regimen","Last_Clinical_Visit_Date","Screened_For_TB","Days_of_Dispense","Months_of_Dispense","Next_appointment_Date","Monthly_Patient_Status","Started_on_IPT","Date_Started_on_IPT","IPT_Outcome","Date_of _IPT_Outcome","Reason_Not_Completed","First_Viral_Load_Date","Date_Last_VL_Conducted","Justification","VL_Results","PMTCT_Status","Date_Restarted_on_ART","Date_LTFU","Reason_For_LTFU","care_ending_reason","Cause_of_Death","Stability","DC_Model"];
      var allnontargetindicatorsarray=[];
      var allcommentsarray=[];
      var allprogressbar_hiddentext_array=[];
@@ -2245,64 +2627,9 @@ function sumofindicators(sourceindicators,destinationindicator){
 
 
 
-//=========================================set targets================================
-
-//function settargets(facilitymfl){
-//function activatecounsellors(){
-//
-//counsellorslistdb.allDocs({include_docs: true, ascending: true}).then(function (da) {
-//if(da.total_rows===0){
-////getcounsellorslist();
-////alert("No loaded list of counsellors");
-//
-//                      }
-//     else {
-//       
-//            var counsellors="<option value=''>select  Counsellor(s)</option>";
-//            var a;
-//     for(a=0;a<da.total_rows;a++){
-//                var dat={}; 
-//           
-//	       dat=da.rows[a].doc;
-//                
-//            if(dat.RRI_Name!==''){
-//                if(1===1){
-//               // if(dat.isactive===1){
-//                    
-//           counsellors+="<option data-code='"+dat._id+"' data-fullname=\""+dat.fullname+"\" value='"+dat.RRI_Name+"'>"+dat.fullname+"-"+dat._id+" ["+dat.Currentfacility+"]</option>"
-//           
-//           
-//         
-//                                     
-//                                     }
-//     
-//           
-//           $("#counsellorreg").html(counsellors);
-//          $('#counsellorreg').select2(); 
-//          $('#counsellorreg').css('width','100%'); 
-//
-//        
-//            }
-//            else {
-//             //alert("");
-//             console.log("Skipped Counsellor without rri name "+dat.RRI_Name);
-//     }
-//   
-//
-//     }//end of row
-//
-//        }
-//});
-//
-//}
 
 
-
-
-
-
-
-function validateweeklydata(){
+function submitDataToPouch(){
     setrowid();
     
     //receive all the fields from the weekly data from
@@ -2311,6 +2638,53 @@ id=$("#rowid").val();
 facility=$("#facilityname").val();
 
 counsellor=$("#counsellor").val();
+
+
+
+
+ccc_number=$('#ccc_number').val();
+Date_of_Birth=$('#Date_of_Birth').val();
+Sex=$('#Sex').val();
+Population_Type=$('#Population_Type').val();
+Date_Initiated_On_ART=$('#Date_Initiated_On_ART').val();
+
+Last_Clinical_Visit_Date=$('#Last_Clinical_Visit_Date').val();
+
+Days_of_Dispense=$('#Days_of_Dispense').val();
+Months_of_Dispense=$('#Months_of_Dispense').val();
+Next_appointment_Date=$('#Next_appointment_Date').val();
+Current_Regimen=$('#Current_Regimen').val();
+Monthly_Patient_Status=$('#Monthly_Patient_Status').val();
+Screened_For_TB=$('#Screened_For_TB').val();
+
+Started_on_IPT=$('#Started_on_IPT').val();
+Date_Started_on_IPT=$('#Date_Started_on_IPT').val();
+IPT_Outcome=$('#IPT_Outcome').val();
+Date_of_IPT_Outcome=$('#Date_of_IPT_Outcome').val();
+Reason_Not_Completed=$('#Reason_Not_Completed').val();
+
+
+First_Viral_Load_Date=$('#First_Viral_Load_Date').val();
+Date_Last_VL_Conducted=$('#Date_Last_VL_Conducted').val();
+Justification=$('#Justification').val();
+VL_Results=$('#VL_Results').val();
+PMTCT_Status=$('#PMTCT_Status').val();
+
+
+Date_Restarted_on_ART=$('#Date_Restarted_on_ART').val();
+Date_LTFU=$('#Date_LTFU').val();
+care_ending_reason=$('#care_ending_reason').val();
+Reason_For_LTFU=$('#Reason_For_LTFU').val();
+Cause_of_Death=$('#Cause_of_Death').val();
+
+
+Stability=$('#Stability').val();
+
+var well_unwell="";
+
+DC_Model=$('#DC_Model').val();
+
+var well_unwell='';
 
 var user_id=counsellor; 
 
@@ -2338,16 +2712,7 @@ var dt=""+currentdate.getDate();
      var id=null;
      
       
-     if(facility==='')
-     {         
-  
-   alert('Select facility');
-   
-   $("#facilityname").css('border-color','red');
-    
-     }
-     
-     else if(counsellor===''||counsellor==='select  Counsellor')
+     if(counsellor==='' || counsellor==='select  Counsellor')
      {         
   
    alert('Select User');
@@ -2357,53 +2722,44 @@ var dt=""+currentdate.getDate();
     //$("select:first").focus();
      }
      
-      else if(checktotaltests()===false){
-     
-     
-     
- }
-     
-     
- else if(checktotalpositives()===false){
-     
-     
-     
- }
-     
-
-else if(date_tested==='') { alert(' Select date tested');  $('#enddate').focus(); }
-    
+ 
+   
        else {
+           
      var facilitynameandmfl=facility.split("_");        
     // var startd=startdate.replace('-','');      
     // var startd=startd.replace('-','');      
-     var endd=enddate.replace('-','');      
-     var endd=endd.replace('-',''); 
+    
      var cns=counsellor.replace('-','');
     
    
      id=$("#rowid").val();
       
      var facilityname=facilitynameandmfl[1];
+     var mflcode=facilitynameandmfl[0];
             //save data to the db
-            //we are now saving both weekly totals and annual cumulatives on the db
-            //add a variable to distinguish the two
-            //use _wk
+        
+            var Visit_id=""+id+"_"+Last_Clinical_Visit_Date;
+            var IPT_Visit_id=""+id+"_"+Date_Started_on_IPT;
+            var VL_Visit_id=""+id+"_"+Date_Last_VL_Conducted;
             
-  insertdailydata(id,facilityname,counsellor,date_tested,opd_t,screened,screenrate,opd_eligible,opd_tested,opd_positive,opd_Yield,pmtct_tested,pmtct_positive,pmtct_Yield,index_tested,index_positive,index_yield,self_test,Referred_Prep,gbv,Total_Tested,Total_Positive,Total_Yield,Total_Linked,Total_Linkage,timestamp,user, syncstatus) ;
-  console.log(id+" @ "+facilityname+" @ "+counsellor+" @ "+ date_tested+" @ "+opd_t+" @ "+screened+" @ "+screenrate+" @ "+opd_eligible+" @ "+opd_tested+" @ "+opd_positive+" @ "+opd_Yield+" @ "+pmtct_tested+" @ "+pmtct_positive+" @ "+pmtct_Yield+" @ "+index_tested+" @ "+index_positive+" @ "+index_yield+" @ "+self_test+" @ "+Referred_Prep+" @ "+gbv+" @ "+Total_Tested+" @ "+Total_Positive+" @ "+Total_Yield+" @ "+Total_Linked+" @ "+Total_Linkage+"@"+ timestamp+"@"+ user+"@"+ syncstatus+"@") ;
+            
+ update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results, Stability,DC_Model,/**well_unwell*/Stability,  timestamp,user_id,syncstatus);
+ //ccc_number_
+ update_nonemr_curr(Visit_id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,timestamp,user_id,syncstatus);           
+ update_nonemr_ipt(IPT_Visit_id,ccc_number,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,timestamp,user_id,syncstatus);
+ update_nonemr_vl(VL_Visit_id,ccc_number,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,timestamp,user_id,syncstatus);          
+ update_nonemr_diffcare(id,ccc_number,Last_Clinical_Visit_Date,Stability,DC_Model,Stability,timestamp,user_id,syncstatus);
+ 
+            console.log(Visit_id,ccc_number,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,timestamp,user_id,syncstatus);           
+           
 
- //selectsearchdata();
+
 $("#message").show();
 $("#actiondone").html("Data Saved Successfully");
 //call the function that loads entered data
-//$("#message").hide().delay(800).fade(400);
 
 
-//console.log('daily data entered');
-//open reports tab
- //$('#reportsbutton').click();
- //$('#inpatient_uptake_cmts').focus();
  window.scrollTo(0,0);
 setTimeout(delayedrefresh,1500);
  // delayedrefresh
@@ -2499,7 +2855,7 @@ function selectsearchdata()
 
   
     
-  dailydatadb.allDocs({include_docs: true, ascending: true}).then( function(doc) { 
+  nonemr_all_db.allDocs({include_docs: true, ascending: true}).then( function(doc) { 
  
      
 	   //console.log(doc);
@@ -2522,9 +2878,13 @@ function selectsearchdata()
                  statusicon=""; 
                   
                }
-	     
+	     var hasresult=dat.doc.VL_Results;
+             
+             hasresult.replace('copies/ml','');
+             
+             if ( hasresult===''){hasresult="no result";}
 		 //dbdata+="<tr><td> "+dat.doc.startdate+" </td><td>"+dat.doc.syncstatus+"</td><td>"+dat.doc.facility+"</td><td><button class='btn-info' onclick='loadsaveddailydata(\""+dat.doc._id+"\",\""+dat.doc.facility+"\")'>Edit</button></td></tr>";
-		 dbdata+="<tr id=\""+dat.doc._id+"\"><td> "+dat.doc.date_tested+" </td><td> Facility: <b>"+dat.doc.facility+"</b> OPD Att: <b>"+dat.doc.opd_t+"</b> Total Tes: <b>"+dat.doc.Total_Tested+" </b> Total Pos#: <b>"+dat.doc.Total_Positive+"Total Linked:</b> "+dat.doc.Total_Linked+" </td><td><button class='btn-info' onclick='loadsaveddailydata(\""+dat.doc._id+"\",\""+dat.doc.facility+"\",\"no\")'>Edit "+statusicon+"</button><a onclick='loadwhatsappdata(\""+dat.doc._id+"\",\""+dat.doc.facility+"\")'  data-toggle='modal'  href='#whatsappform' class='btn btn-default' ><img src='images/wp.png' style='height:22px;'></a></button></td></tr>";
+		 dbdata+="<tr id=\""+dat.doc._id+"\"><td> "+dat.doc.ccc_number+" </td><td>Last ARV Date: <b>"+dat.doc.Last_Clinical_Visit_Date+"</b> <br/>Last VL: <b> "+dat.doc.Date_Last_VL_Conducted+"  [ "+hasresult+" ] </b> <br/> Next TCA: <b>"+dat.doc.Next_appointment_Date+" </td> <td><button class='btn-info' onclick='loadsaveddata(\""+dat.doc._id+"\",\""+dat.doc.Facility+"\",\"no\")'>Edit "+statusicon+"</button></td></tr>";
           	    
                   }
             } //end of for loop
@@ -2533,18 +2893,10 @@ function selectsearchdata()
 			
   }).catch(function (err){console.log(err)});
     
-
-    
-    
-    
-    
-    
-    
+  
     //read data from the db
     
-  	  
-    
-    
+  
 }
 
 
@@ -2685,7 +3037,7 @@ function appendtablecounsellordata( dbdata1 )
 
 function appendtabledata( dbdata ){
     
-     $("#searchtablediv").html("<table id='searchtable' class='table table-striped table-bordered'><thead><tr><th style='width:30%;'>Date</th><th style='width:50%;'>Summary</th><th style='width:20%;'>Edit</th></tr></thead><tbody>"+dbdata+"</tbody></table>");
+     $("#searchtablediv").html("<table id='searchtable' class='table table-striped table-bordered'><thead><tr><th style='width:30%;'>CCC No.</th><th style='width:50%;'>Summary</th><th style='width:20%;'>Action</th></tr></thead><tbody>"+dbdata+"</tbody></table>");
          
 	   $(document).ready(function() {
                 
@@ -2747,47 +3099,85 @@ function showreports(){
 }
 
 
-function loadsaveddailydata(id,facility,openreportstab ){
+function loadsaveddata(id,facility,openreportstab ){
     $("#reportsbutton").show();
-    
+    //mfl_cccnumber
   //  alert(id);
  //load from weekly db where id is as selected   
-  var mflanddates=id.split('_');
+  var mflandfacil=facility.split('_');
         	
- dailydatadb.get(id).then(function (doc) {
+ nonemr_all_db.get(id).then(function (doc) {
             
-    var rowid=id;    
-    //populate div with respective content
+var rowid=id;    
+//populate div with respective content
     
-    $("#rowid").val(id);
+$("#rowid").val(id);
     
-    
-    
-$("#facilityname").val(mflanddates[0]+"_"+facility);   
-$("#counsellor").val(doc.counselorname);
+$("#facilityname").val(facility);   
 
-$("#enddate").val(doc.date_tested);
+$("#counsellor").val(doc.user_id);
 
-$("#opd_t").val(doc.opd_t);
-$("#screened").val(doc.screened);
-$("#screenrate").val(doc.screenrate);
-$("#opd_eligible").val(doc.opd_eligible);
-$("#opd_tested").val(doc.opd_tested);
-$("#opd_positive").val(doc.opd_positive);
-$("#opd_Yield").val(doc.opd_Yield);
-$("#pmtct_tested").val(doc.pmtct_tested);
-$("#pmtct_positive").val(doc.pmtct_positive);
-$("#pmtct_Yield").val(doc.pmtct_Yield);
-$("#index_tested").val(doc.index_tested);
-$("#index_positive").val(doc.index_positive);
-$("#index_yield").val(doc.index_yield);
-$("#self_test").val(doc.self_test);
-$("#Referred_Prep").val(doc.Referred_Prep);
-$("#gbv").val(doc.gbv);
-$("#Total_Tested").val(doc.Total_Tested);
-$("#Total_Positive").val(doc.Total_Positive);
-$("#Total_Linked").val(doc.Total_Linked);
-$("#Total_Linkage").val(doc.Total_Linkage);
+$('#ccc_number').val(doc.ccc_number);
+
+    loadVlArtHistory(doc.ccc_number);
+
+//console.log("selected ccc number ni "+doc.ccc_number);
+
+$('#ccc_number').prop('readonly', true);
+
+$('#Date_of_Birth').val(doc.Date_of_Birth);
+$('#Sex').val(doc.Sex);
+$('#Population_Type').val(doc.Population_Type);
+$('#Date_Initiated_On_ART').val(doc.Date_Initiated_On_ART);
+
+$('#Last_Clinical_Visit_Date').val(doc.Last_Clinical_Visit_Date);
+
+$('#Days_of_Dispense').val(doc.Days_of_Dispense);
+$('#Months_of_Dispense').val(doc.Months_of_Dispense);
+$('#Next_appointment_Date').val(doc.Next_appointment_Date);
+$('#Current_Regimen').val(doc.Current_Regimen);
+//$('#Monthly_Patient_Status').val();
+$('#Screened_For_TB').val(doc.Screened_For_TB);
+
+$('#Started_on_IPT').val(doc.Started_on_IPT);
+$('#Date_Started_on_IPT').val(doc.Date_Started_on_IPT);
+$('#IPT_Outcome').val(doc.IPT_Outcome);
+$('#Date_of_IPT_Outcome').val(doc.Date_of_IPT_Outcome);
+$('#Reason_Not_Completed').val(doc.Reason_Not_Completed);
+
+
+$('#First_Viral_Load_Date').val(doc.First_Viral_Load_Date);
+$('#Date_Last_VL_Conducted').val(doc.Date_Last_VL_Conducted);
+$('#Justification').val(doc.Justification);
+$('#VL_Results').val(doc.VL_Results);
+$('#PMTCT_Status').val(doc.PMTCT_Status);
+$('#Date_Restarted_on_ART').val(doc.Date_Restarted_on_ART);
+$('#Date_LTFU').val(doc.Date_LTFU);
+$('#care_ending_reason').val(doc.care_ending_reason);
+$('#Reason_For_LTFU').val(doc.Reason_For_LTFU);
+$('#Cause_of_Death').val(doc.Cause_of_Death);
+$('#Stability').val(doc.Stability);
+$('#DC_Model').val(doc.DC_Model);
+
+
+ getAge();
+ PredictnextDate();
+
+ UpdatePatientStatus(); //update their activeness. Call this when ART Sections have loaded
+
+
+ IsCompletedIPT();
+ IsDiscontinuedIPT();
+ IsStartedIPT();
+ IsStable();
+ isDSDValid(); //after loadinfg of Date Initiated On ART
+
+
+ isRestartART();
+ isDEAD();
+ isLTFU();
+
+isLDLChecked();
 
    
      //$('#facilityname').select2(); 
@@ -2798,9 +3188,9 @@ $("#Total_Linkage").val(doc.Total_Linkage);
  $(".select2-container").css('width','100%');
      
      
-     $("#savebutton").hide();
+     //$("#savebutton").hide();
      
-     $("#updatebutton").show();
+     //$("#updatebutton").show();
      //$("#savenewbutton").show();
       checkids();
       
@@ -2836,51 +3226,6 @@ $("#Total_Linkage").val(doc.Total_Linkage);
 }
 
 
-
-<!-------------------------------------------------------------->
-
-
-function loadwhatsappdata(id,facility){
-     
-      	
-	dailydatadb.get(id).then(function (doc) {
-  
-$('#lbl_date_tested').html(doc.date_tested);
-$('#lbl_facility').html(facility);
-
-
-$('#lbl_opd_t').html(""+doc.opd_t);
-$('#lbl_screened').html(""+doc.screened);
-$('#lbl_screenrate').html(""+doc.screenrate+" ");
-$('#lbl_opd_eligible').html(""+doc.opd_eligible);
-$('#lbl_opd_tested').html(""+doc.opd_tested);
-$('#lbl_opd_positive').html(""+doc.opd_positive);
-$('#lbl_opd_Yield').html(""+doc.opd_Yield);
-$('#lbl_pmtct_tested').html(""+doc.pmtct_tested);
-$('#lbl_pmtct_positive').html(""+doc.pmtct_positive);
-$('#lbl_pmtct_Yield').html(""+doc.pmtct_Yield);
-$('#lbl_index_tested').html(""+doc.index_tested);
-$('#lbl_index_positive').html(""+doc.index_positive);
-$('#lbl_index_yield').html(""+doc.index_yield);
-$('#lbl_self_test').html(""+doc.self_test);
-$('#lbl_Referred_Prep').html(""+doc.Referred_Prep);
-$('#lbl_gbv').html(""+doc.gbv);
-$('#lbl_Total_Tested').html(""+doc.Total_Tested);
-$('#lbl_Total_Positive').html(""+doc.Total_Positive);
-
-$('#lbl_Total_Yield').html(""+doc.Total_Yield);
-$('#lbl_Total_Linked').html(""+doc.Total_Linked);
-$('#lbl_Total_Linkage').html(""+doc.Total_Linkage);
-$('#lbl_counsellor').html(""+doc.counselorname);
-
-
-  
-});
-
-
-}
-
-<!-------------------------------------------------------------->
 
 
 
@@ -3142,6 +3487,12 @@ var syncstatusarray=[];
 
 function importdata(){
     
+    //
+    importCURRData();
+    importIPTData();
+    importVLData();
+    importDSDData();
+    
     var returnedresponses=0;
    // $('#exportbutton').on('click',function() {
     $("#exportbutton").prop("disabled",true);
@@ -3154,7 +3505,7 @@ var recordsunexported=$("#unexported").val();
   $("#exportmsg").show();
    $("#exportresponse").append("<b><font color='orange'>Exporting data.. please wait for response.</b><br/>");
   
-  dailydatadb.allDocs({include_docs: true, descending: true}).then( function(doc) { 
+  nonemr_all_db.allDocs({include_docs: true, descending: true}).then( function(doc) { 
  syncstatusarray=[];
       //read where sync is 0
 	   var skipexporting=0;
@@ -3172,7 +3523,7 @@ var recordsunexported=$("#unexported").val();
         var idyangu=dat.doc._id;
 	var num=parseInt(c)-1;
 	var missingcommentid="";
-        if(dat.doc.syncstatus==="No" || dat.doc.syncstatus==="0" || dat.doc.syncstatus==="no")
+        if(dat.doc.syncstatus==="No" || dat.doc.syncstatus==="0" || dat.doc.syncstatus==="no" || dat.doc.syncstatus==="Yes" )
         {
 
            
@@ -3188,42 +3539,52 @@ var recordsunexported=$("#unexported").val();
         
             
     $.ajax({
-                        url:'importworkload',                            
+                        url:'importVl',                            
                         type:'post', 
 data:{
-
 id:dat.doc._id,
-facility:dat.doc.facility,
-counselorname:dat.doc.counselorname,
-date_tested:dat.doc.date_tested,
-opd_t:dat.doc.opd_t,
-screened:dat.doc.screened,
-screenrate:dat.doc.screenrate,
-opd_eligible:dat.doc.opd_eligible,
-opd_tested:dat.doc.opd_tested,
-opd_positive:dat.doc.opd_positive,
-opd_Yield:dat.doc.opd_Yield,
-pmtct_tested:dat.doc.pmtct_tested,
-pmtct_positive:dat.doc.pmtct_positive,
-pmtct_Yield:dat.doc.pmtct_Yield,
-index_tested:dat.doc.index_tested,
-index_positive:dat.doc.index_positive,
-index_yield:dat.doc.index_yield,
-self_test:dat.doc.self_test,
-Referred_Prep:dat.doc.Referred_Prep,
-gbv:dat.doc.gbv,
-Total_Tested:dat.doc.Total_Tested,
-Total_Positive:dat.doc.Total_Positive,
-Total_Yield:dat.doc.Total_Yield,
-Total_Linked:dat.doc.Total_Linked,
-Total_Linkage:dat.doc.Total_Linkage,
+facility:dat.doc.Facility,
+ccc_number:dat.doc.ccc_number,
+Date_of_Birth:dat.doc.Date_of_Birth,
+Sex:dat.doc.Sex,
+Population_Type:dat.doc.Population_Type,
+Date_Initiated_On_ART:dat.doc.Date_Initiated_On_ART,
+Current_Regimen:dat.doc.Current_Regimen,
+Last_Clinical_Visit_Date:dat.doc.Last_Clinical_Visit_Date,
+Screened_For_TB:dat.doc.Screened_For_TB,
+Days_of_Dispense:dat.doc.Days_of_Dispense,
+Months_of_Dispense:dat.doc.Months_of_Dispense,
+Next_appointment_Date:dat.doc.Next_appointment_Date,
+Monthly_Patient_Status:dat.doc.Monthly_Patient_Status,
+Reason_For_LTFU:dat.doc.Reason_For_LTFU,
+Date_LTFU:dat.doc.Date_LTFU,
+care_ending_reason:dat.doc.care_ending_reason,
+Cause_of_Death:dat.doc.Cause_of_Death,
+Date_Restarted_on_ART:dat.doc.Date_Restarted_on_ART,
+
+Started_on_IPT:dat.doc.Started_on_IPT,
+Date_Started_on_IPT:dat.doc.Date_Started_on_IPT,
+IPT_Outcome:dat.doc.IPT_Outcome,
+Date_of_IPT_Outcome:dat.doc.Date_of_IPT_Outcome,
+Reason_Not_Completed:dat.doc.Reason_Not_Completed,
+
+First_Viral_Load_Date:dat.doc.First_Viral_Load_Date,
+Date_Last_VL_Conducted:dat.doc.Date_Last_VL_Conducted,
+Justification:dat.doc.Justification,
+PMTCT_Status:dat.doc.PMTCT_Status,
+VL_Results:dat.doc.VL_Results,
 
 
-user:dat.doc.user,
+Stability:dat.doc.Stability,
+DC_Model:dat.doc.DC_Model,
+well_unwell:dat.doc.well_unwell,
+
+
+user_id:dat.doc.user_id,
 timestamp:dat.doc.timestamp
 },
 dataType:'html',  
-                    success: function(data) {
+success: function(data) {
                        
                        returnedresponses++;
                        
@@ -3274,7 +3635,8 @@ dataType:'html',
             
                         }//end of if skipp exporting === 0
                         //for annual exports, dont sync and dont show alert
-                        else if (skipexporting!==0 && idyangu.indexOf("annual")>=0) {
+                        else if (skipexporting!==0 && idyangu.indexOf("annual")>=0) 
+                        {
                        //dont show export failure message     
                             
                         }
@@ -3324,32 +3686,348 @@ dataType:'html',
 }
 
 
+//Import all the other Tables
+
+function importCURRData(){
+ 
+ 
+  nonemr_curr_db.allDocs({include_docs: true, descending: true}).then( function(doc) {
+      
+ 
+	  
+	   for(c=0;c<doc.total_rows;c++)
+        {
+              
+      
+	var dat={};
+	dat=doc.rows[c];
+             
+        var idyangu=dat.doc._id;
+	var num=parseInt(c)-1;
+	
+        if(dat.doc.syncstatus==="No" || dat.doc.syncstatus==="0" || dat.doc.syncstatus==="no")
+        {
+      
+  updatesyncstatus(dat.doc._id,'Yes');
+
+                
+    $.ajax({
+                        url:'importCurr',                            
+                        type:'post', 
+data:{
+id:dat.doc._id,
+ccc_number:dat.doc.ccc_number,
+Current_Regimen:dat.doc.Current_Regimen,
+Last_Clinical_Visit_Date:dat.doc.Last_Clinical_Visit_Date,
+Screened_For_TB:dat.doc.Screened_For_TB,
+Days_of_Dispense:dat.doc.Days_of_Dispense,
+Months_of_Dispense:dat.doc.Months_of_Dispense,
+Next_appointment_Date:dat.doc.Next_appointment_Date,
+Monthly_Patient_Status:dat.doc.Monthly_Patient_Status,
+Reason_For_LTFU:dat.doc.Reason_For_LTFU,
+Date_LTFU:dat.doc.Date_LTFU,
+care_ending_reason:dat.doc.care_ending_reason,
+Cause_of_Death:dat.doc.Cause_of_Death,
+Date_Restarted_on_ART:dat.doc.Date_Restarted_on_ART,
+user_id:dat.doc.user_id,
+timestamp:dat.doc.timestamp
+},
+dataType:'html',  
+success: function(data) 
+{
+   
+ console.log("Data for "+dat.doc._id+"   "+data);      
+        
+},
+       error:function(xhr, s, e){    
+   console.log("Could not export art data");
+                                
+                                }       
+                        
+        });
+            
+                      
+      
+       
+        }
+        
+         
+            if(c===(doc.total_rows-1))
+            {
+
+            }
+        } //end of for loop
+	 
+	
+		
+  }).then(function (){
+   
+     
+  }).catch(function (err){ console.log(err); });
+          
+
+        
+        
+}
+
+function importIPTData(){
+ 
+ 
+  nonemr_ipt_db.allDocs({include_docs: true, descending: true}).then( function(doc) {
+      
+ 
+	  
+	   for(c=0;c<doc.total_rows;c++)
+        {
+    
+	var dat={};
+	dat=doc.rows[c];
+             
+        var idyangu=dat.doc._id;
+	var num=parseInt(c)-1;
+	
+        if(dat.doc.syncstatus==="No" || dat.doc.syncstatus==="0" || dat.doc.syncstatus==="no")
+        {
+      
+  update_ipt_syncstatus(dat.doc._id,'Yes');
+
+                
+    $.ajax({
+                        url:'importIPT',                            
+                        type:'post', 
+data:{
+id:dat.doc._id,
+ccc_number:dat.doc.ccc_number,
+
+Started_on_IPT:dat.doc.Started_on_IPT,
+Date_Started_on_IPT:dat.doc.Date_Started_on_IPT,
+IPT_Outcome:dat.doc.IPT_Outcome,
+Date_of_IPT_Outcome:dat.doc.Date_of_IPT_Outcome,
+Reason_Not_Completed:dat.doc.Reason_Not_Completed,
+
+user_id:dat.doc.user_id,
+timestamp:dat.doc.timestamp
+    },
+dataType:'html',  
+success: function(data) 
+{
+   
+ console.log("Data for "+dat.doc._id+"   "+data);      
+        
+},
+       error:function(xhr, s, e){    
+   console.log("Could not export art data");
+                                
+                                }       
+                        
+        });
+            
+                      
+      
+       
+        }
+        
+         
+            if(c===(doc.total_rows-1))
+            {
+
+            }
+        } //end of for loop
+	 
+	
+		
+  }).then(function (){
+   
+     
+  }).catch(function (err){ console.log(err); });
+          
+
+        
+        
+}
+
+function importVLData(){
+ 
+ 
+  nonemr_vl_db.allDocs({include_docs: true, descending: true}).then( function(doc) {
+      
+ 
+	  
+	   for(c=0;c<doc.total_rows;c++)
+        {
+    
+	var dat={};
+	dat=doc.rows[c];
+             
+        var idyangu=dat.doc._id;
+	var num=parseInt(c)-1;
+	
+        if(dat.doc.syncstatus==="No" || dat.doc.syncstatus==="0" || dat.doc.syncstatus==="no")
+        {
+      
+  update_vl_syncstatus(dat.doc._id,'Yes');
+
+                
+    $.ajax({
+                        url:'importVLData',                            
+                        type:'post', 
+data:{
+id:dat.doc._id,
+ccc_number:dat.doc.ccc_number,
+
+First_Viral_Load_Date:dat.doc.First_Viral_Load_Date,
+Date_Last_VL_Conducted:dat.doc.Date_Last_VL_Conducted,
+Justification:dat.doc.Justification,
+PMTCT_Status:dat.doc.PMTCT_Status,
+VL_Results:dat.doc.VL_Results,
+
+user_id:dat.doc.user_id,
+timestamp:dat.doc.timestamp
+    },
+dataType:'html',  
+success: function(data) 
+{
+   
+ console.log("Data for "+dat.doc._id+"   "+data);      
+        
+},
+       error:function(xhr, s, e){    
+   console.log("Could not export art data");
+                                
+                                }       
+                        
+        });
+            
+                      
+      
+       
+        }
+        
+         
+            if(c===(doc.total_rows-1))
+            {
+
+            }
+        } //end of for loop
+	 
+	
+		
+  }).then(function (){
+   
+     
+  }).catch(function (err){ console.log(err); });
+          
+
+        
+        
+}
+
+function importDSDData(){
+ 
+ 
+  nonemr_diffcare_db.allDocs({include_docs: true, descending: true}).then( function(doc) {
+      
+   
+	   for(c=0;c<doc.total_rows;c++)
+        {
+    
+	var dat={};
+	dat=doc.rows[c];
+             
+        var idyangu=dat.doc._id;
+	var num=parseInt(c)-1;
+	
+        if(dat.doc.syncstatus==="No" || dat.doc.syncstatus==="0" || dat.doc.syncstatus==="no")
+        {
+      
+  updatesyncstatus(dat.doc._id,'Yes');
+
+                
+    $.ajax({
+                        url:'importDSD',                            
+                        type:'post', 
+data:{
+id:dat.doc._id,
+ccc_number:dat.doc.ccc_number,
+
+
+
+Stability:dat.doc.Stability,
+DC_Model:dat.doc.DC_Model,
+well_unwell:dat.doc.well_unwell,
+
+
+
+
+
+
+user_id:dat.doc.user_id,
+timestamp:dat.doc.timestamp
+    },
+dataType:'html',  
+success: function(data) 
+{
+   
+ console.log("Data for "+dat.doc._id+"   "+data);      
+        
+},
+       error:function(xhr, s, e){    
+   console.log("Could not export art data");
+                                
+                                }       
+                        
+        });
+            
+                      
+      
+       
+        }
+        
+         
+            if(c===(doc.total_rows-1))
+            {
+
+            }
+        } //end of for loop
+	 
+	
+		
+  }).then(function (){
+   
+     
+  }).catch(function (err){ console.log(err); });
+          
+
+        
+        
+}
+
 
 function exportalldata(){
     
     var returnedresponses=0;
    // $('#exportbutton').on('click',function() {
-    $("#exportbutton1").prop("disabled",true);
-    $("#exportbutton1").removeClass('btn-lg btn-success').addClass('btn btn-default');
+ $("#exportbutton1").prop("disabled",true);
+ $("#exportbutton1").removeClass('btn-lg btn-success').addClass('btn btn-default');
 
  $("#exportbutton").prop("disabled",true);
  $("#exportbutton").removeClass('btn-lg btn-success').addClass('btn btn-default');
 
-var recordsunexported=$("#unexported").val();
+  var recordsunexported=$("#unexported").val();
                 //read db files that have not been synced
     
   $("#exportbutton1").hide();
   $("#exportmsg1").show();
-   $("#exportresponse1").append("<b><font color='orange'>Exporting all data.. please wait response.</b><br/>");
+  $("#exportresponse1").append("<b><font color='orange'>Exporting all data.. please wait response.</b><br/>");
   
   
-   $("#exportbutton").hide();
+  $("#exportbutton").hide();
   $("#exportmsg").show();
-   $("#exportresponse").append("<b><font color='orange'>Exporting all data.. please wait response.</b><br/>");
+  $("#exportresponse").append("<b><font color='orange'>Exporting all data.. please wait response.</b><br/>");
   
   
   
-  dailydatadb.allDocs({include_docs: true, descending: true}).then( function(doc) { 
+  nonemr_all_db.allDocs({include_docs: true, descending: true}).then( function(doc) { 
  syncstatusarray=[];
       //read where sync is 0
 	   var skipexporting=0;
@@ -3368,14 +4046,14 @@ var recordsunexported=$("#unexported").val();
 	     // console.log(dat.doc.facility);
               //how to reference each column 
               
-              var idyangu=dat.doc._id;
-		  var num=parseInt(c)-1;
+        var idyangu=dat.doc._id;
+	var num=parseInt(c)-1;
 	var missingcommentid="";
         if(dat.doc.syncstatus==="No" || dat.doc.syncstatus==="0" || dat.doc.syncstatus==="no"  || dat.doc.syncstatus==='Yes')
-                        {
+        {
 
            
-              var hrf=" <button class='btn-sm button-info' data-dismiss='modal' onclick=\"loadsaveddailydata('"+dat.doc._id+"','"+dat.doc.facility+"','no"+missingcommentid+"'); \"> Enter Comments</button>";
+        var hrf=" <button class='btn-sm button-info' data-dismiss='modal' onclick=\"loadsaveddailydata('"+dat.doc._id+"','"+dat.doc.facility+"','no"+missingcommentid+"'); \"> Enter Comments</button>";
            
 
         
@@ -3383,41 +4061,51 @@ var recordsunexported=$("#unexported").val();
             
             updatesyncstatus(dat.doc._id,'Yes');
         
-        
-            
+          
              $.ajax({
-                         url:'importworkload',                            
+                        url:'importVl',                            
                         type:'post', 
 data:{
 
 id:dat.doc._id,
-facility:dat.doc.facility,
-counselorname:dat.doc.counselorname,
-date_tested:dat.doc.date_tested,
+facility:dat.doc.Facility,
+ccc_number:dat.doc.ccc_number,
+Date_of_Birth:dat.doc.Date_of_Birth,
+Sex:dat.doc.Sex,
+Population_Type:dat.doc.Population_Type,
+Date_Initiated_On_ART:dat.doc.Date_Initiated_On_ART,
+Current_Regimen:dat.doc.Current_Regimen,
+Last_Clinical_Visit_Date:dat.doc.Last_Clinical_Visit_Date,
+Screened_For_TB:dat.doc.Screened_For_TB,
+Days_of_Dispense:dat.doc.Days_of_Dispense,
+Months_of_Dispense:dat.doc.Months_of_Dispense,
+Next_appointment_Date:dat.doc.Next_appointment_Date,
+Monthly_Patient_Status:dat.doc.Monthly_Patient_Status,
+Reason_For_LTFU:dat.doc.Reason_For_LTFU,
+Date_LTFU:dat.doc.Date_LTFU,
+care_ending_reason:dat.doc.care_ending_reason,
+Cause_of_Death:dat.doc.Cause_of_Death,
+Date_Restarted_on_ART:dat.doc.Date_Restarted_on_ART,
 
-opd_t:dat.doc.opd_t,
-screened:dat.doc.screened,
-screenrate:dat.doc.screenrate,
-opd_eligible:dat.doc.opd_eligible,
-opd_tested:dat.doc.opd_tested,
-opd_positive:dat.doc.opd_positive,
-opd_Yield:dat.doc.opd_Yield,
-pmtct_tested:dat.doc.pmtct_tested,
-pmtct_positive:dat.doc.pmtct_positive,
-pmtct_Yield:dat.doc.pmtct_Yield,
-index_tested:dat.doc.index_tested,
-index_positive:dat.doc.index_positive,
-index_yield:dat.doc.index_yield,
-self_test:dat.doc.self_test,
-Referred_Prep:dat.doc.Referred_Prep,
-gbv:dat.doc.gbv,
-Total_Tested:dat.doc.Total_Tested,
-Total_Positive:dat.doc.Total_Positive,
-Total_Yield:dat.doc.Total_Yield,
-Total_Linked:dat.doc.Total_Linked,
-Total_Linkage:dat.doc.Total_Linkage,
+Started_on_IPT:dat.doc.Started_on_IPT,
+Date_Started_on_IPT:dat.doc.Date_Started_on_IPT,
+IPT_Outcome:dat.doc.IPT_Outcome,
+Date_of_IPT_Outcome:dat.doc.Date_of_IPT_Outcome,
+Reason_Not_Completed:dat.doc.Reason_Not_Completed,
 
-user:dat.doc.user,
+First_Viral_Load_Date:dat.doc.First_Viral_Load_Date,
+Date_Last_VL_Conducted:dat.doc.Date_Last_VL_Conducted,
+Justification:dat.doc.Justification,
+PMTCT_Status:dat.doc.PMTCT_Status,
+VL_Results:dat.doc.VL_Results,
+
+
+Stability:dat.doc.Stability,
+DC_Model:dat.doc.DC_Model,
+well_unwell:dat.doc.well_unwell,
+
+
+user_id:dat.doc.user_id,
 timestamp:dat.doc.timestamp
 },
 dataType: 'html',  
@@ -3434,7 +4122,7 @@ dataType: 'html',
    //alert('called');
   // put them back
                    // return dailydatadb.put(doc); 
-                   console.log(parseInt(returnedresponses)+" vs "+parseInt(doc.total_rows));
+                 console.log(parseInt(returnedresponses)+" vs "+parseInt(doc.total_rows));
                    
                  if(parseInt(returnedresponses)===parseInt(doc.total_rows)){
                  $("#exportbutton1").show();
@@ -3470,7 +4158,7 @@ dataType: 'html',
             
                         }//end of if skipp exporting === 0
                         //for annual exports, dont sync and dont show alert
-                        else if (skipexporting!==0 && idyangu.indexOf("annual")>=0) {
+            else if (skipexporting!==0 && idyangu.indexOf("annual")>=0) {
                        //dont show export failure message     
                             
                         }
@@ -3523,12 +4211,13 @@ dataType: 'html',
 
 
 
+
 function updatesyncstatus(id,st){
   
-dailydatadb.get(id).then(function (doc1) {
+nonemr_all_db.get(id).then(function (doc1) {
       console.log(id+" sync status updated");
  doc1.syncstatus=st;
- return dailydatadb.put(doc1);
+ return nonemr_all_db.put(doc1);
  
 });
 
@@ -3537,38 +4226,98 @@ dailydatadb.get(id).then(function (doc1) {
 }//end of function
 
 
+function update_curr_syncstatus(id,st){
+  
+nonemr_curr_db.get(id).then(function (doc1) {
+      console.log(id+" sync status updated");
+ doc1.syncstatus=st;
+ return nonemr_curr_db.put(doc1);
+ 
+});
 
+	
+    
+}
+
+
+function update_ipt_syncstatus(id,st){
+  
+nonemr_ip_db.get(id).then(function (doc1) {
+      console.log(id+" sync status updated");
+ doc1.syncstatus=st;
+ return nonemr_ip_db.put(doc1);
+ 
+});
+
+	
+    
+}
+
+
+function update_vl_syncstatus(id,st){
+  
+nonemr_vl_db.get(id).then(function (doc1) {
+      console.log(id+" sync status updated");
+ doc1.syncstatus=st;
+ return nonemr_vl_db.put(doc1);
+ 
+});   
+}
+
+
+function update_dsd_syncstatus(id,st)
+{
+  
+nonemr_diffcare_db.get(id).then(function (doc1) 
+{
+      console.log(id+" sync status updated");
+ doc1.syncstatus=st;
+ return nonemr_diffcare_db.put(doc1);
+ 
+});
+
+    
+}
 
 
 function unsynceddata(){
     
     
-    dailydatadb.allDocs({include_docs: true, descending: true}).then( function(doc) { 
- 
-          
+    nonemr_all_db.allDocs({include_docs: true, descending: true}).then( function(doc) { 
+        
       //read where sync is 0
-	  var cnt1=0;
+	   var cnt1=0;
+           
 	   for(c=0;c<doc.total_rows;c++){
                
-                var dat={};
-	   dat=doc.rows[c];
+           var dat={};
+	   
+           dat=doc.rows[c];
+           
            var cid=dat.doc._id;
-               if((dat.doc.syncstatus==="No"||dat.doc.syncstatus==="0"||dat.doc.syncstatus==="no") && cid.indexOf("_annual")===-1 )
-                        {
+           
+           
+           if((dat.doc.syncstatus==="No"||dat.doc.syncstatus==="0"||dat.doc.syncstatus==="no") && cid.indexOf("_annual")===-1 )
+           {
                             
                          cnt1++;   
                             
-                        }
-               var displaytext=cnt1+" records";
-               if(cnt1===1){
+            }
+            var displaytext=cnt1+" records";
+            if(cnt1===1){
                    
-                    displaytext=cnt1+" record";
-               }
+            displaytext=cnt1+" record";
+            }
+            
+            if(c===(parseInt(doc.total_rows)-1)){
+                
+                $("#unexportedno").html("<br/>( "+displaytext+" )");
+	$("#unexported").val(cnt1);
+            }
               
           	                    } //end of for loop
 	 
-	$("#unexportedno").html("<br/>( "+displaytext+" )");
-	$("#unexported").val(cnt1);
+	
         if(cnt1>0){
             $("#exportdataanchor1").show();
             $("#exportdataanchor2").show();
@@ -4062,16 +4811,16 @@ function checkids(){
    
      facility=$("#facilityname").val();
      //startdate=$("#startdate").val();   
-     enddate=$("#enddate").val();
+     //enddate=$("#enddate").val();
      console.log("facility___"+facility);
       if(facility!==''  && facility!==null ){
      
  var facilitynameandmfl=facility.split("_");        
      //var startd=startdate.replace('-','');      
     // var startd=startd.replace('-','');      
-     var endd=enddate.replace('-','');      
-     var endd=endd.replace('-','');      
-      id=facilitynameandmfl[0]+"_"+endd+"_";
+     var cc=$("#ccc_number").val();      
+         
+      id=facilitynameandmfl[0]+"_"+cc;
       //this should not be cleared
       var newid = $("#rowid").val();   
     
@@ -4169,7 +4918,8 @@ userdb.get(id).then(function(doc) {
 function togglehidding(){
     
   console.log("hidding called"); 
- if($('#hidetargets:checkbox:checked').length > 0){
+ if($('#hidetargets:checkbox:checked').length > 0)
+ {
   //showtargets 
 
    $(".hiderows").hide();
@@ -4275,9 +5025,10 @@ function setrowid()
     var cc=$("#ccc_number").val();
     
     var f=$("#facilityname").val();
+    
     var mfl=f.split("_")[0];
-    var dt=$("#enddate").val();
-    dt=dt.replace('-','');
+    
+   
     
     var id=mfl+"_"+cc;
     
@@ -4745,7 +5496,7 @@ accountdb.allDocs({include_docs:true,ascending: true}).then(function (doc)
         
     }
 
- username=doc.username;
+ //username=doc.username;
 
 });
   
@@ -4769,9 +5520,140 @@ return accountdb.put(doc); //continue from here
         
         
         
+ function loadVlArtHistory(cc_no){
+     
+     var vldt="<table  class='table table-striped table-bordered'><thead><tr><th colspan='3' style='text-align:center;background-color:gray;' >Viral Load History</th></tr><tr><th style='width:30%;'>Date</th><th style='width:50%;'>Justification</th><th style='width:20%;'>Results</th></tr></thead>";
+     var currdt="<table  class='table table-striped table-bordered'><thead><tr><th colspan='3' style='text-align:center;background-color:gray;' >ARV History</th></tr><tr><th style='width:30%;'>Visit Date</th><th style='width:50%;'>Regimen</th><th style='width:20%;'>Expected Return</th></tr></thead>";
+     
+     var vlcount=0;
+     var artcount=0;
+     
+     nonemr_vl_db.allDocs({include_docs:true,ascending: true}).then(function (doc) 
+   {
+    
+    console.log(doc);
+    
+    if(doc.total_rows===0)
+        {
+        $('#vlhistory').hide();
+        
+        }
+    else{
         
         
+    $('#vlhistory').show();
+    
         
+        for(a=0;a<doc.total_rows;a++)
+        {
+            
+            var dat={};
+	   dat=doc.rows[a];
+
+
+
+          if(doc.rows[a].doc.ccc_number===cc_no)
+          { 
+              console.log("check if "+dat.doc.VL_Results+" is equal to "+cc_no);
+              vlcount++;
+        vldt+="<tr><td>"+dat.doc.Date_Last_VL_Conducted+"</td><td>"+dat.doc.Justification+"</td><td>"+dat.doc.VL_Results+"</td></tr>";     
+          
+          }
+          
+           if(a===parseInt(doc.total_rows)-1)
+                {
+      vldt+="<tbody></tbody></table>";
+      $('#vlhistory').html(vldt);
+                }
+                
+            
+        }
+        console.log("Rows ni "+doc.total_rows);
+        
+        
+        }
+        
+  });
+
+   
+        
+           nonemr_curr_db.allDocs({include_docs:true,ascending: true}).then(function (doc) 
+   {
+    
+    if(doc.total_rows===0)
+        {
+        $('#arthistory').hide();
+        
+        }
+    else{
+    
+    $('#arthistory').show();
+        
+        for(var a=0;a<doc.total_rows;a++)
+        {
+            var dat={};
+	   dat=doc.rows[a];
+            
+if(dat.doc.ccc_number===cc_no)
+    {
+        console.log("check if "+dat.doc.ccc_number+" is equal to "+cc_no);
+        artcount++;   
+        currdt+="<tr><td>"+dat.doc.Last_Clinical_Visit_Date+"</td><td>"+dat.doc.Current_Regimen+"</td><td>"+dat.doc.Next_appointment_Date+"</td></tr>";     
+    }       
+         
+                if(a===parseInt(doc.total_rows)-1)
+                {
+                    
+        currdt+="<tbody></tbody></table>";
+
+        $('#arthistory').html(currdt);
+                    
+                }
+                
+        }
+        
+        }
+        
+  });
+        
+     
+  
+      	
+// nonemr_all_db.get(id).then(function (doc) {
+//            
+//            });
+
+ 
+ 
+
+
+
+//$('#Monthly_Patient_Status').val();
+
+
+
+
+
+
+
+
+
+
+
+if(vlcount===0){
+  $('#vlhistory').hide();  
+}
+if(artcount===0){
+  $('#arthistory').hide();  
+}
+ 
+ 
+ console.log("Current data ni"+currdt);
+ console.log("VL Data history ni "+vldt);
+}      
+        
+        
+        //loadVlArtHistory('1528856565');
 
 </script>
  

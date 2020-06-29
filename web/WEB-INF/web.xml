@@ -126,6 +126,26 @@
         <servlet-name>validatePass</servlet-name>
         <servlet-class>Scripts.validatePass</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>importVl</servlet-name>
+        <servlet-class>VL.importVl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>importCurr</servlet-name>
+        <servlet-class>VL.importCurr</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>importIPT</servlet-name>
+        <servlet-class>VL.importIPT</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>importVLData</servlet-name>
+        <servlet-class>VL.importVLData</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>importDSD</servlet-name>
+        <servlet-class>VL.importDSD</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>showfacils</servlet-name>
         <url-pattern>/showfacils</url-pattern>
@@ -249,6 +269,26 @@
     <servlet-mapping>
         <servlet-name>validatePass</servlet-name>
         <url-pattern>/validatePass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>importVl</servlet-name>
+        <url-pattern>/importVl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>importCurr</servlet-name>
+        <url-pattern>/importCurr</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>importIPT</servlet-name>
+        <url-pattern>/importIPT</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>importVLData</servlet-name>
+        <url-pattern>/importVLData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>importDSD</servlet-name>
+        <url-pattern>/importDSD</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>-1</session-timeout>
