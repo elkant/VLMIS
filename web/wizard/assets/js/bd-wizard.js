@@ -101,6 +101,7 @@ var _DC_Model=$('#DC_Model').val();
         }
         else if(!isCCCComplete())
         {
+            var vlval=false;
             if(_facility==='14177_Family Health options Kenya (Nakuru)' ){
          
             updatemaujumbe('error','Enter Patient CCC Number in 10-14 Digit standard');
@@ -316,7 +317,18 @@ var _DC_Model=$('#DC_Model').val();
              
                 
             }
+            
+            else if(validateDrugsDuration()==='invalid')
+            {
+              updatemaujumbe('error','Enter Duration of drugs in Days between 14 to 200 days');
         
+        retvl=false;
+        
+        $("#Days_of_Dispense").focus();
+        $("#Days_of_Dispense").css('border-color','red'); 
+               
+                
+            }
         
         else {
             
@@ -324,6 +336,7 @@ var _DC_Model=$('#DC_Model').val();
  $("#Next_appointment_Date").css('border-color','#33b775');            
  $("#Current_Regimen").css('border-color','#33b775');            
  $("#Screened_For_TB").css('border-color','#33b775');    
+ $("#Days_of_Dispense").css('border-color','#33b775');    
  
  //LTFU section
  
@@ -431,29 +444,37 @@ var _DC_Model=$('#DC_Model').val();
         else if (newIndex===4){
             
             var retvl=true; 
-            
            //check if date initial VL Conducted is happening later than date of last VL
            
-           
-            if(validateTarehe('First_Viral_Load_Date','Date_Last_VL_Conducted','Date initial viral load conducted','Date Last viral load Conducted')==='invalid')
+            if(validateTarehe('Date_Initiated_On_ART','Date_Last_VL_Conducted','Date Initiated on ART','Date recent viral load conducted')==='invalid')
             {
-           
+                           
+            retvl=false;                 
                 
-            retvl=false; 
-                
+            }            
+            
+            else  if(validateTarehe('First_Viral_Load_Date','Date_Last_VL_Conducted','Date initial viral load conducted','Date Last viral load Conducted')==='invalid')
+            {
+                           
+            retvl=false;                 
                 
             }
             
-            else if(_First_Viral_Load_Date!=='' && _Date_Last_VL_Conducted!=='' && daysDiff(_Date_Last_VL_Conducted,_First_Viral_Load_Date)<180 )
+           
+            else if(_VL_Results!=='< LDL copies/ml'  && _VL_Results!==''  && isNaN(_VL_Results)===true )
             {
-                  updatemaujumbe('error','Viral Load cannot be done should be done 6 months after the initial Viral Load');
         
+        updatemaujumbe('error','Viral Load results should be numeric values or filled using the LDL check box');
+       
         retvl=false;
         
         //$("#First_Viral_Load_Date").focus();
-        $("#First_Viral_Load_Date").css('border-color','red'); 
+        $("#VL_Results").css('border-color','red'); 
                 
             }
+            
+           
+            
             
             //_________Check if the last Viral Load has been populated before populating the last updated
             else if(_First_Viral_Load_Date==='' && _Date_Last_VL_Conducted!=='' )
@@ -469,8 +490,11 @@ var _DC_Model=$('#DC_Model').val();
              retvl=true;     
             }
             
-            //_____________________IF Date of Viral Load has been done, ensure the Justification has also been updated_________________
-             else if( _Date_Last_VL_Conducted!=='' && _Justification==='' )
+            
+          
+            
+            //_____________________IF Date of Viral Load has been done or there are results, ensure the Justification has also been updated_________________
+             else if(_Justification==='' && (  _Date_Last_VL_Conducted!=='' || _VL_Results!=='' ) )
             {
                 
             updatemaujumbe('error','Update the VL justification ');
@@ -479,6 +503,21 @@ var _DC_Model=$('#DC_Model').val();
         
         $("#Justification").focus();
         $("#Justification").css('border-color','red'); 
+                
+             retvl=false;     
+            }
+            
+            
+            
+               else if( _Date_Last_VL_Conducted==='' && ( _Justification!=='' || _VL_Results!=='' ) )
+            {
+                
+            updatemaujumbe('error','Update date most recent VL was conducted ');
+        
+        retvl=false;
+        
+        $("#Date_Last_VL_Conducted").focus();
+        $("#Date_Last_VL_Conducted").css('border-color','red'); 
                 
              retvl=false;     
             }
@@ -498,7 +537,52 @@ var _DC_Model=$('#DC_Model').val();
              retvl=false;     
             }
             
+            
+            
+            
+            
             else {
+                
+                
+                
+           
+               if(_VL_Results==='' && daysDiff(_Date_Last_VL_Conducted,_Date_Initiated_On_ART)>=180 )
+            {
+        
+        updatemaujumbe('warning','You have not entered VL Results for this patient. Are you sure this patient does not have a recent vl sample which has results?');
+        alert('You have not entered VL Results for this patient.Ensure you enter the most recent vl done results');
+       
+        retvl=true;
+        
+        //$("#First_Viral_Load_Date").focus();
+        $("#VL_Results").css('border-color','red'); 
+                
+            }
+                 else if(_First_Viral_Load_Date!=='' && _Date_Last_VL_Conducted!=='' && daysDiff(_Date_Last_VL_Conducted,_First_Viral_Load_Date)<180 )
+            {
+        updatemaujumbe('warning','Viral Load for non PMTCT Patients should be done atleast 6 months after the initial Viral Load');
+        
+        retvl=true;
+        
+      
+        $("#First_Viral_Load_Date").css('border-color','red'); 
+                
+            }
+            
+               //_________Check if the last Viral Load has been populated before populating the last updated
+            else if(_First_Viral_Load_Date==='' && _Date_Last_VL_Conducted!=='' )
+            {
+                
+        updatemaujumbe('warning','Update the date of Initial Viral Load Collection date');
+        
+        retvl=true;
+        
+        //$("#First_Viral_Load_Date").focus();
+        $("#First_Viral_Load_Date").css('border-color','red'); 
+                
+             retvl=true;     
+            }
+            
                 
 //            var _First_Viral_Load_Date=$('#First_Viral_Load_Date').val();
 //var _Date_Last_VL_Conducted=$('#Date_Last_VL_Conducted').val();
@@ -847,6 +931,7 @@ $("#noofdigits").html("<font color='green'>["+idadiyano+" digits]</font>");
 
 function validateDrugsDuration()
 {
+    var rtvl='valid';
     
 var masikuzadawa=$("#Days_of_Dispense").val();
 var idadiyano=masikuzadawa.length;
@@ -866,6 +951,7 @@ $("#Days_of_Dispense").val(expectedmasiku);
  updatemaujumbe('error',"Drugs Duration cannot be greater than 200 Days ( 6 months ) ");
        $("#Days_of_Dispense").focus(); 
        $("#Days_of_Dispense").css('border-color','red'); 
+       rtvl='invalid';
 
                   }
                   //if days are more than 200 days
@@ -876,6 +962,7 @@ $("#Days_of_Dispense").val(expectedmasiku);
        $("#Days_of_Dispense").focus(); 
        $("#Days_of_Dispense").css('border-color','red'); 
 
+rtvl='invalid';
                   }
                   
              else {
@@ -897,7 +984,7 @@ updatemaujumbe('default',"");
     
                   }
     
-  
+    return rtvl;
 }
 
 
@@ -940,6 +1027,31 @@ if(masikuzadawa!==''){
              pataSikuYaWiki();   
 
 }
+
+
+function PredictDrugs()
+{
+
+
+
+var visitdate=$("#Last_Clinical_Visit_Date").val();
+var tca=$("#Next_appointment_Date").val();
+
+
+if(tca!=='' && visitdate!=='')
+{
+   var masikuzadawa=daysDiff(tca,visitdate); 
+if(masikuzadawa>=14 && masikuzadawa<=200) {
+      $("#Days_of_Dispense").val(masikuzadawa);
+                                          }
+}
+                
+                //check the date of the week
+                
+             pataSikuYaWiki();   
+
+}
+
 
 function pataSikuYaWiki()
 {
@@ -1017,7 +1129,7 @@ function UpdatePatientStatus(){
  if(nextappdate!==''&&leo!=='')
  {
  
-   if(daysDiff(nextappdate,leo)<=0 && daysDiff(nextappdate,leo) >=-28 )
+   if(daysDiff(nextappdate,leo)<=0 && daysDiff(nextappdate,leo) >-28 )
                                   {
        
     retvalue='< 28 Days Defaulter';  

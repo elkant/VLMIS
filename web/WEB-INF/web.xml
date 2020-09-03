@@ -146,6 +146,26 @@
         <servlet-name>importDSD</servlet-name>
         <servlet-class>VL.importDSD</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RawData</servlet-name>
+        <servlet-class>reports.RawData</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getfinesummaries</servlet-name>
+        <servlet-class>getfinesummaries</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getfineagesummaries</servlet-name>
+        <servlet-class>dashboards.getfineagesummaries</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getTotalSummaries</servlet-name>
+        <servlet-class>dashboards.getTotalSummaries</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>pullalldata</servlet-name>
+        <servlet-class>pullDataToDevice.pullalldata</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>showfacils</servlet-name>
         <url-pattern>/showfacils</url-pattern>
@@ -289,6 +309,26 @@
     <servlet-mapping>
         <servlet-name>importDSD</servlet-name>
         <url-pattern>/importDSD</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RawData</servlet-name>
+        <url-pattern>/RawData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getfinesummaries</servlet-name>
+        <url-pattern>/getfinesummaries</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getfineagesummaries</servlet-name>
+        <url-pattern>/getfineagesummaries</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getTotalSummaries</servlet-name>
+        <url-pattern>/getTotalSummaries</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>pullalldata</servlet-name>
+        <url-pattern>/pullalldata</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>-1</session-timeout>

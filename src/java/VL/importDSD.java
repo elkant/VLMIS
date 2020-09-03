@@ -182,18 +182,18 @@ conn.pst1.setString(6,timestamp);
             
          
        
-          insert=" replace into nonemr_diffcare(id,Stability,DC_Model,well_unwell,user_id,timestamp) "
-                 + " values (?,?,?,?,?,?)";
+          insert=" replace into nonemr_diffcare(id,ccc_number,Stability,DC_Model,well_unwell,user_id,timestamp) "
+                 + " values (?,?,?,?,?,?,?)";
                       conn.pst1=conn.conne.prepareStatement(insert);    
                           
 conn.pst1.setString(1,id);
 
-conn.pst1.setString(3,ccc_number);
-conn.pst1.setString(30,Stability);
-conn.pst1.setString(31,DC_Model);
-conn.pst1.setString(32,well_unwell);
-conn.pst1.setString(33,user_id);
-conn.pst1.setString(34,timestamp);
+conn.pst1.setString(2,ccc_number);
+conn.pst1.setString(3,Stability);
+conn.pst1.setString(4,DC_Model);
+conn.pst1.setString(5,well_unwell);
+conn.pst1.setString(6,user_id);
+conn.pst1.setString(7,timestamp);
 
 
 

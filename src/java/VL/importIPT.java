@@ -122,7 +122,7 @@ System.out.println(" VL Data upload by "+user_id+" ");
   
    //,newart=?,newpos_pmtct=?,art_pmtct=?
      
-insert=" update nonemr_all ccc_number=?, Started_on_IPT=?,Date_Started_on_IPT=?,IPT_Outcome=?,Date_of_IPT_Outcome=?,Reason_Not_Completed=?,user_id=?,	timestamp=? "
+insert=" update nonemr_ipt ccc_number=?, Started_on_IPT=?,Date_Started_on_IPT=?,IPT_Outcome=?,Date_of_IPT_Outcome=?,Reason_Not_Completed=?,user_id=?,	timestamp=? "
      + " where id='"+id+"'  ";
          conn.pst1=conn.conne.prepareStatement(insert);   
 //facilityname.startdate.enddate.hiv_pos_target_child.hiv_pos_target_adult.hiv_pos_target_total.hiv_pos_child.hiv_pos_adult.hiv_pos_total.new_care_child.new_care_adult.new_care_total.new_art_target_child.new_art_target_adult.new_art_target_total.started_art_child.started_art_adult.started_art_total.viral_load_target_child.viral_load_target_adult.viral_load_target_total.viral_load_done_child.viral_load_done_adult.viral_load_done_total.ipt_target_child.ipt_target_adult.ipt_target_total.ipt_child.ipt_adult.ipt_total.testing_target_child.testing_target_adult.testing_target_total.test_child.test_adult.test_total.pmtct_hiv_pos_target.pmtct_hiv_pos.eid_target.eid_done.viral_load_mothers_target.viral_load_mothers_done.user.hiv_pos_yield_perc_child.hiv_pos_yield_perc_adult.hiv_pos_yield_perc_all.hiv_pos_care_perc_child.hiv_pos_care_perc_adult.hiv_pos_care_perc_all.started_art_perc_child.started_art_perc_adult.started_art_perc_all.viral_test_perc_child.viral_test_perc_adult.viral_test_perc_all.ipt_done_perc_child.ipt_done_perc_adult.ipt_done_perc_all.tested_perc_child.tested_perc_adult.tested_perc_all.hiv_pos_yield_cmts.hiv_pos_care_cmts.started_art_cmts.viral_test_cmts.ipt_done_cmts.tested_cmts.viral_load_mothers_perc.eid_done_perc.pmtct_hiv_pos_perc.viral_load_mothers_cmts.eid_done_cmts.pmtct_hiv_pos_cmts
@@ -191,7 +191,7 @@ conn.pst1.setString(8,timestamp);
             
          
        
-          insert=" replace into nonemr_all(id,ccc_number,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,user_id,timestamp) "
+          insert=" replace into nonemr_ipt(id,ccc_number,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,user_id,timestamp) "
                  + " values (?,?,?,?,?,?,?,?,?)";
                       conn.pst1=conn.conne.prepareStatement(insert);    
                           
