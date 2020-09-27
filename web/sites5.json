@@ -189,4 +189,15 @@
 {"county":"Samburu","subcounty":"Samburu East","facility_name":"Swari Model Health Centre","mflcode":15693,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Samburu","subcounty":"Samburu East","facility_name":"Wamba Health Centre","mflcode":15768,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Samburu","subcounty":"Samburu North","facility_name":"Baragoi Sub-District Hospital","mflcode":14228,"hts":1,"pns":1,"isactive":"Yes"},
-{"county":"Samburu","subcounty":"Samburu North","facility_name":"South Horr Dispensary","mflcode":15621,"hts":1,"pns":1,"isactive":"Yes"}]
+{"county":"Samburu","subcounty":"Samburu North","facility_name":"South Horr Dispensary","mflcode":15621,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Kajiado","subcounty":"Kajiado East","facility_name":"Topcare Nursing Home","mflcode":18189,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Kajiado","subcounty":"Kajiado North","facility_name":"Matasia Nursing Home","mflcode":15153,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Kajiado","subcounty":"Kajiado North","facility_name":"Wama Nursing Home","mflcode":15767,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Kajiado","subcounty":"Kajiado North","facility_name":"Wanainchi Jamii Materinty and Nursing Home","mflcode":15770,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Kajiado","subcounty":"Kajiado North","facility_name":"Zam Zam Medical Services","mflcode":15787,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Machakos","subcounty":"Athi River","facility_name":"AthiRiver Shallom","mflcode":17979,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Machakos","subcounty":"Athi River","facility_name":"Makadara Health Care","mflcode":12450,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Machakos","subcounty":"Athi River","facility_name":"Oloibon Medical Centre","mflcode":18257,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Machakos","subcounty":"Athi River","facility_name":"St. Immaculate Health Services","mflcode":12750,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Machakos","subcounty":"Matungulu","facility_name":"Tumaini Reproductive Health Clinic","mflcode":12809,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Machakos","subcounty":"Mwala","facility_name":"Kituneni Medical Clinic","mflcode":12371,"hts":1,"pns":1,"isactive":"Yes"}]

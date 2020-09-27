@@ -63,6 +63,7 @@ String Date_LTFU=null;
 String care_ending_reason=null;
 String Cause_of_Death=null;
 String Date_Restarted_on_ART=null;
+String uzito=null;
 
 
 //String Started_on_IPT=null;
@@ -114,6 +115,10 @@ Date_LTFU=request.getParameter("Date_LTFU");
 care_ending_reason=request.getParameter("care_ending_reason");
 Cause_of_Death=request.getParameter("Cause_of_Death");
 Date_Restarted_on_ART=request.getParameter("Date_Restarted_on_ART");
+
+if(request.getParameter("uzito")!=null){
+uzito=request.getParameter("uzito");
+}
 //Started_on_IPT=request.getParameter("Started_on_IPT");
 //Date_Started_on_IPT=request.getParameter("Date_Started_on_IPT");
 //IPT_Outcome=request.getParameter("IPT_Outcome");
@@ -174,7 +179,7 @@ System.out.println(" Curr Data upload by "+user_id+" ");
   
    //,newart=?,newpos_pmtct=?,art_pmtct=?
      
-insert=" update nonemr_curr set 	ccc_number=?,	Current_Regimen=?,	Last_Clinical_Visit_Date=?,	Screened_For_TB=?,	Days_of_Dispense=?,	Months_of_Dispense=?,	Next_appointment_Date=?,	Monthly_Patient_Status=?,	Reason_For_LTFU=?,	Date_LTFU=?,	care_ending_reason=?,	Cause_of_Death=?,	Date_Restarted_on_ART=?,	user_id=?,	timestamp=? , mflcode =?"
+insert=" update nonemr_curr set 	ccc_number=?,	Current_Regimen=?,	Last_Clinical_Visit_Date=?,	Screened_For_TB=?,	Days_of_Dispense=?,	Months_of_Dispense=?,	Next_appointment_Date=?,	Monthly_Patient_Status=?,	Reason_For_LTFU=?,	Date_LTFU=?,	care_ending_reason=?,	Cause_of_Death=?,	Date_Restarted_on_ART=?,	user_id=?,	timestamp=? , mflcode =? , uzito=?"
      + " where id='"+id+"'  ";
          conn.pst1=conn.conne.prepareStatement(insert);   
 
@@ -196,6 +201,7 @@ conn.pst1.setString(13,Date_Restarted_on_ART);
 conn.pst1.setString(14,user_id);
 conn.pst1.setString(15,timestamp);
 conn.pst1.setString(16,mflcode);
+conn.pst1.setString(17,uzito);
 
 
 
@@ -247,8 +253,8 @@ conn.pst1.setString(16,mflcode);
             
          
        
-  insert=" replace into nonemr_curr(id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,user_id,timestamp,mflcode) "
-                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  insert=" replace into nonemr_curr(id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,user_id,timestamp,mflcode,uzito) "
+                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                       conn.pst1=conn.conne.prepareStatement(insert);    
                           
 conn.pst1.setString(1,id);
@@ -268,6 +274,7 @@ conn.pst1.setString(14,Date_Restarted_on_ART);
 conn.pst1.setString(15,user_id);
 conn.pst1.setString(16,timestamp);
 conn.pst1.setString(17,mflcode);
+conn.pst1.setString(18,uzito);
 
 
                         

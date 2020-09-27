@@ -78,7 +78,7 @@ public class pullalldata extends HttpServlet {
          
          conn.rs=conn.st.executeQuery(getcns);
             
-        
+             System.out.println(""+getcns);
          ResultSetMetaData metaData = conn.rs.getMetaData();
         int columnCount = metaData.getColumnCount();
 

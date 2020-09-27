@@ -76,6 +76,7 @@ String VL_Results=null;
 String Stability=null;
 String DC_Model=null;
 String well_unwell=null;
+String uzito=null;
 String user_id=null;
 String timestamp=null;
 
@@ -125,6 +126,10 @@ Stability=request.getParameter("Stability");
 DC_Model=request.getParameter("DC_Model");
 well_unwell=request.getParameter("well_unwell");
 
+if(request.getParameter("uzito")!=null)
+   {
+uzito=request.getParameter("uzito");
+   }
 user_id=request.getParameter("user_id");
 timestamp=request.getParameter("timestamp");
 
@@ -171,7 +176,7 @@ System.out.println(" VL Data upload by "+user_id+" ");
   
    //,newart=?,newpos_pmtct=?,art_pmtct=?
      
-insert=" update nonemr_all set facility=?,	ccc_number=?,	Date_of_Birth=?,	Sex=?,	Population_Type=?,	Date_Initiated_On_ART=?,	Current_Regimen=?,	Last_Clinical_Visit_Date=?,	Screened_For_TB=?,	Days_of_Dispense=?,	Months_of_Dispense=?,	Next_appointment_Date=?,	Monthly_Patient_Status=?,	Reason_For_LTFU=?,	Date_LTFU=?,	care_ending_reason=?,	Cause_of_Death=?,	Date_Restarted_on_ART=?,	Started_on_IPT=?,	Date_Started_on_IPT=?,	IPT_Outcome=?,	Date_of_IPT_Outcome=?,	Reason_Not_Completed=?,	First_Viral_Load_Date=?,	Date_Last_VL_Conducted=?,	Justification=?,	PMTCT_Status=?,	VL_Results=?,	Stability=?,	DC_Model=?,	well_unwell=?,	user_id=?,	timestamp=? , mflcode =?"
+insert=" update nonemr_all set facility=?,	ccc_number=?,	Date_of_Birth=?,	Sex=?,	Population_Type=?,	Date_Initiated_On_ART=?,	Current_Regimen=?,	Last_Clinical_Visit_Date=?,	Screened_For_TB=?,	Days_of_Dispense=?,	Months_of_Dispense=?,	Next_appointment_Date=?,	Monthly_Patient_Status=?,	Reason_For_LTFU=?,	Date_LTFU=?,	care_ending_reason=?,	Cause_of_Death=?,	Date_Restarted_on_ART=?,	Started_on_IPT=?,	Date_Started_on_IPT=?,	IPT_Outcome=?,	Date_of_IPT_Outcome=?,	Reason_Not_Completed=?,	First_Viral_Load_Date=?,	Date_Last_VL_Conducted=?,	Justification=?,	PMTCT_Status=?,	VL_Results=?,	Stability=?,	DC_Model=?,	well_unwell=?,	user_id=?,	timestamp=? , mflcode =? ,uzito=?"
      + " where id='"+id+"'  ";
          conn.pst1=conn.conne.prepareStatement(insert);   
 //facilityname.startdate.enddate.hiv_pos_target_child.hiv_pos_target_adult.hiv_pos_target_total.hiv_pos_child.hiv_pos_adult.hiv_pos_total.new_care_child.new_care_adult.new_care_total.new_art_target_child.new_art_target_adult.new_art_target_total.started_art_child.started_art_adult.started_art_total.viral_load_target_child.viral_load_target_adult.viral_load_target_total.viral_load_done_child.viral_load_done_adult.viral_load_done_total.ipt_target_child.ipt_target_adult.ipt_target_total.ipt_child.ipt_adult.ipt_total.testing_target_child.testing_target_adult.testing_target_total.test_child.test_adult.test_total.pmtct_hiv_pos_target.pmtct_hiv_pos.eid_target.eid_done.viral_load_mothers_target.viral_load_mothers_done.user.hiv_pos_yield_perc_child.hiv_pos_yield_perc_adult.hiv_pos_yield_perc_all.hiv_pos_care_perc_child.hiv_pos_care_perc_adult.hiv_pos_care_perc_all.started_art_perc_child.started_art_perc_adult.started_art_perc_all.viral_test_perc_child.viral_test_perc_adult.viral_test_perc_all.ipt_done_perc_child.ipt_done_perc_adult.ipt_done_perc_all.tested_perc_child.tested_perc_adult.tested_perc_all.hiv_pos_yield_cmts.hiv_pos_care_cmts.started_art_cmts.viral_test_cmts.ipt_done_cmts.tested_cmts.viral_load_mothers_perc.eid_done_perc.pmtct_hiv_pos_perc.viral_load_mothers_cmts.eid_done_cmts.pmtct_hiv_pos_cmts
@@ -210,6 +215,7 @@ conn.pst1.setString(31,well_unwell);
 conn.pst1.setString(32,user_id);
 conn.pst1.setString(33,timestamp);
 conn.pst1.setString(34,mflcode);
+conn.pst1.setString(35,uzito);
 
 
 
@@ -261,8 +267,8 @@ conn.pst1.setString(34,mflcode);
             
          
        
-          insert=" replace into nonemr_all(id,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,user_id,timestamp,mflcode) "
-                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+          insert=" replace into nonemr_all(id,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,user_id,timestamp,mflcode,uzito) "
+                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                       conn.pst1=conn.conne.prepareStatement(insert);    
                           
 conn.pst1.setString(1,id);
@@ -300,6 +306,7 @@ conn.pst1.setString(32,well_unwell);
 conn.pst1.setString(33,user_id);
 conn.pst1.setString(34,timestamp);
 conn.pst1.setString(35,mflcode);
+conn.pst1.setString(36,uzito);
 
 
                         

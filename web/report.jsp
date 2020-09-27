@@ -751,7 +751,7 @@ input:focus {
         var facilities="<option value=''>Select Facility</option>";
         
               $.ajax({
-                         url:'sites3.json',                            
+                         url:'sites4.json',                            
                     type:'get',  
                     dataType: 'json',  
                     success: function(data) {
@@ -3839,7 +3839,7 @@ function ldfacility() {
         var facilities="";
         
               $.ajax({
-                         url:'sites3.json',                            
+                         url:'sites5.json',                            
                     type:'get',  
                     dataType: 'json',  
                     success: function(data) {
