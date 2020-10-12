@@ -42,6 +42,7 @@ public class pullalldata extends HttpServlet {
          
          
              String sps[]={"sp_get_nonemr_all","sp_get_nonemr_vl","sp_get_nonemr_ipt","sp_get_nonemr_curr","sp_get_nonemr_diffcare"};
+             
          String dbnames[]={"nonemr_all","nonemr_vl","nonemr_ipt","nonemr_curr","nonemr_diffcare"};
          
             

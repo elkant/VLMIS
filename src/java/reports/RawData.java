@@ -212,7 +212,8 @@ String startdate="2020-04-01";
          orgunits+=" and `Sub-county` like '"+subcounty+"' ";
         
         }
-         if(!facil.equals("") && !facil.equals("()")){
+         if(!facil.equals("") && !facil.equals("()"))
+         {
             
          orgunits+=" and `mflcode` in "+facil+" ";
         

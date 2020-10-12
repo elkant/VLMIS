@@ -83,7 +83,7 @@ padding: 5px 25px;
     <div class="container-fluid">
         
         <div class="navbar-header">
-            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default col-md-6" > <i class="glyphicon glyphicon-scale"></i> VL Data Management System (VLMIS) 1.2.6 </button> 
+            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default col-md-6" > <i class="glyphicon glyphicon-scale"></i> VL Data Management System (VLMIS) 1.2.8 </button> 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -105,8 +105,8 @@ padding: 5px 25px;
           
                 
                  <li><a title="Add Widget" id="adduserbutton" data-toggle="modal" href="#userdetails"><i class="glyphicon glyphicon-user"></i><span id="usernamelabel"> Update user</span></a></li>
-                  <li><a id="clearcachebtn"  title=""   href="" onclick='clearsws();'<i class="glyphicon glyphicon-log-in"></i> Clear Cache</a></li>
-                  <!--<li><a id="cleardatabtn"  title=""    onclick='cleardata();'<i class="glyphicon glyphicon-fire"></i>Delete all Data</a></li>-->
+                 <li><a id="clearcachebtn"  title=""   href="" onclick='clearsws();'<i class="glyphicon glyphicon-log-in"></i> Clear Cache</a></li>
+                 <li><a id="cleardatabtn"  title=""    onclick='cleardata();'<i class="glyphicon glyphicon-fire"></i>Delete all Data</a></li>
                  <li ><a  title="Add Widget" data-toggle="modal"  id="exportdataanchor2" href="#addWidgetModal1"><i class="glyphicon glyphicon-cloud-upload"></i> Export all Data</a></li>
                  <li ><a  title="Add Widget" data-toggle="modal"  id="importfromserver" href="#addWidgetModal3"><i class="glyphicon glyphicon-cloud-download"></i>Pull data from server</a></li>
                  <li ><a   href="report.jsp"><i class="glyphicon glyphicon-stats"></i>Reports</a></li>
@@ -153,7 +153,7 @@ padding: 5px 25px;
                     <div class="btn-group btn-group-justified">
                         <a href="#" id='refreshpage' class="btn btn-success col-md-6">
                             <i class="glyphicon glyphicon-file"></i>
-                             VL Data Management System (VLMIS) 1.2.6
+                             VL Data Management System (VLMIS) 1.2.8
                         </a>
                         <a class="btn btn-success col-md-6" href="dashboards/index.html"> <i class="glyphicon glyphicon-dashboard"></i> Open Live Dashboards</a> 
                        
@@ -478,7 +478,21 @@ padding: 5px 25px;
      <h3  style='text-align: center;background-color:#ccffcc ;font-weight: bold;padding:3px;'>Viral Load Results</h3>
     
                                  <h5 style="text-align:center;"><label onclick='resetVL();' class='btn btn-success'><b><i class="glyphicon glyphicon-plus"></i>New VL Sample</b></label></h5>   
-                                        <div class='form-group col-md-3'>
+                                        
+                                   <div class='form-group col-md-3'>
+
+                                   <label><b>Was Client active on ART six Months Ago?</b></label>
+                                   
+                                   <select class='form-control' name='eligible' id='eligible' >
+                                   <option value=''>Select Yes</option>
+                                   <option value='Yes'>Yes</option>
+                                   <option value='No'>No</option>
+                                   </select>
+                                 
+                                   </div>
+                                 
+                                 
+                                 <div class='form-group col-md-3'>
 
                                             <label><b>Initial Viral Load Date</b></label>
                                             <input readonly='true' onchange="validateTarehe('First_Viral_Load_Date','Date_Last_VL_Conducted','Date initial viral load conducted','Date Last viral load Conducted');" placeholder='First Viral Load Date' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='First_Viral_Load_Date' id='First_Viral_Load_Date' />
@@ -488,12 +502,14 @@ padding: 5px 25px;
                                             <label><b>Date Latest VL Sample (with Results) was Collected</b></label>
                                             <input onchange="validateTarehe('First_Viral_Load_Date','Date_Last_VL_Conducted','Date initial viral load conducted','Date Last viral load Conducted');" readonly="true" placeholder='Date VL sample collected' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Last_VL_Conducted' id='Date_Last_VL_Conducted' /></div>
 
-                                        <div class='form-group col-md-3'><label><b>Justification For Last VL</b></label><select class='form-control' name='Justification' id='Justification' ><option value=''>Select Justification</option>
+                                        <div class='form-group col-md-3'><label><b>Justification For Last VL</b></label>
+                                            <select class='form-control' name='Justification' id='Justification' ><option value=''>Select Justification</option>
                                                 <option value='Routine VL'>Routine VL</option>
                                                 <option value='Baseline'>Baseline</option>
                                                 <option value='Confirmation of Treatment Failure (Repeat VL)'>Confirmation of Treatment Failure (Repeat VL)</option>
                                                 <option value='Single Drug Substitution'>Single Drug Substitution</option>
-                                                <option value='Clinical Failure'>Clinical Failure</option></select>
+                                                <option value='Clinical Failure'>Clinical Failure</option>
+                                            </select>
                                         </div>
 
                                         <div class='form-group col-md-3'>
@@ -778,7 +794,7 @@ Total_Linkage
             <div class="modal-body">
                 <form id="exportdataform">
                    
-                    <button class=" btn-lg btn-success" style="text-align: center;" id="exportbutton" onclick="exportalldata();"> Click here to Export Data</button>
+                    <button class=" btn-lg btn-success" style="text-align: center;" id="exportbutton" onclick="importdata();"> Click here to Export Data</button>
               
               
               <button class=" btn-lg btn-info" style="display:none;text-align: center;"  id="exportmsg" > Exporting Data..</button>
@@ -3838,7 +3854,7 @@ Date_LTFU:dat.doc.Date_LTFU,
 care_ending_reason:dat.doc.care_ending_reason,
 Cause_of_Death:dat.doc.Cause_of_Death,
 Date_Restarted_on_ART:dat.doc.Date_Restarted_on_ART,
-uzito:uzito,
+uzito:dat.doc.uzito,
 user_id:dat.doc.user_id,
 timestamp:dat.doc.timestamp
 },
@@ -4220,7 +4236,7 @@ VL_Results:dat.doc.VL_Results,
 Stability:dat.doc.Stability,
 DC_Model:dat.doc.DC_Model,
 well_unwell:dat.doc.well_unwell,
-uzito:uzito,
+uzito:dat.doc.uzito,
 
 user_id:dat.doc.user_id,
 timestamp:dat.doc.timestamp

@@ -685,10 +685,10 @@
                 }
                 else {
          
-    
+    var rn=Math.random();
     
      $.ajax({
-                    url:'../getTotalSummaries',                            
+                    url:'../getTotalSummaries?rn='+rn,                            
                     type:'get',  
                     dataType: 'json',  
                     
@@ -710,6 +710,7 @@
                      $("#completedipt").html(data[0]['Completed IPT']);
                     
                     var ldl=Math.round(parseInt(data[0]["VL LDL <400"])/parseInt(data[0]['VL Done in Last 12 Months'])*100);
+                    
                     var tb=Math.round(parseInt(data[0]["Screened For TB"])/parseInt(data[0]['Current On ART VL Tool'])*100);
                     
                     $("#vlupt_div").html('<div class="easypiechart vlupt" id="easypiechart-red" data-percent="'+data[0]["VL Uptake"]+'" ><span id="vlupt_val" class="percent">'+data[0]["VL Uptake"]+'%</span></div> ');
@@ -863,8 +864,10 @@ $(function() {
                 }
                 else {
                 
+                var ran=Math.random();
+                
             $.ajax({
-                    url:'../getfineagesummaries',                            
+                    url:'../getfineagesummaries?rn='+ran,                            
                     type:'get',  
                     dataType: 'json',
                     data:{county:countyrpt,

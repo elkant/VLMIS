@@ -3374,6 +3374,7 @@ $(document).ready(function(){
 
 function getreport(){
     
+   
     
     var exelstart=$("#startdaterpt").val();
     var exelend=$("#enddaterpt").val();
@@ -3410,17 +3411,25 @@ function getreport(){
 
 
   function downloadrpt(startdate,enddate,cnty,rptsubcounty,rptfacil){
+       var rn=Math.random();
       
-                $('.loading').show();
-                $('#excelreportbtn').hide();
-               console.log("facility ni _"+rptfacil+"_");
+        $('.loading').show();
+                
+                
+        $('#excelreportbtn').hide();
+                
+                
+        console.log("facility ni _"+rptfacil+"_");
                 //?startdate=" + startdate + "&enddate=" + enddate + "&cbos=" + cbos
-             var fc="";
-             if(rptfacil!=="" && rptfacil!==null){fc="&facil="+rptfacil;}
+        var fc="";
              
-                var ur=hostname+"RawData?startdate="+startdate+"&enddate="+enddate+"&rpt_county="+cnty+"&rpt_subcounty="+rptsubcounty+fc;
-                console.log(ur);
-                $.fileDownload(ur).done( function () {
+        if(rptfacil!=="" && rptfacil!==null){fc="&facil="+rptfacil;}
+             
+        var ur=hostname+"RawData?startdate="+startdate+"&enddate="+enddate+"&rpt_county="+cnty+"&rpt_subcounty="+rptsubcounty+"&facil="+fc+"&rn="+rn;
+                
+        console.log(ur);
+                
+        $.fileDownload(ur).done( function () {
                    // alert("done");
                     $('.loading').hide(); 
                     $('#excelreportbtn').show();
