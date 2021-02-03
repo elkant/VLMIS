@@ -83,7 +83,7 @@ padding: 5px 25px;
     <div class="container-fluid">
         
         <div class="navbar-header">
-            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default col-md-6" > <i class="glyphicon glyphicon-scale"></i> VL Data Management System (VLMIS) 1.2.8 </button> 
+            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default col-md-6" > <i class="glyphicon glyphicon-scale"></i> VL Data Management System (VLMIS) 2.0.0 </button> 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -153,7 +153,7 @@ padding: 5px 25px;
                     <div class="btn-group btn-group-justified">
                         <a href="#" id='refreshpage' class="btn btn-success col-md-6">
                             <i class="glyphicon glyphicon-file"></i>
-                             VL Data Management System (VLMIS) 1.2.8
+                             VL Data Management System (VLMIS) 2.0.0
                         </a>
                         <a class="btn btn-success col-md-6" href="dashboards/index.html"> <i class="glyphicon glyphicon-dashboard"></i> Open Live Dashboards</a> 
                        
@@ -1404,7 +1404,7 @@ Therefore, patients who are currently on ART should have all their  records rout
         var facility_syncing="<option value=''>Select Facility</option>";
         
               $.ajax({
-                    url:'sites5.json',                            
+                    url:'sites6.json',                            
                     type:'get',  
                     dataType: 'json',  
                     success: function(data) {
@@ -3003,7 +3003,13 @@ function selectsearchdata()
                }
 	     var hasresult=dat.doc.VL_Results;
              
+             
+             if(hasresult!==null && typeof hasresult !== 'undefined'){
              hasresult.replace('copies/ml','');
+         }
+         else {
+           hasresult="";  
+         }
              
              if ( hasresult===''){hasresult="no result";}
 		 //dbdata+="<tr><td> "+dat.doc.startdate+" </td><td>"+dat.doc.syncstatus+"</td><td>"+dat.doc.facility+"</td><td><button class='btn-info' onclick='loadsaveddailydata(\""+dat.doc._id+"\",\""+dat.doc.facility+"\")'>Edit</button></td></tr>";
@@ -5865,9 +5871,11 @@ if(artcount===0){
             $("#syncfromserverbutton").hide();
             $(".loading_fromserver").show();
             
+             var rn=Math.random();
+            
             var mflcode_syn=$("#mflcode_sync").val();
            $.ajax({
-                    url:'pullalldata?mflcode_sync='+mflcode_syn,                            
+                    url:'pullalldata?mflcode_sync='+mflcode_syn+"&rn="+rn,                            
                     type:'get',  
                     dataType: 'json',  
                     success: function(data) 

@@ -135,6 +135,7 @@ public class RawData extends HttpServlet {
         
         sps.put(1, "VL Summary Data@sp_nonemr_vl_summary");
         sps.put(2, "Raw Data@sp_nonemr_raw_data");
+        sps.put(3, "Missing Vl@sp_nonemr_missingvl_raw_data");
 
 //        HSSFSheet acashet = wb.createSheet("ACA raw Data");
 //        HSSFSheet mcashet = wb.createSheet("MCA raw Data");
@@ -194,7 +195,8 @@ String startdate="2020-04-01";
                 }
             }
         
-        
+        if(facil.length()==6){facil.replace(",","");}
+       facil=facil.replace("(,","(");
         
         
         dbConnweb conn = new dbConnweb();
@@ -209,7 +211,7 @@ String startdate="2020-04-01";
         }
         if(!subcounty.equals("") ){
             
-         orgunits+=" and `Sub-county` like '"+subcounty+"' ";
+         orgunits+=" and `district`.`DistrictNom` like '"+subcounty+"' ";
         
         }
          if(!facil.equals("") && !facil.equals("()"))

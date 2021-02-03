@@ -3411,6 +3411,7 @@ function getreport(){
 
 
   function downloadrpt(startdate,enddate,cnty,rptsubcounty,rptfacil){
+      
        var rn=Math.random();
       
         $('.loading').show();

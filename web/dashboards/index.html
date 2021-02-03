@@ -250,14 +250,14 @@
                      <div class="form-group col-md-2">
                                   
                                     
-                                       <input type="text"  name ="startdaterpt" id="startdaterpt" value="2020-07-01"  class="form-control dates" readonly placeholder="Start date">
+                                       <input type="text"  name ="startdaterpt" id="startdaterpt" value="2020-10-01"  class="form-control dates" readonly placeholder="Start date">
                                     
                                 </div> 
                     
                     
                   <div class="form-group col-md-2">
                                     
-                                       <input type="text"  name ="enddaterpt" id="enddaterpt" value="2020-09-30"  class="form-control dates" readonly placeholder="enddate">
+                                       <input type="text"  name ="enddaterpt" id="enddaterpt" value="2020-11-30"  class="form-control dates" readonly placeholder="enddate">
                                    
                                 </div> 
                     
@@ -659,6 +659,7 @@
     
      function loadsummary(){
          
+          $("#filterslides").hide();
          
     var exelstart=$("#startdaterpt").val();
     var exelend=$("#enddaterpt").val();
@@ -699,6 +700,7 @@
                           enddate:exelend },
                     success: function(data) 
                     {
+                         $("#filterslides").show();
 //                     alert(data[0].All); 
                      
                      $("#allpatients").html(data[0]['Total Patients Entered']);
@@ -837,7 +839,7 @@ $(function() {
         function refreshFineAge()
               
         {  
-            $("#filterslides").hide();
+            //$("#filterslides").hide();
                  
     var exelstart=$("#startdaterpt").val();
     var exelend=$("#enddaterpt").val();
@@ -955,7 +957,7 @@ function ldfacility() {
       
         var facilities="<option value='' >Select Facility</value>";
         
-              $.getJSON("../sites5.json",function(data){
+              $.getJSON("../sites6.json",function(data){
                          
                         
                        
