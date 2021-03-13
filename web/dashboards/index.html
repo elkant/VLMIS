@@ -993,6 +993,32 @@ if((data[i].hts===1 ) && data[i].isactive==='Yes' && data[i].subcounty===sbc ){
     
     ldfacility();
  
+ 
+     
+    function showtoday(){       
+        
+        
+    var currentdate = new Date();
+    
+    var mn=""+(currentdate.getMonth()+1) ;
+    var dt=""+currentdate.getDate();
+    var hr=""+currentdate.getHours();
+    var min=""+currentdate.getMinutes();
+    var sc=""+currentdate.getSeconds();
+    if(mn.length===1){mn='0'+mn;}
+    if(dt.length===1){dt='0'+dt;}
+    if(hr.length===1){hr='0'+hr;}
+    if(min.length===1){min='0'+min;}
+    if(sc.length===1){sc='0'+sc;}
+    
+    
+    var leo = "" + currentdate.getFullYear() + "-"+ mn + "-"+ dt;
+      
+        $("#enddaterpt").val(leo);
+        
+    return leo;
+    }  
+    showtoday();
     
     </script>
     

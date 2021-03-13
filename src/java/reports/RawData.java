@@ -131,11 +131,13 @@ public class RawData extends HttpServlet {
         stylesum.setFont(fontx);
         stylesum.setWrapText(true);
         
-        HashMap<Integer , String> sps= new HashMap<Integer, String>();
+        HashMap<Integer,String> sps = new HashMap<Integer,String>();
         
-        sps.put(1, "VL Summary Data@sp_nonemr_vl_summary");
-        sps.put(2, "Raw Data@sp_nonemr_raw_data");
-        sps.put(3, "Missing Vl@sp_nonemr_missingvl_raw_data");
+        sps.put(1,"VL Summary Data@sp_nonemr_vl_summary");
+        sps.put(2,"Raw Data@sp_nonemr_raw_data");
+        sps.put(3,"Missing Vl VLMIS@sp_nonemr_missingvl_raw_data");
+        sps.put(4,"Elig Missing VL Sum@sp_vl_eligible_missing_vl_viewreport");
+        sps.put(5,"Elig Missing VL Raw@sp_vl_eligible_missing_vl_viewreport_petientlevel");
 
 //        HSSFSheet acashet = wb.createSheet("ACA raw Data");
 //        HSSFSheet mcashet = wb.createSheet("MCA raw Data");
@@ -320,23 +322,19 @@ rw.setHeightInPoints(32);
 
     }
         
-        if(conn.rs!=null){conn.rs.close();}
-        if(conn.rs1!=null){conn.rs1.close();}
-        if(conn.st!=null){conn.st.close();}
-        if(conn.st1!=null){conn.st1.close();}
-        if(conn.conne!=null){conn.conne.close();}
+     
         
         
         
         
 
-        
+        if(conn.rs!=null){conn.rs.close();}  
+         if(conn.rs1!=null){conn.rs1.close();}  
+         if(conn.rs_6!=null){conn.rs_6.close();}
          if(conn.st!=null){conn.st.close();}  
          if(conn.st1!=null){conn.st1.close();}  
          if(conn.st_6!=null){conn.st_6.close();}  
-         if(conn.rs!=null){conn.rs.close();}  
-         if(conn.rs1!=null){conn.rs1.close();}  
-         if(conn.rs_6!=null){conn.rs_6.close();}  
+           
          if(conn.pst1!=null){conn.pst1.close();}  
          if(conn.conne!=null){conn.conne.close();}  
         
