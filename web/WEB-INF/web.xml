@@ -166,6 +166,14 @@
         <servlet-name>pullalldata</servlet-name>
         <servlet-class>pullDataToDevice.pullalldata</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>load_eligible_for_vl</servlet-name>
+        <servlet-class>Eligible_missing_VL.load_eligible_for_vl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>export_eligible_data</servlet-name>
+        <servlet-class>Eligible_missing_VL.export_eligible_data</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>showfacils</servlet-name>
         <url-pattern>/showfacils</url-pattern>
@@ -329,6 +337,14 @@
     <servlet-mapping>
         <servlet-name>pullalldata</servlet-name>
         <url-pattern>/pullalldata</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>load_eligible_for_vl</servlet-name>
+        <url-pattern>/load_eligible_for_vl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>export_eligible_data</servlet-name>
+        <url-pattern>/export_eligible_data</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>-1</session-timeout>

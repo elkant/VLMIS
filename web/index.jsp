@@ -523,6 +523,8 @@ padding: 5px 25px;
                                                 <option value=''>Select PMTCT Status</option>
                                                 <option value='Pregnant'>Pregnant</option>
                                                 <option value='Breastfeeding'>Breastfeeding</option>
+                                                <option value='Any Other PMTCT'>Any other PMTCT</option>
+                                                
                                             <option value='Not Applicable'>Not Applicable</option>
                                             </select>
                                         </div>
