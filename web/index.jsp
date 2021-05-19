@@ -7,9 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<!DOCTYPE html>
-<!--<html  manifest="vl.appcache">-->
-<!--<html  >-->
 <head>
                 <!--<meta http-equiv="origin-trial" content="Agd7fSYxSHE+4XwOTgC99LrjXP6QGFdDlXTkV9oERCmy/PEBD9mT1nCfoZGZYe0zQGCqJW/TG+avQgB9nbuyWg0AAABteyJvcmlnaW4iOiJodHRwczovL2hzZHNhY2x1c3RlcjIuZmhpMzYwLm9yZzo0NDMiLCJmZWF0dXJlIjoiQXBwQ2FjaGUiLCJleHBpcnkiOjE2MTc3NTM1OTksImlzU3ViZG9tYWluIjp0cnVlfQ==">-->
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -83,7 +80,7 @@ padding: 5px 25px;
     <div class="container-fluid">
         
         <div class="navbar-header">
-            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default col-md-6" > <i class="glyphicon glyphicon-scale"></i> VL Data Management System (VLMIS) 2.0.0 </button> 
+            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default col-md-6" > <i class="glyphicon glyphicon-scale"></i>VLMIS 2.1.0 </button> 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -153,7 +150,7 @@ padding: 5px 25px;
                     <div class="btn-group btn-group-justified">
                         <a href="#" id='refreshpage' class="btn btn-success col-md-6">
                             <i class="glyphicon glyphicon-file"></i>
-                             VL Data Management System (VLMIS) 2.0.0
+                             VLMIS 2.1.0
                         </a>
                         <a class="btn btn-success col-md-6" href="dashboards/index.html"> <i class="glyphicon glyphicon-dashboard"></i> Open Live Dashboards</a> 
                        
@@ -2534,118 +2531,6 @@ function createdynamicinputs(){
          
        
    
-         $.getJSON("indicators.json",function(result){
-             
-             
-             
-             var table="";
-             var row1="";
-             var row2="";
-             var count=1;
-             
-             for(a=0;a< result.length; a++){
-                 
-             var indicatorname=result[a].IndicatorName;    
-             var fullindicator=result[a].FullIndicator;    
-             var indicatorid=result[a].IndicatorID;
-             var label=result[a].Age;
-             var level=result[a].Level;
-             var inputtype=result[a].datainputtype;
-             var minimum=result[a].Min;
-             var maximum=result[a].Max;
-             var onblur="";
-             var onkey_up="autocalculate('"+indicatorid+"');";
-             if(result[a].onblur!==null){
-                 onblur="autocalculate('"+indicatorid+"');"+result[a].onblur;
-             }
-             var onkeypress=result[a].onkeypress;
-             var tdclass=result[a].tdclass;
-             var isrequired=result[a].Required;
-             var isnewrow=result[a].newrow;
-             var readonlyvar=result[a].readonly;
-             console.log("Read only:"+result[a].readonly);
-             
-             var isreadonly="";
-             allindicatorsarray.push(indicatorid);
-             
-             if(indicatorid.indexOf("target")===-1){
-                 
-              allnontargetindicatorsarray.push(indicatorid);   
-             }
-              var tabindex="";
-             if(readonlyvar==="TRUE"){
-                 
-               isreadonly="readonly";
-               tabindex=" tabindex='-1' style='background-color:#b1b1cd;' ";
-             }
-             var colspan=result[a].colspan;
-            
-             if(label==='Total' && tdclass==='col-xs-4' ){  }
-             if(isnewrow===1)
-             {
-                 //dont show targets 
-               if(hidetargetsui==='yes' && readonlyvar==="TRUE"  ){
-                 row1="<tr class='hiderows' style='display:none;'> <td class='col-xs-12' colspan='3'> <div class='control-group'> <label  > <font color='red'> <b> * </b> </font> <span class='badge'> "+count+" </span>     "+indicatorname+"    <span class='badge' title='Indicator' data-toggle='popover' data-trigger='hover' data-content='"+fullindicator+"'>?</span> </label>  </div> </td> </tr>";
-                 count++;
-                 row2+=row1;   
-                   
-               }
-               else {
-                 row1="<tr> <td class='col-xs-12' colspan='3'> <div class='control-group'> <label  > <font color='red'> <b> * </b> </font> <span class='badge'> "+count+" </span>     "+indicatorname+"    <span class='badge' title='Indicator' data-toggle='popover' data-trigger='hover' data-content='"+fullindicator+"'>?</span> </label>  </div> </td> </tr>";
-                 count++;
-                 row2+=row1;
-             }
-             }
-             else{
-                 
-                 row1="";
-             }
-              if(isnewrow===1 && count===2)
-             {
-               if(hidetargetsui==='yes' && readonlyvar==="TRUE"  ){
-                     row2+=" <tr class='hiderows' style='display:none;'> ";   
-               }   
-               else {
-                   
-                     row2+=" <tr> ";   
-                   
-               }
-                 
-        
-              }
-              else  if(isnewrow===1 && count > 2 && count<=result.length){
-                  
-                   if(hidetargetsui==='yes' && readonlyvar==="TRUE"  ){
-                       
-                         row2+=" </tr> <tr class='hiderows' style='display:none;'> "; 
-                         
-                       } else {
-                           
-                        row2+=" </tr> <tr> ";      
-                   }
-                  
-               
-                  
-              }
-              
-              
-              row2+="<td class='"+tdclass+"' colspan='"+colspan+"' > <div class='control-group' > <label> "+label+" </label> <div class='controls'> <input onkeypress='return numbers(event);'  "+isreadonly+"  "+tabindex+" onblur=\""+onblur+"\"  onfocus='this.value = this.value;' type='"+inputtype+"' min ='"+minimum+"' max='"+maximum+"' maxlength='7' data-"+indicatorid+"='0' data-previous_"+indicatorid+"='0'  name='"+indicatorid+"' id='"+indicatorid+"' autocomplete='off' class='form-control'> </div> </div> </td> ";
-            //IndicatorID	Age	IndicatorName	Level	datainputtype	Min	Max	onblur	onkeypress	Class	Required
-    
-     
-     //now do an appending
-                 
-             }
-             row2+=" </tr> ";   
-            
-            //alert(row2);
-            // $("#dynamicindicators").html(row2);
-            
-         $('[data-toggle="popover"]').popover();   
-        
-    // alert(result[0].IndicatorName);
-    });// ned of input field loading
-    
     
     //progress bar report section
     

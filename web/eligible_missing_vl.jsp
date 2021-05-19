@@ -472,12 +472,6 @@ padding: 5px 25px;
 </div>
 
 
-
-
-
-
-
-
 <div class="modal" id="userdetails">
     <div class="modal-dialog">
         <div class="modal-content">

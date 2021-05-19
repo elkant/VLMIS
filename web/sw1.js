@@ -14,15 +14,13 @@
 // Names of the two caches used in this version of the service worker.
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
-const PRECACHE = 'vl_precache-v32';
-const RUNTIME = 'vl_runtimev32';
+const PRECACHE = 'vl_precache-v37';
+const RUNTIME = 'vl_runtimev37';
 
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS=[
     'progressbar.json'
-    ,'htsrri.png'
     ,'drugs1.json'
-    ,'indicators.json'
     ,'sites6.json'
     ,'css/dataTables.bootstrap.min.css'
     ,'css/jquery.dataTables.min.css'
@@ -38,8 +36,6 @@ const PRECACHE_URLS=[
     ,'js/pouchdb-7.2.1.js'
     ,'js/pouchdb.upsert.js'
     ,'js/datatables.min.js'
-    ,'js/html2canvas.js'
-    ,'js/FileSaver.js'
     ,'js/jquery.fileDownload.js'
     ,'images/ajax_loader.gif'
     ,'images/favicon.ico'
@@ -49,7 +45,6 @@ const PRECACHE_URLS=[
     ,'images/sort_desc.png'
     ,'images/sort_desc_disabled.png'
     ,'images/vl.png'
-    ,'images/fwl.png'
     ,'wizard/assets/js/bd-wizard.js'
     ,'wizard/assets/js/jquery.steps.js'
     ,'wizard/assets/js/popper.min.js'

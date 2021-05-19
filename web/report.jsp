@@ -294,7 +294,7 @@ input:focus {
 
 <!-- /Main -->
 
-<footer class="text-center"> &copy; Afya Nyota Ya Bonde | USAID </footer>
+<footer class="text-center"> &copy; USAID Tujenge Jamii | USAID </footer>
 
 <div class="modal" id="addWidgetModal">
     <div class="modal-dialog">
@@ -604,7 +604,7 @@ input:focus {
            
             <h3>Reset CCC records</h3>
             <p>To clear existing new ccc numbers and request for new ones, click the RESET button  </p>
-            <button onclick=" resetcccdb();" id="resetdbbtn" style="margin-left: 30%;" class="btn-lg btn-info active">
+            <button onclick=" resetcccdb();" id="resetdbbtn" style="margin-left: 30%;" class="btn-lg btn-info active resetdbbtn">
                                             Reset
                                         </button>
             
@@ -751,7 +751,7 @@ input:focus {
         var facilities="<option value=''>Select Facility</option>";
         
               $.ajax({
-                         url:'sites4.json',                            
+                         url:'sites6.json',                            
                     type:'get',  
                     dataType: 'json',  
                     success: function(data) {
@@ -3849,7 +3849,7 @@ function ldfacility() {
         var facilities="";
         
               $.ajax({
-                         url:'sites5.json',                            
+                         url:'sites6.json',                            
                     type:'get',  
                     dataType: 'json',  
                     success: function(data) {
