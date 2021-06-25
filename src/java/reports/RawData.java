@@ -176,7 +176,8 @@ String startdate="2020-04-01";
         
      String [] facilityarr=null;   
        
-         if (request.getParameterValues("facil") != null ) {
+         if (request.getParameterValues("facil") != null ) 
+         {
                 facilityarr = request.getParameterValues("facil");
           facil="(";
                 for (int a = 0; a < facilityarr.length; a++) 
@@ -214,7 +215,7 @@ String startdate="2020-04-01";
          orgunits+=" and `district`.`DistrictNom` like '"+subcounty+"' ";
         
         }
-         if(!facil.equals("") && !facil.equals("()"))
+         if(!facil.equals("") && !facil.equals("()")&& !facil.equals("Select subcounty first"))
          {
             
          orgunits+=" and `mflcode` in "+facil+" ";

@@ -80,7 +80,7 @@ padding: 5px 25px;
     <div class="container-fluid">
         
         <div class="navbar-header">
-            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default col-md-6" > <i class="glyphicon glyphicon-scale"></i>VLMIS 2.1.0 </button> 
+            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default col-md-6" > <i class="glyphicon glyphicon-scale"></i>VLMIS 3.0.2 </button> 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -150,7 +150,7 @@ padding: 5px 25px;
                     <div class="btn-group btn-group-justified">
                         <a href="#" id='refreshpage' class="btn btn-success col-md-6">
                             <i class="glyphicon glyphicon-file"></i>
-                             VLMIS 2.1.0
+                             VLMIS 3.0.2
                         </a>
                         <a class="btn btn-success col-md-6" href="dashboards/index.html"> <i class="glyphicon glyphicon-dashboard"></i> Open Live Dashboards</a> 
                        
@@ -781,7 +781,7 @@ Total_Linkage
 
 <!-- /Main -->
 
-<footer class="text-center"> &copy; AfyaNyota | USAID </footer>
+<footer class="text-center"> &copy; USAID Tujenge Jamii </footer>
 
 <div class="modal" id="addWidgetModal">
     <div class="modal-dialog">
@@ -6127,7 +6127,7 @@ update_nonemr_diffcare(id,ccc_number,'',Stability,DC_Model,well_unwell,timestamp
         }
         
         function isShowWeight(){
-         if(getAge()<=15){   
+         if(getAge()<=19){   
                         
             $('.iscalhiv').show();
         }

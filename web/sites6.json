@@ -175,4 +175,6 @@
 {"county":"Nakuru","subcounty":"Subukia","facility_name":"Mbogoini Dispensary","mflcode":15165,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Nakuru","subcounty":"Subukia","facility_name":"Wei Dispensary","mflcode":15776,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Samburu","subcounty":"Samburu East","facility_name":"Ngilai Dispensary","mflcode":14459,"hts":1,"pns":1,"isactive":"Yes"},
-{"county":"Samburu","subcounty":"Samburu North","facility_name":"Barsaloi GK Dispensary","mflcode":14237,"hts":1,"pns":1,"isactive":"Yes"}]
+{"county":"Samburu","subcounty":"Samburu North","facility_name":"Barsaloi GK Dispensary","mflcode":14237,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Laikipia","subcounty":"Laikipia North","facility_name":"Powys Dispensary","mflcode":22950,"hts":1,"pns":1,"isactive":"Yes"}    
+]
