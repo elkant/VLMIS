@@ -80,6 +80,28 @@ String uzito=null;
 String user_id=null;
 String timestamp=null;
 
+String ever_vaccinated=null;
+String vaccination_status=null;
+String vaccine1=null;
+String dose1=null;
+String date1=null;
+String verified1=null;
+String vaccine2=null;
+String dose2=null;
+String date2=null;
+String verified2=null;
+String received_booster=null;
+String vaccine_booster=null;
+String date_booster=null;
+String verified_booster=null;
+String tested_for_covid19=null;
+String date_tested_covid19=null;
+String covid_test_result=null;
+String covid_presentation=null;
+String hospitalized=null;
+String admission_unit=null;
+String supplimental_oxygen=null;
+String regimenline=null;
 
 
 
@@ -133,6 +155,118 @@ uzito=request.getParameter("uzito");
 user_id=request.getParameter("user_id");
 timestamp=request.getParameter("timestamp");
 
+if(request.getParameter("ever_vaccinated")!=null){
+ever_vaccinated=request.getParameter("ever_vaccinated");}
+ else {
+ever_vaccinated=null;
+}
+if(request.getParameter("vaccination_status")!=null){
+vaccination_status=request.getParameter("vaccination_status");}
+ else {
+vaccination_status=null;
+}
+if(request.getParameter("vaccine1")!=null){
+vaccine1=request.getParameter("vaccine1");}
+ else {
+vaccine1=null;
+}
+if(request.getParameter("dose1")!=null){
+dose1=request.getParameter("dose1");}
+ else {
+dose1=null;
+}
+if(request.getParameter("date1")!=null){
+date1=request.getParameter("date1");}
+ else {
+date1=null;
+}
+if(request.getParameter("verified1")!=null){
+verified1=request.getParameter("verified1");}
+ else {
+verified1=null;
+}
+if(request.getParameter("vaccine2")!=null){
+vaccine2=request.getParameter("vaccine2");}
+ else {
+vaccine2=null;
+}
+if(request.getParameter("dose2")!=null){
+dose2=request.getParameter("dose2");}
+ else {
+dose2=null;
+}
+if(request.getParameter("date2")!=null){
+date2=request.getParameter("date2");}
+ else {
+date2=null;
+}
+if(request.getParameter("verified2")!=null){
+verified2=request.getParameter("verified2");}
+ else {
+verified2=null;
+}
+if(request.getParameter("received_booster")!=null){
+received_booster=request.getParameter("received_booster");}
+ else {
+received_booster=null;
+}
+if(request.getParameter("vaccine_booster")!=null){
+vaccine_booster=request.getParameter("vaccine_booster");}
+ else {
+vaccine_booster=null;
+}
+if(request.getParameter("date_booster")!=null){
+date_booster=request.getParameter("date_booster");}
+ else {
+date_booster=null;
+}
+if(request.getParameter("verified_booster")!=null){
+verified_booster=request.getParameter("verified_booster");}
+ else {
+verified_booster=null;
+}
+if(request.getParameter("tested_for_covid19")!=null){
+tested_for_covid19=request.getParameter("tested_for_covid19");}
+ else {
+tested_for_covid19=null;
+}
+if(request.getParameter("date_tested_covid19")!=null){
+date_tested_covid19=request.getParameter("date_tested_covid19");}
+ else {
+date_tested_covid19=null;
+}
+if(request.getParameter("covid_test_result")!=null){
+covid_test_result=request.getParameter("covid_test_result");}
+ else {
+covid_test_result=null;
+}
+if(request.getParameter("covid_presentation")!=null){
+covid_presentation=request.getParameter("covid_presentation");}
+ else {
+covid_presentation=null;
+}
+if(request.getParameter("hospitalized")!=null){
+hospitalized=request.getParameter("hospitalized");}
+ else {
+hospitalized=null;
+}
+if(request.getParameter("admission_unit")!=null){
+admission_unit=request.getParameter("admission_unit");}
+ else {
+admission_unit=null;
+}
+if(request.getParameter("supplimental_oxygen")!=null){
+supplimental_oxygen=request.getParameter("supplimental_oxygen");}
+ else {
+supplimental_oxygen=null;
+}
+
+if(request.getParameter("regimenline")!=null){
+regimenline=request.getParameter("regimenline");}
+ else {
+regimenline=null;
+}
+
 
 
 String version="1.0.0";
@@ -176,7 +310,7 @@ System.out.println(" VL Data upload by "+user_id+" ");
   
    //,newart=?,newpos_pmtct=?,art_pmtct=?
      
-insert=" update nonemr_all set facility=?,	ccc_number=?,	Date_of_Birth=?,	Sex=?,	Population_Type=?,	Date_Initiated_On_ART=?,	Current_Regimen=?,	Last_Clinical_Visit_Date=?,	Screened_For_TB=?,	Days_of_Dispense=?,	Months_of_Dispense=?,	Next_appointment_Date=?,	Monthly_Patient_Status=?,	Reason_For_LTFU=?,	Date_LTFU=?,	care_ending_reason=?,	Cause_of_Death=?,	Date_Restarted_on_ART=?,	Started_on_IPT=?,	Date_Started_on_IPT=?,	IPT_Outcome=?,	Date_of_IPT_Outcome=?,	Reason_Not_Completed=?,	First_Viral_Load_Date=?,	Date_Last_VL_Conducted=?,	Justification=?,	PMTCT_Status=?,	VL_Results=?,	Stability=?,	DC_Model=?,	well_unwell=?,	user_id=?,	timestamp=? , mflcode =? ,uzito=?"
+insert=" update nonemr_all set facility=?,	ccc_number=?,	Date_of_Birth=?,	Sex=?,	Population_Type=?,	Date_Initiated_On_ART=?,	Current_Regimen=?,	Last_Clinical_Visit_Date=?,	Screened_For_TB=?,	Days_of_Dispense=?,	Months_of_Dispense=?,	Next_appointment_Date=?,	Monthly_Patient_Status=?,	Reason_For_LTFU=?,	Date_LTFU=?,	care_ending_reason=?,	Cause_of_Death=?,	Date_Restarted_on_ART=?,	Started_on_IPT=?,	Date_Started_on_IPT=?,	IPT_Outcome=?,	Date_of_IPT_Outcome=?,	Reason_Not_Completed=?,	First_Viral_Load_Date=?,	Date_Last_VL_Conducted=?,	Justification=?,	PMTCT_Status=?,	VL_Results=?,	Stability=?,	DC_Model=?,	well_unwell=?,	user_id=?,	timestamp=? , mflcode =? ,uzito=?,ever_vaccinated=?, vaccination_status=?, vaccine1=?, dose1=?, date1=?, verified1=?, vaccine2=?, dose2=?, date2=?, verified2=?, received_booster=?, vaccine_booster=?, date_booster=?, verified_booster=?, tested_for_covid19=?, date_tested_covid19=?, covid_test_result=?, covid_presentation=?, hospitalized=?, admission_unit=?, supplimental_oxygen=?, regimenline=?"
      + " where id='"+id+"'  ";
          conn.pst1=conn.conne.prepareStatement(insert);   
 //facilityname.startdate.enddate.hiv_pos_target_child.hiv_pos_target_adult.hiv_pos_target_total.hiv_pos_child.hiv_pos_adult.hiv_pos_total.new_care_child.new_care_adult.new_care_total.new_art_target_child.new_art_target_adult.new_art_target_total.started_art_child.started_art_adult.started_art_total.viral_load_target_child.viral_load_target_adult.viral_load_target_total.viral_load_done_child.viral_load_done_adult.viral_load_done_total.ipt_target_child.ipt_target_adult.ipt_target_total.ipt_child.ipt_adult.ipt_total.testing_target_child.testing_target_adult.testing_target_total.test_child.test_adult.test_total.pmtct_hiv_pos_target.pmtct_hiv_pos.eid_target.eid_done.viral_load_mothers_target.viral_load_mothers_done.user.hiv_pos_yield_perc_child.hiv_pos_yield_perc_adult.hiv_pos_yield_perc_all.hiv_pos_care_perc_child.hiv_pos_care_perc_adult.hiv_pos_care_perc_all.started_art_perc_child.started_art_perc_adult.started_art_perc_all.viral_test_perc_child.viral_test_perc_adult.viral_test_perc_all.ipt_done_perc_child.ipt_done_perc_adult.ipt_done_perc_all.tested_perc_child.tested_perc_adult.tested_perc_all.hiv_pos_yield_cmts.hiv_pos_care_cmts.started_art_cmts.viral_test_cmts.ipt_done_cmts.tested_cmts.viral_load_mothers_perc.eid_done_perc.pmtct_hiv_pos_perc.viral_load_mothers_cmts.eid_done_cmts.pmtct_hiv_pos_cmts
@@ -216,6 +350,28 @@ conn.pst1.setString(32,user_id);
 conn.pst1.setString(33,timestamp);
 conn.pst1.setString(34,mflcode);
 conn.pst1.setString(35,uzito);
+conn.pst1.setString(36,ever_vaccinated);
+conn.pst1.setString(37,vaccination_status);
+conn.pst1.setString(38,vaccine1);
+conn.pst1.setString(39,dose1);
+conn.pst1.setString(40,date1);
+conn.pst1.setString(41,verified1);
+conn.pst1.setString(42,vaccine2);
+conn.pst1.setString(43,dose2);
+conn.pst1.setString(44,date2);
+conn.pst1.setString(45,verified2);
+conn.pst1.setString(46,received_booster);
+conn.pst1.setString(47,vaccine_booster);
+conn.pst1.setString(48,date_booster);
+conn.pst1.setString(49,verified_booster);
+conn.pst1.setString(50,tested_for_covid19);
+conn.pst1.setString(51,date_tested_covid19);
+conn.pst1.setString(52,covid_test_result);
+conn.pst1.setString(53,covid_presentation);
+conn.pst1.setString(54,hospitalized);
+conn.pst1.setString(55,admission_unit);
+conn.pst1.setString(56,supplimental_oxygen);
+conn.pst1.setString(57,regimenline);
 
 
 
@@ -267,8 +423,8 @@ conn.pst1.setString(35,uzito);
             
          
        
-          insert=" replace into nonemr_all(id,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,user_id,timestamp,mflcode,uzito) "
-                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+          insert=" replace into nonemr_all(id,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,user_id,timestamp,mflcode,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline) "
+                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                       conn.pst1=conn.conne.prepareStatement(insert);    
                           
 conn.pst1.setString(1,id);
@@ -307,6 +463,28 @@ conn.pst1.setString(33,user_id);
 conn.pst1.setString(34,timestamp);
 conn.pst1.setString(35,mflcode);
 conn.pst1.setString(36,uzito);
+conn.pst1.setString(37,ever_vaccinated);
+conn.pst1.setString(38,vaccination_status);
+conn.pst1.setString(39,vaccine1);
+conn.pst1.setString(40,dose1);
+conn.pst1.setString(41,date1);
+conn.pst1.setString(42,verified1);
+conn.pst1.setString(43,vaccine2);
+conn.pst1.setString(44,dose2);
+conn.pst1.setString(45,date2);
+conn.pst1.setString(46,verified2);
+conn.pst1.setString(47,received_booster);
+conn.pst1.setString(48,vaccine_booster);
+conn.pst1.setString(49,date_booster);
+conn.pst1.setString(50,verified_booster);
+conn.pst1.setString(51,tested_for_covid19);
+conn.pst1.setString(52,date_tested_covid19);
+conn.pst1.setString(53,covid_test_result);
+conn.pst1.setString(54,covid_presentation);
+conn.pst1.setString(55,hospitalized);
+conn.pst1.setString(56,admission_unit);
+conn.pst1.setString(57,supplimental_oxygen);
+conn.pst1.setString(58,regimenline);
 
 
                         

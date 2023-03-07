@@ -283,10 +283,10 @@ rw.setHeightInPoints(32);
                 //System.out.print(mycolumns.get(a) + ":" + conn.rs.getString("" + mycolumns.get(a)));
 
                 XSSFCell cell0 = rw.createCell(a);
-                 if(isNumeric(conn.rs.getString("" + mycolumns.get(a)))){
+                 if(  isNumeric(conn.rs.getString("" + mycolumns.get(a)))){
                // if(1==1){
                 
-                     cell0.setCellValue(conn.rs.getDouble(mycolumns.get(a).toString()));
+                     cell0.setCellValue(conn.rs.getDouble(mycolumns.get(a).toString().trim()));
                     
                    }
                 else 
@@ -384,12 +384,19 @@ rw.setHeightInPoints(32);
 
     
   public static boolean isNumeric(String strNum) {
+      
+    
     try {
-        double d = Double.parseDouble(strNum);
+        double d = Integer.parseInt(strNum);
     } catch (NumberFormatException | NullPointerException nfe) {
         return false;
     }
     return true;
+      
 }
+  
+  
+  
+  
     
 }

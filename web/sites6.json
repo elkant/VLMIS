@@ -150,6 +150,7 @@
 {"county":"Samburu","subcounty":"Samburu Central","facility_name":"Maralal District Hospital","mflcode":15126,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Samburu","subcounty":"Samburu Central","facility_name":"Suguta Marmar Health Centre","mflcode":15682,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Samburu","subcounty":"Samburu East","facility_name":"Archers Post Health Centre","mflcode":14212,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Samburu","subcounty":"Samburu East","facility_name":"Archers Post Sub-County Hospital","mflcode":24233,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Samburu","subcounty":"Samburu East","facility_name":"Catholic Hospital Wamba","mflcode":15769,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Samburu","subcounty":"Samburu East","facility_name":"Sereolipi Health Centre","mflcode":15547,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Samburu","subcounty":"Samburu East","facility_name":"Swari Model Health Centre","mflcode":15693,"hts":1,"pns":1,"isactive":"Yes"},
@@ -214,4 +215,5 @@
 {"county":"Laikipia","subcounty":"Laikipia North","facility_name":"Survey Dispensary","mflcode":15690,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Laikipia","subcounty":"Laikipia West","facility_name":"Mwenje Dispensary","mflcode":15266,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Laikipia","subcounty":"Laikipia West","facility_name":"Thome Dispensary","mflcode":23140,"hts":1,"pns":1,"isactive":"Yes"}
+,{"county":"Laikipia","subcounty":"Laikipia West","facility_name":"Salama Health Centre (Laikipia West)","mflcode":15520,"hts":1,"pns":1,"isactive":"Yes"}
 ]

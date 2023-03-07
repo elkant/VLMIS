@@ -80,7 +80,7 @@ padding: 5px 25px;
     <div class="container-fluid">
         
         <div class="navbar-header">
-            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default col-md-6" > <i class="glyphicon glyphicon-scale"></i>VLMIS 3.0.3 </button> 
+            <button id="toolid" style="float:left;color:white;" class="navbar-toggle btn btn-default col-md-6" > <i class="glyphicon glyphicon-scale"></i>VLMIS 3.0.4 </button> 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -150,7 +150,7 @@ padding: 5px 25px;
                     <div class="btn-group btn-group-justified">
                         <a href="#" id='refreshpage' class="btn btn-success col-md-6">
                             <i class="glyphicon glyphicon-file"></i>
-                             VLMIS 3.0.3
+                             VLMIS 3.0.4
                         </a>
                         <a class="btn btn-success col-md-6" href="dashboards/index.html"> <i class="glyphicon glyphicon-dashboard"></i> Open Live Dashboards</a> 
                        
@@ -285,7 +285,7 @@ padding: 5px 25px;
 
                                          <div class='form-group col-md-3'>
                                             <label><font color='red'>*</font><b>Current Regimen</b></label>
-                                            <select class='form-control' name='Current_Regimen' id='Current_Regimen' ><option value=''>Select Current Regimen</option>
+                                            <select  class='form-control' name='Current_Regimen' id='Current_Regimen' ><option value=''>Select Current Regimen</option>
 
                                             </select>
                                         </div>
@@ -336,7 +336,7 @@ padding: 5px 25px;
                                                 <label><b>Care End patient</b></label>
                                                 <select onchange='isLTFU();isDEAD();' class='form-control' name='care_ending_reason' id='care_ending_reason' >
                                                 <option value=''>Select Reason for Care Ending</option>
-                                                <option value='LTFU'>LTFU ( > 28 days Defaulter )</option>
+                                                <option value='LTFU'>LTFU ( > 30 days Defaulter )</option>
                                                 <option value='Transferred Out'>Transferred Out</option>
                                                 <option value='Dead'>Dead</option>
                                                 <option value='Stopped Treatment'>Stopped Treatment</option>
@@ -596,6 +596,195 @@ padding: 5px 25px;
                                         
                                        
                                     <!--</section>-->
+<!--_____________________________COVID19_____________________________________________-->    
+ <h3><div class='media1'><div class='bd-wizard-step-icon'>
+<i class='glyphicon glyphicon-scale'></i></div><div class='media-body'>
+    <div class='bd-wizard-step-title'>COVID-19</div>
+    <div class='bd-wizard-step-subtitle'></div>
+        
+</div></div>
+ </h3>
+<section>
+
+     <h3  style='text-align: center;background-color:#ccffcc ;font-weight: bold;padding:3px;'>COVID-19</h3>
+    
+    <div  class='form-group col-md-3  vaccinated'>
+                                            <label><font color='red'>*</font><b>Has the patient been vaccinated for Covid 19?</b></label>
+                                            <select class='form-control' onchange='activate_doses_and_booster();' style='color:green;' name='ever_vaccinated' id='ever_vaccinated' >
+                                          <option value=''>select option</option>
+                                          <option value='no'>no</option>
+                                          <option value='yes'>yes</option>
+</select> 
+    </div>
+    
+<div style='display:none;' class='form-group col-md-3  vaccined level1'>
+                                            <label><font color='red'>*</font><b>Vaccination status</b></label>
+<select class='form-control' onchange='activate_doses();' style='color:green;' name='vaccination_status' id='vaccination_status' >
+<option value=''>select option</option>
+<option value='Partially Vaccinated'>Partially Vaccinated</option>
+<option value='Fully Vaccinated'>Fully Vaccinated</option>
+</select> 
+</div>
+    
+<div style='display:none;' class='form-group col-md-3  dose1 level1'>
+                                            <label><font color='red'>*</font><b>1st Dose Vaccine</b></label>
+                                            <select class='form-control' onchange='' style='color:green;' name='vaccine1' id='vaccine1' >
+                                          <option value=''>select option</option>
+                                          <option value='Astrazeneca'>Astrazeneca</option>
+                                          <option value='Johnson and Johnson'>Johnson and Johnson</option>
+                                          <option value='Moderna'>Moderna</option>
+                                          <option value='Sputnik'>Sputnik</option>
+                                          <option value='Sinopharm'>Sinopharm</option>
+                                          <option value='Pfizer'>Pfizer</option>
+                                            </select> 
+</div>
+<div style='display:none;' class='form-group col-md-3  dose1 level1'>
+                                            <label><font color='red'>*</font><b>1st Dose</b></label>
+                                            <select class='form-control' onchange='' style='color:green;' name='dose1' id='dose1' >
+                                          <option value=''>select option</option>
+                                          <option value='First'>First</option>
+                                            </select> 
+</div>
+<div style='display:none;' class='form-group col-md-3 dose1 level1'>
+<label>
+<font color='red'>*</font><b>1st Dose Estimated/Exact Date</b></label>
+<input readonly='true' onchange="validateTarehe('date1','date2','Date Of First Dose','Date of Second Dose');validateTarehe('date1','date_booster','Date Of First Dose','Date Received Booster Vaccine');"  placeholder='1st Dose Estimated/Exact Date' data-date-end-date='0d'  autocomplete='off'  class='form-control dates' type='text' name='date1' id='date1'  />
+                                        
+</div>
+<div style='display:none;' class='form-group col-md-3  dose1 level1'>
+<label><font color='red'>*</font><b>1st Dose Vaccination Verified?</b></label>
+<select class='form-control' onchange='' style='color:green;' name='verified1' id='verified1' >
+<option value=''>select option</option>
+<option value='yes'>yes</option>
+<option value='no'>no</option>
+</select> 
+</div>
+    
+<div style='display:none;' class='form-group col-md-3  dose2 level1'>
+<label><font color='red'>*</font><b>2nd Vaccine Name</b></label>
+<select class='form-control' onchange='' style='color:green;' name='vaccine2' id='vaccine2' >
+<option value=''>select option</option>
+<option value='Astrazeneca'>Astrazeneca</option>
+<option value='Johnson and Johnson'>Johnson and Johnson</option>
+<option value='Moderna'>Moderna</option>
+<option value='Sputnik'>Sputnik</option>
+<option value='Sinopharm'>Sinopharm</option>
+<option value='Pfizer'>Pfizer</option>
+</select> 
+</div>
+<div style='display:none;' class='form-group col-md-3  dose2 level1'>
+<label><font color='red'>*</font><b>2nd Dose</b></label>
+<select class='form-control' onchange='' style='color:green;' name='dose2' id='dose2' >
+<option value=''>select option</option>
+<option value='Second'>Second</option>
+</select> 
+</div>
+<div style='display:none;' class='form-group col-md-3 dose2 level1'>
+<label>
+<font color='red'>*</font><b>2nd Dose Estimated/Exact Date</b></label>
+<input readonly='true' onchange="validateTarehe('date1','date2','Date Of First Dose','Date of Second Dose');validateTarehe('date2','date_booster','Date Of Second Dose','Date Received Booster Vaccine');"  placeholder='2nd Dose Estimated/Exact Date' data-date-end-date='0d'  autocomplete='off'  class='form-control dates' type='text' name='date2' id='date2'  />
+                                        
+</div>
+<div style='display:none;' class='form-group col-md-3  dose2 level1'>
+<label><font color='red'>*</font><b>2nd Dose Vaccine Verified?</b></label>
+<select class='form-control' onchange='' style='color:green;' name='verified2' id='verified2' >
+    <option value=''>select option</option>
+    <option value='yes'>yes</option>
+    <option value='no'>no</option>
+</select> 
+</div>
+    
+
+<div style='display:none;' class='form-group col-md-3  level1 dose2'>
+                                            <label><font color='red'>*</font><b>Patient received a booster COVID-19 Jab?</b></label>
+<select class='form-control' onchange='activate_booster();' style='color:green;' name='received_booster' id='received_booster' >
+<option value=''>select option</option>
+<option value='yes'>yes</option>
+<option value='no'>no</option>
+</select> 
+</div>
+<div style='display:none;' class='form-group col-md-3  booster level1'>
+                                            <label><font color='red'>*</font><b>Vaccine Booster Name</b></label>
+<select class='form-control' onchange='' style='color:green;' name='vaccine_booster' id='vaccine_booster' >
+<option value=''>select option</option>
+<option value='Astrazeneca'>Astrazeneca</option>
+<option value='Johnson and Johnson'>Johnson and Johnson</option>
+<option value='Moderna'>Moderna</option>
+<option value='Sputnik'>Sputnik</option
+><option value='Sinopharm'>Sinopharm</option>
+><option value='Pfizer'>Pfizer</option>
+</select> 
+</div>
+<div style='display:none;' class='form-group col-md-3 booster level1'>
+<label>
+<font color='red'>*</font><b>Date received Booster vaccine</b></label>
+<input onchange="validateTarehe('date1','date_booster','Date Of First Dose','Date Received Booster Vaccine');validateTarehe('date2','date_booster','Date Of Second Dose','Date Received Booster Vaccine');" readonly='true'  placeholder='Date received Booster vaccine' data-date-end-date='0d'  autocomplete='off'  class='form-control dates' type='text' name='date_booster' id='date_booster'  />
+                                        
+</div>
+<div style='display:none;' class='form-group col-md-3  booster level1'>
+                                            <label><font color='red'>*</font><b>Booster Vaccine verified?</b></label>
+<select class='form-control' onchange='' style='color:green;' name='verified_booster' id='verified_booster' >
+<option value=''>select option</option>
+<option value='yes'>yes</option>
+<option value='no'>no</option>
+</select> 
+</div>
+<div class='form-group col-md-3'>
+                                            <label><font color='red'>*</font><b>Have you ever been tested for COVID -19?</b></label>
+<select class='form-control' onchange='activate_tested();' style='color:green;' name='tested_for_covid19' id='tested_for_covid19' >
+<option value=''>select option</option>
+<option value='yes'>yes</option>
+<option value='no'>no</option>
+</select> 
+</div>
+<div style='display:none;' class='form-group col-md-3 tested'>
+<label>
+<font color='red'>*</font><b>Date tested for COVID -19</b></label>
+<input readonly='true'  placeholder='Date tested for COVID -19' data-date-end-date='0d'  autocomplete='off'  class='form-control dates' type='text' name='date_tested_covid19' id='date_tested_covid19'  />
+                                        
+</div>
+<div style='display:none;' class='form-group col-md-3  tested'>
+                                            <label><font color='red'>*</font><b>What were the test results for COVID -19</b></label>
+<select class='form-control' onchange='activate_presentation();' style='color:green;' name='covid_test_result' id='covid_test_result' >
+    <option value=''>select option</option>                                      
+    <option value='Positive'>Positive</option>
+    <option value='Negative'>Negative</option>
+                                            </select> </div>
+<div style='display:none;' class='form-group col-md-3  presentation'>
+                                            <label><font color='red'>*</font><b>Presentation of Covid-19</b></label>
+<select class='form-control' onchange='activate_hospitalized();' style='color:green;' name='covid_presentation' id='covid_presentation' >
+<option value=''>select option</option>
+<option value='Symptomatic'>Symptomatic</option>
+<option value='Asymptomatic'>Asymptomatic</option>
+</select> 
+</div>
+<div style='display:none;' class='form-group col-md-3  hospitalized'>
+                                            <label><font color='red'>*</font><b>Was the patient hospitalized?</b></label>
+<select class='form-control' onchange='activate_admission();' style='color:green;' name='hospitalized' id='hospitalized' >
+<option value=''>select option</option>
+<option value='yes'>yes</option>
+<option value='no'>no</option>
+</select> 
+</div>
+<div style='display:none;' class='form-group col-md-3  admission'>
+                                            <label><font color='red'>*</font><b>Admission unit</b></label>
+<select class='form-control' onchange='' style='color:green;' name='admission_unit' id='admission_unit' >
+<option value=''>select option</option>
+<option value='Isolation'>Isolation</option>
+<option value='HDU'>HDU</option>
+<option value='ICU'>ICU</option>
+</select> 
+</div>
+<div style='display:none;' class='form-group col-md-3  admission'>
+                                            <label><font color='red'>*</font><b>Did the patient receive supplemental oxygen?</b></label>
+<select class='form-control' onchange='' style='color:green;' name='supplimental_oxygen' id='supplimental_oxygen' >
+<option value=''>select option</option>
+<option value='yes'>yes</option>
+<option value='no'>no</option>
+</select> </div>
+
+    
+</section>
                                    
 
 
@@ -1466,7 +1655,7 @@ function getdrugs(){
              var line1="<option value=''>Select regimen</option>";
              var line2="<option value=''>Select regimen</option>";
              var line3="<option value=''>Select regimen</option>";
-             var alllines="<option value=''>Select regimen</option>";
+             var alllines="<option data-regimenline='' value=''>Select regimen</option>";
              if(1===1){
              for(a=0;a<result.length;a++){
                  
@@ -1474,23 +1663,23 @@ function getdrugs(){
                  
                   if(result[a].line==='1st line'){
                  
-            line1+="<option value='"+result[a].code+"'>"+result[a].id+" ["+result[a].code+"]"+"</option>";
+            line1+="<option data-regimenline='"+result[a].line+"' value='"+result[a].code+"'>"+result[a].id+" ["+result[a].code+"]"+"</option>";
                                                 
                                                  }
                  
                  if(result[a].line==='2nd line'){
                  
-            line2+="<option value='"+result[a].code+"'>"+result[a].id+" ["+result[a].code+"]"+"</option>";
+            line2+="<option data-regimenline='"+result[a].line+"' value='"+result[a].code+"'>"+result[a].id+" ["+result[a].code+"]"+"</option>";
                                                 
                                                  }
                 
                  if(result[a].line==='3rd line'){
                  
-            line3+="<option value='"+result[a].code+"'>"+result[a].id+" ["+result[a].code+"]"+"</option>";
+            line3+="<option data-regimenline='"+result[a].line+"' value='"+result[a].code+"'>"+result[a].id+" ["+result[a].code+"]"+"</option>";
                                                 
                                                  }
              
-                  alllines+="<option value='"+result[a].code+"'>("+result[a].line.replace(' line','')+") "+result[a].id+" ["+result[a].code+"]</option>";
+                  alllines+="<option data-regimenline='"+result[a].line+"' value='"+result[a].code+"'>("+result[a].line.replace(' line','')+") "+result[a].id+" ["+result[a].code+"]</option>";
                  
                 }                            
                 }
@@ -1519,6 +1708,7 @@ function getdrugs(){
       var nonemr_vl='nonemr_vl';
       var nonemr_diffcare='nonemr_diffcare';
       var nonemr_txml_ltfu='nonemr_txml_ltfu';
+      var nonemr_covid='nonemr_covid';
       
       
       
@@ -1624,7 +1814,7 @@ completed: false
       
    
 //_________________________________________________Code For Updating____________________________________   
-   function update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,uzito,  timestamp,user_id,syncstatus)
+   function update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline,  timestamp,user_id,syncstatus)
    {
    
 
@@ -1681,6 +1871,30 @@ doc.DC_Model=DC_Model;
 doc.well_unwell=well_unwell;
 
 doc.uzito=uzito;
+
+//Covid
+doc.ever_vaccinated=ever_vaccinated;
+doc.vaccination_status=vaccination_status;
+doc.vaccine1=vaccine1;
+doc.dose1=dose1;
+doc.date1=date1;
+doc.verified1=verified1;
+doc.vaccine2=vaccine2;
+doc.dose2=dose2;
+doc.date2=date2;
+doc.verified2=verified2;
+doc.received_booster=received_booster;
+doc.vaccine_booster=vaccine_booster;
+doc.date_booster=date_booster;
+doc.verified_booster=verified_booster;
+doc.tested_for_covid19=tested_for_covid19;
+doc.date_tested_covid19=date_tested_covid19;
+doc.covid_test_result=covid_test_result;
+doc.covid_presentation=covid_presentation;
+doc.hospitalized=hospitalized;
+doc.admission_unit=admission_unit;
+doc.supplimental_oxygen=supplimental_oxygen;
+doc.regimenline=regimenline;
 
 doc.timestamp=timestamp;
 doc.user_id=user_id;
@@ -1896,7 +2110,7 @@ doc.syncstatus=syncstatus;
 
 //________________________________________________VL____________________________________________
 
- var nonemr_vl_db = new PouchDB(nonemr_vl);
+var nonemr_vl_db = new PouchDB(nonemr_vl);
  
 var remoteCouch = false;
 var nonemr_vl_details;
@@ -2132,6 +2346,55 @@ doc.syncstatus=syncstatus;
  
 }
 
+
+var nonemr_covid_db = new PouchDB(nonemr_covid); 
+
+var nonemr_covid_details;
+
+function update_nonemr_covid(id,ccc_number,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,timestamp,user_id,syncstatus) 
+{ 
+ $("#synclog").html("saving covid data record for "+ccc_number);
+nonemr_covid_db.upsert(id, function (doc) 
+{
+doc.ccc_number=ccc_number;
+doc.ever_vaccinated=ever_vaccinated;
+doc.vaccination_status=vaccination_status;
+doc.vaccine1=vaccine1;
+doc.dose1=dose1;
+doc.date1=date1;
+doc.verified1=verified1;
+doc.vaccine2=vaccine2;
+doc.dose2=dose2;
+doc.date2=date2;
+doc.verified2=verified2;
+doc.received_booster=received_booster;
+doc.vaccine_booster=vaccine_booster;
+doc.date_booster=date_booster;
+doc.verified_booster=verified_booster;
+doc.tested_for_covid19=tested_for_covid19;
+doc.date_tested_covid19=date_tested_covid19;
+doc.covid_test_result=covid_test_result;
+doc.covid_presentation=covid_presentation;
+doc.hospitalized=hospitalized;
+doc.admission_unit=admission_unit;
+doc.supplimental_oxygen=supplimental_oxygen;
+doc.timestamp=timestamp;
+doc.user_id=user_id;
+doc.syncstatus=syncstatus; 
+   return doc;
+}).then(function (res) 
+{
+  // success, res is {rev= '1-xxx', updated= true, id= 'myDocId'}
+   console.log('nonemr_covid data updated succesfully'+res);
+}).catch(function (err) 
+{
+  // error
+  console.log(err);  
+  alert(''+err);
+}); 
+  
+ 
+}
 
 
 //______________________________________Username_____________________________
@@ -2517,9 +2780,36 @@ var Stability=null;
 var DC_Model=null;
 
 var uzito=null;
-   //added 201605 
+   
+   
+//covid   
+var ever_vaccinated=null;
+var vaccination_status=null;
+var vaccine1=null;
+var dose1=null;
+var date1=null;
+var verified1=null;
+var vaccine2=null;
+var dose2=null;
+var date2=null;
+var verified2=null;
+var received_booster=null;
+var vaccine_booster=null;
+var date_booster=null;
+var verified_booster=null;
+var tested_for_covid19=null;
+var date_tested_covid19=null;
+var covid_test_result=null;
+var covid_presentation=null;
+var hospitalized=null;
+var admission_unit=null;
+var supplimental_oxygen=null;
+var regimenline=null;
+
+   
+   
     var progressbarstoskip=[];
-     var allindicatorsarray=["rowid","facilityname","counsellor","ccc_number","Date_of_Birth","Sex","Population_Type","Date_Initiated_On_ART","Current_Regimen","Last_Clinical_Visit_Date","Screened_For_TB","Days_of_Dispense","Months_of_Dispense","Next_appointment_Date","Monthly_Patient_Status","Started_on_IPT","Date_Started_on_IPT","IPT_Outcome","Date_of _IPT_Outcome","Reason_Not_Completed","First_Viral_Load_Date","Date_Last_VL_Conducted","Justification","VL_Results","PMTCT_Status","Date_Restarted_on_ART","Date_LTFU","Reason_For_LTFU","care_ending_reason","Cause_of_Death","Stability","DC_Model"];
+     var allindicatorsarray=["rowid","facilityname","counsellor","ccc_number","Date_of_Birth","Sex","Population_Type","Date_Initiated_On_ART","Current_Regimen","Last_Clinical_Visit_Date","Screened_For_TB","Days_of_Dispense","Months_of_Dispense","Next_appointment_Date","Monthly_Patient_Status","Started_on_IPT","Date_Started_on_IPT","IPT_Outcome","Date_of _IPT_Outcome","Reason_Not_Completed","First_Viral_Load_Date","Date_Last_VL_Conducted","Justification","VL_Results","PMTCT_Status","Date_Restarted_on_ART","Date_LTFU","Reason_For_LTFU","care_ending_reason","Cause_of_Death","Stability","DC_Model","ever_vaccinated","vaccination_status","vaccine1","dose1","date1","verified1","vaccine2","dose2","date2","verified2","received_booster","vaccine_booster","date_booster","verified_booster","tested_for_covid19","date_tested_covid19","covid_test_result","covid_presentation","hospitalized","admission_unit","supplimental_oxygen"];
      var allnontargetindicatorsarray=[];
      var allcommentsarray=[];
      var allprogressbar_hiddentext_array=[];
@@ -2690,6 +2980,29 @@ Cause_of_Death=$('#Cause_of_Death').val();
 Stability=$('#Stability').val();
 uzito=$('#weight').val();
 
+ever_vaccinated=$('#ever_vaccinated').val();
+vaccination_status=$('#vaccination_status').val();
+vaccine1=$('#vaccine1').val();
+dose1=$('#dose1').val();
+date1=$('#date1').val();
+verified1=$('#verified1').val();
+vaccine2=$('#vaccine2').val();
+dose2=$('#dose2').val();
+date2=$('#date2').val();
+verified2=$('#verified2').val();
+received_booster=$('#received_booster').val();
+vaccine_booster=$('#vaccine_booster').val();
+date_booster=$('#date_booster').val();
+verified_booster=$('#verified_booster').val();
+tested_for_covid19=$('#tested_for_covid19').val();
+date_tested_covid19=$('#date_tested_covid19').val();
+covid_test_result=$('#covid_test_result').val();
+covid_presentation=$('#covid_presentation').val();
+hospitalized=$('#hospitalized').val();
+admission_unit=$('#admission_unit').val();
+supplimental_oxygen=$('#supplimental_oxygen').val();
+regimenline=$("#Current_Regimen").find(':selected').data("regimenline");
+
 var well_unwell="";
 
 DC_Model=$('#DC_Model').val();
@@ -2754,12 +3067,13 @@ var dt=""+currentdate.getDate();
             var VL_Visit_id=""+id+"_"+Date_Last_VL_Conducted;
             
             
- update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results, Stability,DC_Model,/**well_unwell*/Stability,uzito,  timestamp,user_id,syncstatus);
+ update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results, Stability,DC_Model,Stability,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline,timestamp,user_id,syncstatus);
  //ccc_number_
  update_nonemr_curr(Visit_id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,uzito,timestamp,user_id,syncstatus);           
  update_nonemr_ipt(IPT_Visit_id,ccc_number,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,timestamp,user_id,syncstatus);
  update_nonemr_vl(VL_Visit_id,ccc_number,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,timestamp,user_id,syncstatus);          
  update_nonemr_diffcare(id,ccc_number,Last_Clinical_Visit_Date,Stability,DC_Model,Stability,timestamp,user_id,syncstatus);
+ update_nonemr_covid(id,ccc_number,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,timestamp,user_id,syncstatus);
  
             console.log(Visit_id,ccc_number,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,timestamp,user_id,syncstatus);           
            
@@ -2900,7 +3214,7 @@ function selectsearchdata()
              
              if ( hasresult===''){hasresult="no result";}
 		 //dbdata+="<tr><td> "+dat.doc.startdate+" </td><td>"+dat.doc.syncstatus+"</td><td>"+dat.doc.facility+"</td><td><button class='btn-info' onclick='loadsaveddailydata(\""+dat.doc._id+"\",\""+dat.doc.facility+"\")'>Edit</button></td></tr>";
-		 dbdata+="<tr id=\""+dat.doc._id+"\"><td> "+dat.doc.ccc_number+" </td><td>Last ARV Date: <b>"+dat.doc.Last_Clinical_Visit_Date+"</b> <br/>Last VL: <b> "+dat.doc.Date_Last_VL_Conducted+"  [ "+hasresult+" ] </b> <br/> Next TCA: <b>"+dat.doc.Next_appointment_Date+" </td> <td><button class='btn-info' onclick='loadsaveddata(\""+dat.doc._id+"\",\""+dat.doc.Facility+"\",\"no\")'>Edit "+statusicon+"</button></td></tr>";
+		 dbdata+="<tr id=\""+dat.doc._id+"\"><td> "+dat.doc.ccc_number+" </td><td>Age: <b>"+ShowAge(dat.doc.Date_of_Birth)+" Yrs</b><br/>Art Start Date: <b>"+dat.doc.Date_Initiated_On_ART+"</b><br/>Last ARV Date: <b>"+dat.doc.Last_Clinical_Visit_Date+"</b> <br/>Last VL: <b> "+dat.doc.Date_Last_VL_Conducted+"  [ "+hasresult+" ] </b> <br/> Next TCA: <b>"+dat.doc.Next_appointment_Date+"</b> <br/> Current Regimen: <b>"+dat.doc.Current_Regimen+"</b> <br/> Regimen Line: <b>"+dat.doc.regimenline+"</b><br/> IPT Status: <b>"+dat.doc.IPT_Outcome+"</b> <br/> Last Visit Weight: <b>"+dat.doc.uzito+"</b><br/> Ever Vaccinated For Covid: <b>"+dat.doc.ever_vaccinated+" ["+dat.doc.vaccination_status+"] </b> </td> <td><button class='btn-info' onclick='loadsaveddata(\""+dat.doc._id+"\",\""+dat.doc.Facility+"\",\"no\")'>Edit "+statusicon+"</button></td></tr>";
           	    
                   }
             } //end of for loop
@@ -3175,6 +3489,30 @@ $('#Cause_of_Death').val(doc.Cause_of_Death);
 $('#Stability').val(doc.Stability);
 $('#DC_Model').val(doc.DC_Model);
 $('#weight').val(doc.uzito);
+console.log("troubleshooting:"+doc.ever_vaccinated+"_");
+console.log("troubleshooting:"+doc.Current_Regimen+"_");
+$('#ever_vaccinated').val(doc.ever_vaccinated);
+$('#vaccination_status').val(doc.vaccination_status);
+$('#vaccine1').val(doc.vaccine1);
+$('#dose1').val(doc.dose1);
+$('#date1').val(doc.date1);
+$('#verified1').val(doc.verified1);
+$('#vaccine2').val(doc.vaccine2);
+$('#dose2').val(doc.dose2);
+$('#date2').val(doc.date2);
+$('#verified2').val(doc.verified2);
+$('#received_booster').val(doc.received_booster);
+$('#vaccine_booster').val(doc.vaccine_booster);
+$('#date_booster').val(doc.date_booster);
+$('#verified_booster').val(doc.verified_booster);
+$('#tested_for_covid19').val(doc.tested_for_covid19);
+$('#date_tested_covid19').val(doc.date_tested_covid19);
+$('#covid_test_result').val(doc.covid_test_result);
+$('#covid_presentation').val(doc.covid_presentation);
+$('#hospitalized').val(doc.hospitalized);
+$('#admission_unit').val(doc.admission_unit);
+$('#supplimental_oxygen').val(doc.supplimental_oxygen);
+
 
 
  getAge();
@@ -3194,6 +3532,15 @@ $('#weight').val(doc.uzito);
  isLTFU();
 isLDLChecked();
 isShowWeight();
+
+
+activate_doses_and_booster();
+activate_doses();
+activate_booster();
+activate_tested();
+activate_presentation();
+activate_hospitalized();
+activate_admission();
    
      //$('#facilityname').select2(); 
  $('#facilityname').select2();
@@ -3509,6 +3856,7 @@ function importdata(){
     importIPTData();
     importVLData();
     importDSDData();
+    importCovidData();
     
     var returnedresponses=0;
    // $('#exportbutton').on('click',function() {
@@ -3597,6 +3945,29 @@ DC_Model:dat.doc.DC_Model,
 well_unwell:dat.doc.well_unwell,
 uzito:dat.doc.uzito,
 
+
+ever_vaccinated:dat.doc.ever_vaccinated,
+vaccination_status:dat.doc.vaccination_status,
+vaccine1:dat.doc.vaccine1,
+dose1:dat.doc.dose1,
+date1:dat.doc.date1,
+verified1:dat.doc.verified1,
+vaccine2:dat.doc.vaccine2,
+dose2:dat.doc.dose2,
+date2:dat.doc.date2,
+verified2:dat.doc.verified2,
+received_booster:dat.doc.received_booster,
+vaccine_booster:dat.doc.vaccine_booster,
+date_booster:dat.doc.date_booster,
+verified_booster:dat.doc.verified_booster,
+tested_for_covid19:dat.doc.tested_for_covid19,
+date_tested_covid19:dat.doc.date_tested_covid19,
+covid_test_result:dat.doc.covid_test_result,
+covid_presentation:dat.doc.covid_presentation,
+hospitalized:dat.doc.hospitalized,
+admission_unit:dat.doc.admission_unit,
+supplimental_oxygen:dat.doc.supplimental_oxygen,
+regimenline:dat.doc.regimenline,
 
 user_id:dat.doc.user_id,
 timestamp:dat.doc.timestamp
@@ -3748,6 +4119,30 @@ care_ending_reason:dat.doc.care_ending_reason,
 Cause_of_Death:dat.doc.Cause_of_Death,
 Date_Restarted_on_ART:dat.doc.Date_Restarted_on_ART,
 uzito:dat.doc.uzito,
+
+ever_vaccinated:dat.doc.ever_vaccinated,
+vaccination_status:dat.doc.vaccination_status,
+vaccine1:dat.doc.vaccine1,
+dose1:dat.doc.dose1,
+date1:dat.doc.date1,
+verified1:dat.doc.verified1,
+vaccine2:dat.doc.vaccine2,
+dose2:dat.doc.dose2,
+date2:dat.doc.date2,
+verified2:dat.doc.verified2,
+received_booster:dat.doc.received_booster,
+vaccine_booster:dat.doc.vaccine_booster,
+date_booster:dat.doc.date_booster,
+verified_booster:dat.doc.verified_booster,
+tested_for_covid19:dat.doc.tested_for_covid19,
+date_tested_covid19:dat.doc.date_tested_covid19,
+covid_test_result:dat.doc.covid_test_result,
+covid_presentation:dat.doc.covid_presentation,
+hospitalized:dat.doc.hospitalized,
+admission_unit:dat.doc.admission_unit,
+supplimental_oxygen:dat.doc.supplimental_oxygen,
+regimenline:dat.doc.regimenline,
+
 user_id:dat.doc.user_id,
 timestamp:dat.doc.timestamp
 },
@@ -4021,6 +4416,95 @@ success: function(data)
         
 }
 
+function importCovidData(){
+ 
+ console.log("covid data export called");
+  nonemr_covid_db.allDocs({include_docs: true, descending: true}).then( function(doc) {
+      var c=0;
+   
+	   for(c=0;c<doc.total_rows;c++)
+        {
+    
+	var dat={};
+	dat=doc.rows[c];
+             
+        var idyangu=dat.doc._id;
+	var num=parseInt(c)-1;
+	
+        if( dat.doc.syncstatus==="Yes" || dat.doc.syncstatus==="No" || dat.doc.syncstatus==="0" || dat.doc.syncstatus==="no")
+        {
+      
+  update_covid_syncstatus(dat.doc._id,'Yes');
+
+                
+    $.ajax({
+                        url:'importCovid',                            
+                        type:'get', 
+data:{
+id:dat.doc._id,
+ccc_number:dat.doc.ccc_number,
+ever_vaccinated:dat.doc.ever_vaccinated,
+vaccination_status:dat.doc.vaccination_status,
+vaccine1:dat.doc.vaccine1,
+dose1:dat.doc.dose1,
+date1:dat.doc.date1,
+verified1:dat.doc.verified1,
+vaccine2:dat.doc.vaccine2,
+dose2:dat.doc.dose2,
+date2:dat.doc.date2,
+verified2:dat.doc.verified2,
+received_booster:dat.doc.received_booster,
+vaccine_booster:dat.doc.vaccine_booster,
+date_booster:dat.doc.date_booster,
+verified_booster:dat.doc.verified_booster,
+tested_for_covid19:dat.doc.tested_for_covid19,
+date_tested_covid19:dat.doc.date_tested_covid19,
+covid_test_result:dat.doc.covid_test_result,
+covid_presentation:dat.doc.covid_presentation,
+hospitalized:dat.doc.hospitalized,
+admission_unit:dat.doc.admission_unit,
+supplimental_oxygen:dat.doc.supplimental_oxygen,
+user_id:dat.doc.user_id,
+timestamp:dat.doc.timestamp
+    },
+dataType:'html',  
+success: function(data) 
+{
+   
+ console.log("Covid Data for "+dat.doc._id+"   "+data);      
+        
+},
+       error:function(xhr, s, e){    
+   console.log("Could not export covid data" +e);
+                                
+                                }       
+                        
+        });
+            
+                      
+      
+       
+        }
+        
+         
+            if(c===(doc.total_rows-1))
+            {
+
+            }
+        } //end of for loop
+	 
+	
+		
+  }).then(function (){
+   
+     
+  }).catch(function (err){ console.log(err); });
+          
+
+        
+        
+}
+
 
 function exportalldata()
 {
@@ -4030,6 +4514,7 @@ function exportalldata()
     importIPTData();
     importVLData();
     importDSDData();
+    importCovidData();
     
     var returnedresponses=0;
    // $('#exportbutton').on('click',function() {
@@ -4130,6 +4615,30 @@ Stability:dat.doc.Stability,
 DC_Model:dat.doc.DC_Model,
 well_unwell:dat.doc.well_unwell,
 uzito:dat.doc.uzito,
+
+ever_vaccinated:dat.doc.ever_vaccinated,
+vaccination_status:dat.doc.vaccination_status,
+vaccine1:dat.doc.vaccine1,
+dose1:dat.doc.dose1,
+date1:dat.doc.date1,
+verified1:dat.doc.verified1,
+vaccine2:dat.doc.vaccine2,
+dose2:dat.doc.dose2,
+date2:dat.doc.date2,
+verified2:dat.doc.verified2,
+received_booster:dat.doc.received_booster,
+vaccine_booster:dat.doc.vaccine_booster,
+date_booster:dat.doc.date_booster,
+verified_booster:dat.doc.verified_booster,
+tested_for_covid19:dat.doc.tested_for_covid19,
+date_tested_covid19:dat.doc.date_tested_covid19,
+covid_test_result:dat.doc.covid_test_result,
+covid_presentation:dat.doc.covid_presentation,
+hospitalized:dat.doc.hospitalized,
+admission_unit:dat.doc.admission_unit,
+supplimental_oxygen:dat.doc.supplimental_oxygen,
+regimenline:dat.doc.regimenline,
+
 
 user_id:dat.doc.user_id,
 timestamp:dat.doc.timestamp
@@ -4299,6 +4808,20 @@ nonemr_diffcare_db.get(id).then(function (doc1)
       console.log(id+" dsd sync status updated");
  doc1.syncstatus=st;
  return nonemr_diffcare_db.put(doc1);
+ 
+});
+
+    
+}
+
+function update_covid_syncstatus(id,st)
+{
+  
+nonemr_covid_db.get(id).then(function (doc1) 
+{
+      console.log(id+" dsd sync status updated");
+ doc1.syncstatus=st;
+ return nonemr_covid_db.put(doc1);
  
 });
 
@@ -5320,7 +5843,17 @@ function cleardata()
          
                                         });
                                         
-                                        
+     nonemr_covid_db.destroy(function (err, response) {
+   if (err) {
+      return console.log(err);
+   } else {
+      console.log ("Data Database Deleted");
+     // $("#resetdbbtn").hide();
+      $("#cleardatabtn").html("Data deleted successful!");
+      
+      
+   }
+                                        });                                
     
         }
 }
@@ -5435,7 +5968,7 @@ function savezeroreport()
 }
 
 
- /****/
+
 
 if($("#toolid").is(":visible")){
                     $("#refreshpage").hide();
@@ -5829,13 +6362,37 @@ if(artcount===0){
          var facility=dt.facility;
          var VL_Results=dt.VL_Results;
          var ccc_number=dt.ccc_number;
+         
+         var ever_vaccinated=dt.ever_vaccinated;
+var vaccination_status=dt.vaccination_status;
+var vaccine1=dt.vaccine1;
+var dose1=dt.dose1;
+var date1=dt.date1;
+var verified1=dt.verified1;
+var vaccine2=dt.vaccine2;
+var dose2=dt.dose2;
+var date2=dt.date2;
+var verified2=dt.verified2;
+var received_booster=dt.received_booster;
+var vaccine_booster=dt.vaccine_booster;
+var date_booster=dt.date_booster;
+var verified_booster=dt.verified_booster;
+var tested_for_covid19=dt.tested_for_covid19;
+var date_tested_covid19=dt.date_tested_covid19;
+var covid_test_result=dt.covid_test_result;
+var covid_presentation=dt.covid_presentation;
+var hospitalized=dt.hospitalized;
+var admission_unit=dt.admission_unit;
+var supplimental_oxygen=dt.supplimental_oxygen;
+var uzito=dt.uzito;
+
         
        console.log("syncing record number "+(b+1)+" facility "+facility); 
        
       $("#synclog").html("syncing overall data record number "+(c+1));
        
         
-  update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,uzito,timestamp,user_id,'Yes');
+  update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline,timestamp,user_id,'Yes');
   
            
             
@@ -5989,8 +6546,6 @@ if(artcount===0){
               
           for(var c=0;c<maindt.nonemr_curr.length;c++)
           {          
-                    
-          
             
         var dt=maindt.nonemr_curr[c];
        // console.log("Sex "+Sex);       
@@ -6088,6 +6643,75 @@ if(artcount===0){
 update_nonemr_diffcare(id,ccc_number,'',Stability,DC_Model,well_unwell,timestamp,user_id,'yes');
                 
       
+                
+                
+                }
+             
+        
+       
+            /**
+         * 
+//update_nonemr_ipt(Visit_Id,ccc_number,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,timestamp,user_id,syncstatus)
+
+//update_nonemr_vl(Visit_Id,ccc_number,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,timestamp,user_id,syncstatus)
+
+
+//update_nonemr_diffcare(id,ccc_number,visitdate,Stability,DC_Model,well_unwell,timestamp,user_id,syncstatus)
+**/
+
+
+
+      
+        }
+        
+          if(b===5){
+             
+             
+              
+          for(var c=0;c<maindt.nonemr_covid.length;c++)
+          {          
+                    
+          
+            
+        var dt=maindt.nonemr_covid[c];
+            
+         var mflcode=dt.mflcode1;
+
+         var id=dt.id;
+
+var ever_vaccinated=dt.ever_vaccinated;
+var vaccination_status=dt.vaccination_status;
+var vaccine1=dt.vaccine1;
+var dose1=dt.dose1;
+var date1=dt.date1;
+var verified1=dt.verified1;
+var vaccine2=dt.vaccine2;
+var dose2=dt.dose2;
+var date2=dt.date2;
+var verified2=dt.verified2;
+var received_booster=dt.received_booster;
+var vaccine_booster=dt.vaccine_booster;
+var date_booster=dt.date_booster;
+var verified_booster=dt.verified_booster;
+var tested_for_covid19=dt.tested_for_covid19;
+var date_tested_covid19=dt.date_tested_covid19;
+var covid_test_result=dt.covid_test_result;
+var covid_presentation=dt.covid_presentation;
+var hospitalized=dt.hospitalized;
+var admission_unit=dt.admission_unit;
+var supplimental_oxygen=dt.supplimental_oxygen;
+
+         var timestamp=dt.timestamp;
+         var user_id=dt.user_id;  
+
+         var ccc_number=dt.ccc_number;
+        
+        console.log("syncing covid data record number "+(c+1)+" facility "+facility); 
+        
+       $("#synclog").html("Syncing covid data record number "+(c+1));
+     
+      update_nonemr_covid(id,ccc_number,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,timestamp,user_id,'yes');
+  
                 
                 
                 }

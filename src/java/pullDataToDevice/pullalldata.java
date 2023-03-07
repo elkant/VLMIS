@@ -11,15 +11,12 @@ import java.io.PrintWriter;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -41,12 +38,10 @@ public class pullalldata extends HttpServlet {
          
          
          
-             String sps[]={"sp_get_nonemr_all","sp_get_nonemr_vl","sp_get_nonemr_ipt","sp_get_nonemr_curr","sp_get_nonemr_diffcare"};
+             String sps[]={"sp_get_nonemr_all","sp_get_nonemr_vl","sp_get_nonemr_ipt","sp_get_nonemr_curr","sp_get_nonemr_diffcare","sp_get_nonemr_covid"};
              
-         String dbnames[]={"nonemr_all","nonemr_vl","nonemr_ipt","nonemr_curr","nonemr_diffcare"};
+         String dbnames[]={"nonemr_all","nonemr_vl","nonemr_ipt","nonemr_curr","nonemr_diffcare","nonemr_covid"};
          
-            
-        
          
          
          String mflcode="20137";

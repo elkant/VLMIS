@@ -638,14 +638,42 @@ updatemaujumbe('default','');
  return retvl;
         }
       
+        else if (newIndex===6){
+            
+            var retvl=true; 
+ if(validateTarehe('date1','date2','Date Of First Dose','Date of Second Dose')==='invalid')
+            {
+                           
+            retvl=false;                 
+                
+            }  
+            else if(validateTarehe('date1','date_booster','Date Of First Dose','Date Received Booster Vaccine')==='invalid')
+            {
+                           
+            retvl=false;                 
+                
+            } 
+            else if(validateTarehe('date2','date_booster','Date Of Second Dose','Date Received Booster Vaccine')==='invalid')
+            {
+                           
+            retvl=false;                 
+                
+            } 
+            
+            else {
+             
+                
+         retvl=true; 
+                //
+         $("#date1").css('border-color','#33b775');
+         $("#date2").css('border-color','#33b775');
+         $("#date_booster").css('border-color','#33b775');
+         updatemaujumbe('default','');       
+            }
+            
+ return retvl;
         
-        
-        
-        
-   
-        
-        
-        
+        }
         
         
    else {
@@ -764,8 +792,48 @@ function getAge()
 }
 }
 
-function validatePopulationType(){
+
+function ShowAge(dob) 
+{
     
+    var sikuyakuzaliwa=dob; 
+    
+    //console.log("called get Age"+ sikuyakuzaliwa);
+    if(sikuyakuzaliwa!=='')
+    {
+    var today = new Date();
+    var birthDate = new Date(sikuyakuzaliwa);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    
+    $("#age").val(age);
+    
+        validatePopulationType();
+    
+    return age;
+}
+}
+
+function isShowVaccination(){
+    
+   // $("#modality option[value='anc1']").attr("disabled",true); 
+   var miaka=$("#age").val();
+    if(miaka<=15){
+        
+           $(".vaccinated").hide();
+    }
+    else {
+           $(".vaccinated").show();
+        
+    }
+}
+
+function validatePopulationType(){
+    isShowVaccination();
    // $("#modality option[value='anc1']").attr("disabled",true); 
    var miaka=$("#age").val();
    var sex=$("#Sex").val();
@@ -775,7 +843,8 @@ function validatePopulationType(){
    
    if(miaka<=15){
     $("#Population_Type option[value='MSM']").attr("disabled",true);    
-    $("#Population_Type option[value='FSW']").attr("disabled",true);    
+    $("#Population_Type option[value='FSW']").attr("disabled",true);  
+ 
                 }
    else if(miaka>=10){
        if(sex==='Female'){
@@ -790,6 +859,7 @@ function validatePopulationType(){
          {
     $("#Population_Type option[value='MSM']").attr("disabled",false);    
     $("#Population_Type option[value='FSW']").attr("disabled",false); 
+    
          }
          else {
              
@@ -819,6 +889,7 @@ function validatePopulationType(){
     
     $("#PMTCT_Status option[value='Pregnant']").attr("disabled",true); 
     $("#PMTCT_Status option[value='Breastfeeding']").attr("disabled",true);
+    $("#PMTCT_Status option[value='Any Other PMTCT']").attr("disabled",true);
     
     
     $("#PMTCT_Status").val("Not Applicable");
@@ -836,6 +907,7 @@ function validatePopulationType(){
                  
     $("#PMTCT_Status option[value='Pregnant']").attr("disabled",false); 
     $("#PMTCT_Status option[value='Breastfeeding']").attr("disabled",false);
+    $("#PMTCT_Status option[value='Any Other PMTCT']").attr("disabled",false);
                  }
                  else {
                      
@@ -843,6 +915,7 @@ function validatePopulationType(){
                  
     $("#PMTCT_Status option[value='Pregnant']").attr("disabled",true); 
     $("#PMTCT_Status option[value='Breastfeeding']").attr("disabled",true);        
+    $("#PMTCT_Status option[value='Any Other PMTCT']").attr("disabled",true);        
                      
                  }
     $(".ispmtct").show();
@@ -854,6 +927,7 @@ function validatePopulationType(){
       $("#Population_Type option[value='FSW']").attr("disabled",false);
       $("#PMTCT_Status option[value='Pregnant']").attr("disabled",false); 
       $("#PMTCT_Status option[value='Breastfeeding']").attr("disabled",false);
+      $("#PMTCT_Status option[value='Any Other PMTCT']").attr("disabled",false);
         
     }
                         
@@ -1461,7 +1535,138 @@ function  IsStable(){
                      
                  }
                  
+function activate_doses_and_booster(){
+    
+    var ever_vaccinated=$("#ever_vaccinated").val();
+    if (ever_vaccinated==='yes')
+    {
+        
+      $(".vaccined").show();  
+      
+    }
+    else {
+       $(".vaccined").hide();  
+         }
+    
+}
+                 
+function activate_doses(){
+    
+    var vaccination_status=$("#vaccination_status").val();
+    if (vaccination_status==='Partially Vaccinated')
+    {
+        
+      $(".dose1").show();  
+      $(".dose2").hide();  
+      activate_booster();
+    }
+    else if (vaccination_status==='Fully Vaccinated')
+    {
+        
+      $(".dose1").show();  
+      $(".dose2").show();  
+     activate_booster();   
+      
+    }
+    else {
+      $(".dose1").hide();  
+      $(".dose2").hide();  
+      activate_booster();
+         }
+    
+}
+function activate_booster(){
+    
+    
+    var received_booster=$("#received_booster").val();
+    if (received_booster==='yes')
+    {
+        
+      $(".booster").show();  
+      
+    }
+    else {
+       $(".booster").hide();  
+         }
+    
+}
+function activate_tested()
+{
+    
+     var tested_for_covid19=$("#tested_for_covid19").val();
+    if (tested_for_covid19==='yes')
+    {
+        
+      $(".tested").show();  
+      
+    }
+    else {
+       $(".tested").hide();  
+         }
+    
+}
+function activate_presentation(){
+    
+    
+    
+     var covid_test_result=$("#covid_test_result").val();
+    
+    if (covid_test_result==='Positive')
+    {
+        
+      $(".presentation").show();  
+      
+    }
+    else {
+       $(".presentation").hide();  
+         }
+    
+}
+function activate_hospitalized(){    
+     
+     var covid_presentation=$("#covid_presentation").val();
+    //covid_presentation=Symptomatic
+    if (covid_presentation==='Symptomatic')
+    {
+        
+      $(".hospitalized").show();  
+      
+    }
+    else {
+       $(".hospitalized").hide();  
+         }
+    
+}
+function activate_admission(){
+    //hospitalized=yes
 
+     var hospitalized=$("#hospitalized").val();
+    //covid_presentation=Symptomatic
+    if (hospitalized==='yes')
+    {
+        
+      $(".admission").show();  
+      
+    }
+    else {
+       $(".admission").hide();  
+         }
+    
+    
+}
+
+
+/**
+ * 
+ * 
+ever_vaccinated=yes
+received_booster=yes
+tested_for_covid19=yes;
+tested=Positive
+covid_presentation=Symptomatic
+hospitalized=yes
+ * 
+ * **/
 
 //if_started_ipt       Started_on_IPT=Yes
 //if_completed_ipt     IPT_Outcome=Completed
@@ -1469,8 +1674,6 @@ function  IsStable(){
 
 //isltfu     care_ending_reason=LTFU
 //isdead     care_ending_reason=Dead
-
-
 //var _Date_Restarted_on_ART=$('#Date_Restarted_on_ART').val();
 //var _Date_LTFU=$('#Date_LTFU').val();
 //var _Reason_For_LTFU=$('#care_ending_reason').val();
