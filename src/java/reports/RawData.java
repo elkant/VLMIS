@@ -134,8 +134,9 @@ public class RawData extends HttpServlet {
         sps.put(1,"VL Summary Data@sp_nonemr_vl_summary");
         sps.put(2,"Raw Data@sp_nonemr_raw_data");
         sps.put(3,"Missing Vl VLMIS@sp_nonemr_missingvl_raw_data");
-        sps.put(4,"Elig Missing VL Sum@sp_vl_eligible_missing_vl_viewreport");
-        sps.put(5,"Elig Missing VL Raw@sp_vl_eligible_missing_vl_viewreport_petientlevel");
+        sps.put(4,"TB_Screening@sp_nonemr_tb_screening");
+        //sps.put(4,"Elig Missing VL Sum@sp_vl_eligible_missing_vl_viewreport");
+        //sps.put(5,"Elig Missing VL Raw@sp_vl_eligible_missing_vl_viewreport_petientlevel");
 
 //        HSSFSheet acashet = wb.createSheet("ACA raw Data");
 //        HSSFSheet mcashet = wb.createSheet("MCA raw Data");
