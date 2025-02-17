@@ -70,11 +70,48 @@ padding: 5px 25px;
     width: 190px;
 }*/
 
+
+
+
+
+
+.modal {
+    padding-top: 180px;
+            display: none;
+            position: fixed; /* Stay in place */
+            top: 0;
+            left: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+           /**z-index: 9999;  Ensure it's on top */
+        }
+
+        /* Modal content */
+        .modal-content {
+            position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        
+        
+        .select2{
+            
+           /*z-index: 9999;*/ 
+        }
 </style>
 
                 
 	</head>
-	<body>
+        <body >
 <!-- header -->
 <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
     <div class="container-fluid">
@@ -152,7 +189,7 @@ padding: 5px 25px;
                             <i class="glyphicon glyphicon-file"></i>
                              VLMIS 3.0.4
                         </a>
-                        <a class="btn btn-success col-md-6" href="dashboards/index.html"> <i class="glyphicon glyphicon-dashboard"></i> Open Live Dashboards</a> 
+                        <a class="btn btn-success col-md-6" href="dashboards/dashboard.jsp"> <i class="glyphicon glyphicon-dashboard"></i> Open Live Dashboards</a> 
                        
                          
                             
@@ -304,9 +341,11 @@ padding: 5px 25px;
 
                                         <div class='form-group col-md-3'>
                                             <label><font color='red'>*</font><b>Next appointment Date</b><span id="sikuyadawa"></span></label>
-                                            <input onchange="PredictDrugs();validateTarehe('Last_Clinical_Visit_Date','Next_appointment_Date','Last ARV Pickup Date','Next Appointment Date');UpdatePatientStatus();" readonly="true" placeholder='Next appointment Date'  autocomplete='off'  class='form-control dates' type='text' name='Next_appointment_Date' id='Next_appointment_Date' /></div>
+                                            <input onchange="PredictDrugs();validateTarehe('Last_Clinical_Visit_Date','Next_appointment_Date','Last ARV Pickup Date','Next Appointment Date');UpdatePatientStatus();" readonly="true" placeholder='Next appointment Date'  autocomplete='off'  class='form-control dates' type='text' name='Next_appointment_Date' id='Next_appointment_Date' />
+                                        </div>
 
-                                         <div class='form-group col-md-3'><label><font color='red'>*</font><b>TB Screening Outcome</b></label><select class='form-control' name='Screened_For_TB' id='Screened_For_TB' ><option value=''>Select TB Screening Outcome</option>
+                                         <div onchange="checkTbCases();" class='form-group col-md-3'><label><font color='red'>*</font><b>TB Screening Outcome</b></label><select class='form-control' name='Screened_For_TB' id='Screened_For_TB' >
+                                                <option value=''>Select TB Screening Outcome</option>
                                                 <option value='Negative TB Screen'>Negative TB Screen</option>
                                                 <option value='Presumed TB'>Presumed TB</option>
                                                 <option value='On TB Treatment'>On TB Treatment</option>
@@ -314,10 +353,43 @@ padding: 5px 25px;
                                                 <option value='Negative and started INH'>Negative and started INH</option></select>
                                          </div>
                                         
-                                        <div class='iscalhiv form-group col-md-3' style='display:none;'>
-                                            <label><b>Weight ( in Kgs )</b></label>
-                                            <input  placeholder='Weight'  autocomplete='off'  class='form-control' type='number' name='weight' id='weight' />
-                                        </div> 
+                                        <div style="display:none;"  class='istbpres form-group col-md-3'><label><font color='red'>*</font><b>Test Ordered</b></label>
+                                            <select onchange="checkTbOrder();" class='form-control' name='tb_test_ordered' id='tb_test_ordered' >
+                                                <option value=''>Select Test Ordered</option>
+                                                 <option value='Not Done-ND'>Not Done-ND</option>
+                                                <option value='Sputum Smear'>Sputum Smear</option>
+                                                <option value='Chest X-Ray'>Chest X-Ray</option>
+                                                <option value='GeneXpert'>Gene Xpert</option>
+                                                <option value='TB Lam'>TB Lam</option>
+                                                
+                                            </select>
+                                         </div>
+                                        
+                                        
+                                        <div style="display:none;" class='istbordered form-group col-md-3'><label><font color='red'>*</font><b>Test Results</b></label>
+                                            <select onchange="controlAntiTbsInitiation();" class='form-control' name='tb_test_results' id='tb_test_results' >
+                                                <option value=''>Select Test Ordered</option>
+                                                <option value='Negative'>Negative</option>
+                                                <option value='Positive'>Positive</option>
+                                            </select>
+                                         </div>
+                                        
+                                         <div style="display:none;" class='istbpos form-group col-md-3'><label><font color='red'>*</font><b>Started on Anti-TBs</b></label>
+                                            <select onchange="controlAntiTbsInitDate();" class='form-control' name='started_anti_tbs' id='started_anti_tbs' >
+                                                <option value=''>Select Anti-TBs Initiation Status</option>
+                                                <option value='Yes'>Yes</option>
+                                                <option value='No'>No</option>                                                
+                                            </select>
+                                         </div>
+                                        
+                                        <div style="display:none;" class='istbtreat form-group col-md-3'>
+                                            <label><font color='red'>*</font><b> Date started on TB Treatment</b><span id="sikuyadawazatb"></span></label>
+                                            <input onchange="" readonly="true" placeholder='Date started on TB Treatment'  autocomplete='off'  class='form-control dates' type='text' name='Date_started_on_TB_Treatment' id='Date_started_on_TB_Treatment' />
+                                            <!--validateTarehe('Last_Clinical_Visit_Date','Date_started_on_TB_Treatment','Last ARV Pickup Date','Date started on TB Treatment');-->
+                                        </div>
+                                        
+                                        
+                                      
                                         
                                         <div class='form-group col-md-3'><label><b>Patient Status as at Today</b></label>
                                             <select  onchange='isEligibleForLTFU();' readonly="true" class='form-control' style='border:1px solid #ffffff;' name='Monthly_Patient_Status' id='Monthly_Patient_Status' >
@@ -415,14 +487,14 @@ padding: 5px 25px;
                                     
                                     
                                     <h3>
-                                        <div class='media1'><div class='bd-wizard-step-icon'><i class='glyphicon glyphicon-circle-arrow-up'></i></div><div class='media-body'><div class='bd-wizard-step-title'>IPT</div><div class='bd-wizard-step-subtitle'></div></div></div>
+                                        <div class='media1'><div class='bd-wizard-step-icon'><i class='glyphicon glyphicon-circle-arrow-up'></i></div><div class='media-body'><div class='bd-wizard-step-title'>IPT/TPT</div><div class='bd-wizard-step-subtitle'></div></div></div>
                                     </h3>
                                     <section>
                                        
- <h3  style='text-align: center;background-color:#ccffcc ;font-weight: bold;padding:3px;'>IPT</h3>
+ <h3  style='text-align: center;background-color:#ccffcc ;font-weight: bold;padding:3px;'>IPT/TPT</h3>
                                     
-                                        <div class='form-group col-md-3'><label><font color='red'>*</font><b>Started on IPT?</b></label>
-                                            <select onchange="IsStartedIPT();validateTarehe('Date_of_Birth','Date_Started_on_IPT','Date Of Birth','Date Started IPT');" class='form-control' name='Started_on_IPT' id='Started_on_IPT' ><option value=''>Select Started on IPT?</option>
+                                        <div class='form-group col-md-3'><label><font color='red'>*</font><b>Started on IPT/TPT?</b></label>
+                                            <select onchange="IsStartedIPT();validateTarehe('Date_of_Birth','Date_Started_on_IPT','Date Of Birth','Date Started IPT');" class='form-control' name='Started_on_IPT' id='Started_on_IPT' ><option value=''>Select Started on IPT/TPT?</option>
                                                 <option value='Yes'>Yes</option>
                                                 <option value='No'>No</option>
                                             </select>
@@ -430,12 +502,12 @@ padding: 5px 25px;
                                         </div>
 
                                         <div class='if_started_ipt form-group col-md-3' style="display:none;">
-                                            <label><b>Date Started on IPT</b></label>
+                                            <label><b>Date Started on IPT/TPT</b></label>
                                             <input onchange="validateTarehe('Date_Started_on_IPT','Date_of_IPT_Outcome','Date Started IPT','Date Completed IPT Outcome');" readonly="true" placeholder='Date Started on IPT' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_Started_on_IPT' id='Date_Started_on_IPT' /></div>
 
                                         <div class='if_started_ipt form-group col-md-3' style="display:none;">
-                                            <label><b>IPT Outcome</b></label>
-                                            <select onchange="IsCompletedIPT();IsDiscontinuedIPT();" class='form-control' name='IPT_Outcome' id='IPT_Outcome' ><option value=''>Select IPT Outcome</option>
+                                            <label><b>TPT/IPT Outcome</b></label>
+                                            <select onchange="IsCompletedIPT();IsDiscontinuedIPT();" class='form-control' name='IPT_Outcome' id='IPT_Outcome' ><option value=''>Select IPT/TPT Outcome</option>
                                                 <option value='Completed'>Completed</option>
                                                 <option value=''>Continueing</option>
                                                 <option value='LTFU'>LTFU</option>
@@ -445,7 +517,7 @@ padding: 5px 25px;
                                         </div>
 
                                         <div class='if_completed_ipt form-group col-md-3' style="display:none;">
-                                            <label><b>Date of IPT Outcome</b></label>
+                                            <label><b>Date of IPT/TPT Outcome</b></label>
                                             <input onchange="validateTarehe('Date_Started_on_IPT','Date_of_IPT_Outcome','Date Started IPT','Date Completed IPT Outcome');" readonly="true" placeholder='Date Completed IPT' data-date-end-date='0d' autocomplete='off'  class='form-control dates' type='text' name='Date_of_IPT_Outcome' id='Date_of_IPT_Outcome' />
                                         </div>
 
@@ -971,7 +1043,8 @@ Total_Linkage
 <!-- /Main -->
 
 <footer class="text-center"> &copy; USAID Tujenge Jamii </footer>
-
+<a  title="Add Widget" data-toggle="modal"  id='loginbtn' href="#accesscodemodal">.</a>		
+	
 <div class="modal" id="addWidgetModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1004,7 +1077,7 @@ Total_Linkage
 
 
 
-<div class="modal" id="accesscodemodal" >
+<div class="modal" id="accesscodemodal" onclose="isloggedin();">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" >
@@ -1377,7 +1450,7 @@ Total_Linkage
             </div>
             <div class="modal-body">
                 <h3><b>Viral Load Data Management Information System (VLMIS)</b></h3>
-                <p>The primary aim of this system is to ensure Afya Nyota Supported ART sites without EMR can monitor and report Viral Load and IPT data accurately as required by PEPFAR. 
+                <p>The primary aim of this system is to ensure USAID Tujenge Jamii Supported ART sites without EMR can monitor and report Viral Load and IPT data accurately as required by PEPFAR. 
 Therefore, patients who are currently on ART should have all their  records routinely updated in the system. This will directly or indirectly help the facilities to generate monthly reports on Viral Load , TB Prevention, TB Screening,  TX New and TX_ML</p>
                     <h3>Activating User</h3>
                  <p> The first time of installing/running the application,You should specify the name of the system users from the availed list.</p>
@@ -1733,7 +1806,7 @@ var remoteCouch = false;
 var nonemr_all_details;
 
  
- function add_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,uzito,timestamp,user_id,syncstatus) {
+ function add_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,uzito,tb_test_ordered,tb_test_results,started_anti_tbs,Date_started_on_TB_Treatment,timestamp,user_id,syncstatus) {
    nonemr_all_details = {
 //id should consist of Patientcccno and also datevisit conducted
 id_:id,
@@ -1788,7 +1861,14 @@ DC_Model:DC_Model,
 well_unwell:well_unwell,
 uzito:uzito,
 
+ //tb
  
+ tb_test_ordered:tb_test_ordered,
+tb_test_results:tb_test_results,
+started_anti_tbs:started_anti_tbs,
+Date_started_on_TB_Treatment:Date_started_on_TB_Treatment,
+
+
  
 timestamp:timestamp,
 user_id:user_id,
@@ -1814,7 +1894,7 @@ completed: false
       
    
 //_________________________________________________Code For Updating____________________________________   
-   function update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline,  timestamp,user_id,syncstatus)
+   function update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline,tb_test_ordered,tb_test_results,started_anti_tbs,Date_started_on_TB_Treatment,  timestamp,user_id,syncstatus)
    {
    
 
@@ -1896,6 +1976,12 @@ doc.admission_unit=admission_unit;
 doc.supplimental_oxygen=supplimental_oxygen;
 doc.regimenline=regimenline;
 
+doc.tb_test_ordered=tb_test_ordered;
+doc.tb_test_results=tb_test_results;
+doc.started_anti_tbs=started_anti_tbs;
+doc.Date_started_on_TB_Treatment=Date_started_on_TB_Treatment;
+
+
 doc.timestamp=timestamp;
 doc.user_id=user_id;
 doc.syncstatus=syncstatus; 
@@ -1925,7 +2011,7 @@ var remoteCouch = false;
 var nonemr_curr_details;
 
 
-function add_nonemr_curr(Visit_Id,ccc_number,Current_Regimen,visitdate,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,uzito,timestamp,user_id) {
+function add_nonemr_curr(Visit_Id,ccc_number,Current_Regimen,visitdate,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,uzito,tb_test_ordered,tb_test_results,started_anti_tbs,Date_started_on_TB_Treatment,timestamp,user_id) {
    nonemr_curr_details = {
 //id should consist of Patientcccno and also datevisit conducted
 id_:Visit_Id,
@@ -1945,6 +2031,12 @@ care_ending_reason:care_ending_reason,
 Cause_of_Death:Cause_of_Death,
 Date_Restarted_on_ART:Date_Restarted_on_ART,
 uzito:uzito,
+
+tb_test_ordered:tb_test_ordered,
+tb_test_results:tb_test_results,
+started_anti_tbs:started_anti_tbs,
+Date_started_on_TB_Treatment:Date_started_on_TB_Treatment,
+
 
 timestamp:timestamp,
 user_id:user_id,     
@@ -1976,7 +2068,7 @@ completed: false
 
 
 //_________________________________________________Code For Updating____________________________________   
-   function update_nonemr_curr(Visit_Id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,uzito,timestamp,user_id,syncstatus) {
+   function update_nonemr_curr(Visit_Id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,uzito,tb_test_ordered,tb_test_results,started_anti_tbs,Date_started_on_TB_Treatment,timestamp,user_id,syncstatus) {
    
  
 
@@ -1999,6 +2091,12 @@ doc.care_ending_reason=care_ending_reason;
 doc.Cause_of_Death=Cause_of_Death;
 doc.Date_Restarted_on_ART=Date_Restarted_on_ART;
 doc.uzito=uzito;
+
+doc.tb_test_ordered=tb_test_ordered;
+doc.tb_test_results=tb_test_results;
+doc.started_anti_tbs=started_anti_tbs;
+doc.Date_started_on_TB_Treatment=Date_started_on_TB_Treatment;
+
 
 doc.timestamp=timestamp;
 doc.user_id=user_id;
@@ -2806,10 +2904,15 @@ var admission_unit=null;
 var supplimental_oxygen=null;
 var regimenline=null;
 
+var tb_test_ordered=null;
+var tb_test_results=null;
+var started_anti_tbs=null;
+var Date_started_on_TB_Treatment=null;
+
    
    
     var progressbarstoskip=[];
-     var allindicatorsarray=["rowid","facilityname","counsellor","ccc_number","Date_of_Birth","Sex","Population_Type","Date_Initiated_On_ART","Current_Regimen","Last_Clinical_Visit_Date","Screened_For_TB","Days_of_Dispense","Months_of_Dispense","Next_appointment_Date","Monthly_Patient_Status","Started_on_IPT","Date_Started_on_IPT","IPT_Outcome","Date_of _IPT_Outcome","Reason_Not_Completed","First_Viral_Load_Date","Date_Last_VL_Conducted","Justification","VL_Results","PMTCT_Status","Date_Restarted_on_ART","Date_LTFU","Reason_For_LTFU","care_ending_reason","Cause_of_Death","Stability","DC_Model","ever_vaccinated","vaccination_status","vaccine1","dose1","date1","verified1","vaccine2","dose2","date2","verified2","received_booster","vaccine_booster","date_booster","verified_booster","tested_for_covid19","date_tested_covid19","covid_test_result","covid_presentation","hospitalized","admission_unit","supplimental_oxygen"];
+     var allindicatorsarray=["rowid","facilityname","counsellor","ccc_number","Date_of_Birth","Sex","Population_Type","Date_Initiated_On_ART","Current_Regimen","Last_Clinical_Visit_Date","Screened_For_TB","Days_of_Dispense","Months_of_Dispense","Next_appointment_Date","Monthly_Patient_Status","Started_on_IPT","Date_Started_on_IPT","IPT_Outcome","Date_of _IPT_Outcome","Reason_Not_Completed","First_Viral_Load_Date","Date_Last_VL_Conducted","Justification","VL_Results","PMTCT_Status","Date_Restarted_on_ART","Date_LTFU","Reason_For_LTFU","care_ending_reason","Cause_of_Death","Stability","DC_Model","ever_vaccinated","vaccination_status","vaccine1","dose1","date1","verified1","vaccine2","dose2","date2","verified2","received_booster","vaccine_booster","date_booster","verified_booster","tested_for_covid19","date_tested_covid19","covid_test_result","covid_presentation","hospitalized","admission_unit","supplimental_oxygen","tb_test_ordered","tb_test_results","started_anti_tbs","Date_started_on_TB_Treatment"];
      var allnontargetindicatorsarray=[];
      var allcommentsarray=[];
      var allprogressbar_hiddentext_array=[];
@@ -3003,6 +3106,13 @@ admission_unit=$('#admission_unit').val();
 supplimental_oxygen=$('#supplimental_oxygen').val();
 regimenline=$("#Current_Regimen").find(':selected').data("regimenline");
 
+tb_test_ordered=$('#tb_test_ordered').val();
+tb_test_results=$('#tb_test_results').val();
+started_anti_tbs=$('#started_anti_tbs').val();
+Date_started_on_TB_Treatment=$('#Date_started_on_TB_Treatment').val();
+
+
+
 var well_unwell="";
 
 DC_Model=$('#DC_Model').val();
@@ -3067,9 +3177,9 @@ var dt=""+currentdate.getDate();
             var VL_Visit_id=""+id+"_"+Date_Last_VL_Conducted;
             
             
- update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results, Stability,DC_Model,Stability,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline,timestamp,user_id,syncstatus);
+ update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results, Stability,DC_Model,Stability,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline,tb_test_ordered,tb_test_results,started_anti_tbs,Date_started_on_TB_Treatment,timestamp,user_id,syncstatus);
  //ccc_number_
- update_nonemr_curr(Visit_id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,uzito,timestamp,user_id,syncstatus);           
+ update_nonemr_curr(Visit_id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,uzito,tb_test_ordered,tb_test_results,started_anti_tbs,Date_started_on_TB_Treatment,timestamp,user_id,syncstatus);           
  update_nonemr_ipt(IPT_Visit_id,ccc_number,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,timestamp,user_id,syncstatus);
  update_nonemr_vl(VL_Visit_id,ccc_number,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,timestamp,user_id,syncstatus);          
  update_nonemr_diffcare(id,ccc_number,Last_Clinical_Visit_Date,Stability,DC_Model,Stability,timestamp,user_id,syncstatus);
@@ -3513,6 +3623,11 @@ $('#hospitalized').val(doc.hospitalized);
 $('#admission_unit').val(doc.admission_unit);
 $('#supplimental_oxygen').val(doc.supplimental_oxygen);
 
+$('#tb_test_ordered').val(doc.tb_test_ordered);
+$('#tb_test_results').val(doc.tb_test_results);
+$('#started_anti_tbs').val(doc.started_anti_tbs);
+$('#Date_started_on_TB_Treatment').val(doc.Date_started_on_TB_Treatment);
+
 
 
  getAge();
@@ -3533,6 +3648,11 @@ $('#supplimental_oxygen').val(doc.supplimental_oxygen);
 isLDLChecked();
 isShowWeight();
 
+
+controlAntiTbsInitDate();
+controlAntiTbsInitiation();
+checkTbOrder();
+checkTbCases();
 
 activate_doses_and_booster();
 activate_doses();
@@ -3635,156 +3755,7 @@ function delayedrefresh()
 }
 
 
-function updateweeklydata()
-{
- //this id will be used to update the entered data
-   var id=$("#rowid").val();
-   
-  // var annualid=id.replace(/weekly/g,"annual");
-   
-        //receive all the fields from the weekly data from
-id=$("#rowid").val();
-facility=$("#facilityname").val();
-counsellor=$("#counsellor").val();
 
-date_tested=$("#enddate").val();
-
-opd_t=$("#opd_t").val();
-screened=$("#screened").val();
-screenrate=$("#screenrate").val();
-opd_eligible=$("#opd_eligible").val();
-opd_tested=$("#opd_tested").val();
-opd_positive=$("#opd_positive").val();
-opd_Yield=$("#opd_Yield").val();
-pmtct_tested=$("#pmtct_tested").val();
-pmtct_positive=$("#pmtct_positive").val();
-pmtct_Yield=$("#pmtct_Yield").val();
-index_tested=$("#index_tested").val();
-index_positive=$("#index_positive").val();
-index_yield=$("#index_yield").val();
-self_test=$("#self_test").val();
-Referred_Prep=$("#Referred_Prep").val();
-gbv=$("#gbv").val();
-Total_Tested=$("#Total_Tested").val();
-Total_Positive=$("#Total_Positive").val();
-Total_Yield=$("#Total_Yield").val();
-Total_Linked=$("#Total_Linked").val();
-Total_Linkage=$("#Total_Linkage").val();
-
-
-//user=$("#user").val();
-timestamp=$("#timestamp").val();
-
-
-    var user="hsdsa"; 
-
-    var currentdate = new Date();
-    
-   var mn=""+(currentdate.getMonth()+1) ;
-    var dt=""+currentdate.getDate();
-    var hr=""+currentdate.getHours();
-    var min=""+currentdate.getMinutes();
-    var sc=""+currentdate.getSeconds();
-    if(mn.length===1){mn='0'+mn;}
-    if(length===1){dt='0'+dt;}
-    if(hr.length===1){hr='0'+hr;}
-    if(min.length===1){min='0'+min;}
-    if(sc.length===1){sc='0'+sc;}
-    
-    
-    var timestamp = "" + currentdate.getFullYear() + "-"+ mn + "-"+ dt + " "+ hr+ ":" + min+ ":"+ sc;
-    
-    
-    if(user===''){user='hsdsa';}
-    
-    var syncstatus='No';  
-    
-     var id=null;
-          
-     if(facility==='')
-     {         
-  
-   alert('Select facility');
-   //$("#facilityname select:first").focus();
-   
-   $("#facilityname").css('border-color','red');
-    //$("select:first").focus();
-     }
-     
-     else if(counsellor===''||counsellor==='select  Counsellor')
-     {         
-  
-   alert('Select User');
-   //$("#facilityname select:first").focus();
-   
-   $("#counsellor").css('border-color','red');
-    //$("select:first").focus();
-     }
- 
-      else if (enddate==='')
-     {
-         
-     alert('Select Reporting Date');
-   $("#enddate").focus();    
-     } 
-     
-   else if(checktotaltests()===false){
-     
-     
-     
- }
-     
-     
- else if(checktotalpositives()===false){
-     
-     
-     
- }
-
-   
-       else {
-           
-     var facilitynameandmfl=facility.split("_");        
-    // var startd=startdate.replace('-','');      
-     //var startd=startd.replace('-','');      
-     var endd=enddate.replace('-','');      
-     var endd=endd.replace('-','');      
-     var cns=counsellor.replace('-','');
-        
-     var facilityname=facilitynameandmfl[1];
-            //save data to the db
- // saveweeklyupdates(id,facilitynameandmfl[1],enddate,counselorname,modality, tested,positive_tg,positive,linked_here,linked_else,declined,dead,tca,timestamp,user, syncstatus) ;
-        
-            //________________________________
-          
-     id=$("#rowid").val();
-  
- saveweeklyupdates(id,facilityname,counsellor,date_tested,opd_t,screened,screenrate,opd_eligible,opd_tested,opd_positive,opd_Yield,pmtct_tested,pmtct_positive,pmtct_Yield,index_tested,index_positive,index_yield,self_test,Referred_Prep,gbv,Total_Tested,Total_Positive,Total_Yield,Total_Linked,Total_Linkage,timestamp,user, syncstatus) ;
-  
-            //
-            //________________________________
-            
-            
-            
-
-//call refressh code here
-
- //selectsearchdata();
-$("#message").show();
-$("#actiondone").html("Data Updated Successfully");
-//call the function that loads entered data
-window.scrollTo(0,0);
-console.log('weekly data updated');
-
-//$('#reportsbutton').click();
-//$('#inpatient_uptake_cmts').focus();
-setTimeout(delayedrefresh,1800);
-//delayedrefresh();
-       }
-       
-    
-}
-   
 function saveweeklyupdates(id,facilityname,counsellor,date_tested,opd_t,screened,screenrate,opd_eligible,opd_tested,opd_positive,opd_Yield,pmtct_tested,pmtct_positive,pmtct_Yield,index_tested,index_positive,index_yield,self_test,Referred_Prep,gbv,Total_Tested,Total_Positive,Total_Yield,Total_Linked,Total_Linkage,timestamp,user, syncstatus) {
  
  
@@ -3969,6 +3940,12 @@ admission_unit:dat.doc.admission_unit,
 supplimental_oxygen:dat.doc.supplimental_oxygen,
 regimenline:dat.doc.regimenline,
 
+tb_test_ordered:dat.doc.tb_test_ordered,
+tb_test_results:dat.doc.tb_test_results,
+started_anti_tbs:dat.doc.started_anti_tbs,
+Date_started_on_TB_Treatment:dat.doc.Date_started_on_TB_Treatment,
+
+
 user_id:dat.doc.user_id,
 timestamp:dat.doc.timestamp
 },
@@ -4142,6 +4119,12 @@ hospitalized:dat.doc.hospitalized,
 admission_unit:dat.doc.admission_unit,
 supplimental_oxygen:dat.doc.supplimental_oxygen,
 regimenline:dat.doc.regimenline,
+
+tb_test_ordered:dat.doc.tb_test_ordered,
+tb_test_results:dat.doc.tb_test_results,
+started_anti_tbs:dat.doc.started_anti_tbs,
+Date_started_on_TB_Treatment:dat.doc.Date_started_on_TB_Treatment,
+
 
 user_id:dat.doc.user_id,
 timestamp:dat.doc.timestamp
@@ -4638,6 +4621,11 @@ hospitalized:dat.doc.hospitalized,
 admission_unit:dat.doc.admission_unit,
 supplimental_oxygen:dat.doc.supplimental_oxygen,
 regimenline:dat.doc.regimenline,
+
+tb_test_ordered:dat.doc.tb_test_ordered,
+tb_test_results:dat.doc.tb_test_results,
+started_anti_tbs:dat.doc.started_anti_tbs,
+Date_started_on_TB_Treatment:dat.doc.Date_started_on_TB_Treatment,
 
 
 user_id:dat.doc.user_id,
@@ -5954,7 +5942,7 @@ function savezeroreport()
 
 <script>
   
-   
+  // /**
     if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('sw1.js').then(function(registration) {
@@ -5967,7 +5955,7 @@ function savezeroreport()
   });
 }
 
-
+//**/
 
 
 if($("#toolid").is(":visible")){
@@ -6386,13 +6374,18 @@ var admission_unit=dt.admission_unit;
 var supplimental_oxygen=dt.supplimental_oxygen;
 var uzito=dt.uzito;
 
+var tb_test_ordered=dt.tb_test_ordered;
+var tb_test_results=dt.tb_test_results;
+var started_anti_tbs=dt.started_anti_tbs;
+var Date_started_on_TB_Treatment=dt.Date_started_on_TB_Treatment;
+
         
        console.log("syncing record number "+(b+1)+" facility "+facility); 
        
       $("#synclog").html("syncing overall data record number "+(c+1));
        
         
-  update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline,timestamp,user_id,'Yes');
+  update_nonemr_all(id,mflcode,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline,tb_test_ordered,tb_test_results,started_anti_tbs,Date_started_on_TB_Treatment,timestamp,user_id,'Yes');
   
            
             
@@ -6588,7 +6581,7 @@ var uzito=dt.uzito;
         
         console.log("syncing tx_curr record number "+(c+1)); 
         $("#synclog").html("Syncing tx_curr record number "+(c+1));
-        update_nonemr_curr(id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,uzito,timestamp,user_id,'yes');
+        update_nonemr_curr(id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,uzito,tb_test_ordered,tb_test_results,started_anti_tbs,Date_started_on_TB_Treatment,timestamp,user_id,'yes');
         
               
                 }
@@ -6772,6 +6765,89 @@ var supplimental_oxygen=dt.supplimental_oxygen;
             
         }
 
+const modal = document.getElementById('accesscodemodal');
+
+ window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+               isloggedin();
+            }
+        });
+
+
+
+function checkTbCases(){
+    
+    var tbstatus=$("#Screened_For_TB").val();
+   
+    if(tbstatus==='Presumed TB' || tbstatus==='On TB Treatment'){
+    $(".istbpres").show();   
+        // alert(tbstatus);
+         
+        
+    }
+    else {
+          $(".istbpres").hide(); 
+          $("#tb_test_ordered").val("");
+        
+    }
+    
+    
+}
+
+function checkTbOrder(){
+    
+    var tbstatus=$("#tb_test_ordered").val();
+   
+    if(tbstatus==='Sputum Smear' || tbstatus==='Chest X-Ray' || tbstatus==='GeneXpert'  || tbstatus==='TB Lam'){ //
+    $(".istbordered").show();   
+        // alert(tbstatus);
+         
+        
+    }
+    else {
+          $(".istbordered").hide(); 
+          $("#tb_test_results").val("");
+        
+    }
+    
+    
+}
+function controlAntiTbsInitiation()
+{
+    
+    var tbstatus=$("#tb_test_results").val();
+   
+    if(tbstatus==='Positive' ){
+    $(".istbpos").show();   
+        // alert(tbstatus);
+         
+        
+    }
+    else {
+          $(".istbpos").hide(); 
+          $("#started_anti_tbs").val("");
+        
+    }
+    
+    
+}
+function controlAntiTbsInitDate()
+{
+    
+    var tbstatus=$("#started_anti_tbs").val();
+   
+    if(tbstatus==='Yes' ){
+    $(".istbtreat").show();   
+        // alert(tbstatus);
+                         }
+    else {
+          $(".istbtreat").hide(); 
+          $("#Date_started_on_TB_Treatment").val("");
+        
+         }
+    
+    
+}
 </script>
  
 	</body>

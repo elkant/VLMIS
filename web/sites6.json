@@ -189,6 +189,7 @@
 {"county":"Nakuru","subcounty":"Naivasha","facility_name":"Holy Trinity Health Centre (Mai Mahiu)","mflcode":14550,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Nakuru","subcounty":"Gilgil","facility_name":"Kasarani Dispensary (Gilgil)","mflcode":19740,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Nakuru","subcounty":"Kuresoi North","facility_name":"Kimeswon Health Centre","mflcode":20299,"hts":1,"pns":1,"isactive":"Yes"},
+{"county":"Nakuru","subcounty":"Kuresoi North","facility_name":"Neema Medical Home Limited","mflcode":20147,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Nakuru","subcounty":"Kuresoi South","facility_name":"Korao Dispensary","mflcode":16391,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Nakuru","subcounty":"Rongai","facility_name":"Lower Solai Dispensary","mflcode":15097,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Nakuru","subcounty":"Molo","facility_name":"Marioshoni Dispensary","mflcode":15129,"hts":1,"pns":1,"isactive":"Yes"},
@@ -216,4 +217,176 @@
 {"county":"Laikipia","subcounty":"Laikipia West","facility_name":"Mwenje Dispensary","mflcode":15266,"hts":1,"pns":1,"isactive":"Yes"},
 {"county":"Laikipia","subcounty":"Laikipia West","facility_name":"Thome Dispensary","mflcode":23140,"hts":1,"pns":1,"isactive":"Yes"}
 ,{"county":"Laikipia","subcounty":"Laikipia West","facility_name":"Salama Health Centre (Laikipia West)","mflcode":15520,"hts":1,"pns":1,"isactive":"Yes"}
+,
+  
+  {
+    "county": "Nakuru County",
+    "subcounty": "Nakuru East Sub County",
+    "facility_name": "New Canaan Idp Dispensary",
+    "mflcode": 19592,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  
+  {
+    "county": "Nakuru County",
+    "subcounty": "Nakuru West Sub County",
+    "facility_name": "Barut Dispensary",
+    "mflcode": 17793,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  
+ 
+  
+ 
+  {
+    "county": "Nakuru County",
+    "subcounty": "Nakuru West Sub County",
+    "facility_name": "Lalwet Dispensary",
+    "mflcode": 15006,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Nakuru North Sub County",
+    "facility_name": "Ndege Dispensary",
+    "mflcode": 20607,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Molo Sub County",
+    "facility_name": "Mariashoni Health Centre",
+    "mflcode": 15129,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Nakuru North Sub County",
+    "facility_name": "Nyonjoro Dispensary",
+    "mflcode": 25101,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Nakuru North Sub County",
+    "facility_name": "Menengai Crater Dispensary",
+    "mflcode": 18688,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Kuresoi North Sub County",
+    "facility_name": "Tulwet Dispensary (Kuresoi)",
+    "mflcode": 16393,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Kuresoi South Sub County",
+    "facility_name": "Keringet Nursing Home LTD",
+    "mflcode": 22641,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Naivasha Sub County",
+    "facility_name": "Kipkonyo Dispensary",
+    "mflcode": 19883,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Naivasha Sub County",
+    "facility_name": "Kabati Dispensary (YMCA)",
+    "mflcode": 28739,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Nakuru North Sub County",
+    "facility_name": "Ruguru Dispensary",
+    "mflcode": 17791,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Njoro Sub County",
+    "facility_name": "Mauche Dispensary",
+    "mflcode": 15159,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Njoro Sub County",
+    "facility_name": "Teret Dispensary",
+    "mflcode": 15721,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Rongai Sub County",
+    "facility_name": "Maji Tamu Health Centre",
+    "mflcode": 15114,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Subukia Sub County",
+    "facility_name": "Igwamiti Dispensary",
+    "mflcode": 14558,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  },
+  {
+    "county": "Nakuru County",
+    "subcounty": "Subukia Sub County",
+    "facility_name": "Tachasis Dispensary",
+    "mflcode": 18010,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  }
+  
+  ,
+  {
+    "county": "Baringo County",
+    "subcounty": "Marigat Sub County",
+    "facility_name": "Perkerra Medical Clinic",
+    "mflcode": 24311,
+    "hts": 1,
+    "pns": 1,
+    "isactive": "Yes"
+  }
+  
 ]

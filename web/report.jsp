@@ -44,6 +44,32 @@ input:focus {
 }
 
 
+.modal {
+    padding-top: 180px;
+            display: none;
+            position: fixed; /* Stay in place */
+            top: 0;
+            left: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+           /**z-index: 9999;  Ensure it's on top */
+        }
+
+        /* Modal content */
+        .modal-content {
+            position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
 
 </style>
                 
@@ -663,7 +689,9 @@ input:focus {
                 <script src="js/bootstrap-datepicker.min.js"></script>
                 <script src="js/select2.min.js"></script>
                  <!--<script src="js/pouchdb-4.0.1.js"></script>-->
-                 <script src="js/pouchdb.min.js"></script>
+                 
+                <script src="js/pouchdb-7.2.1.js"></script>
+                <script src="js/pouchdb.upsert.js"></script>
                  
                   <script type="text/javascript" src="js/jquery.fileDownload.js"></script>
                  <script type="text/javascript" src="js/datatables.min.js"></script>
@@ -3196,7 +3224,75 @@ function loadallpercents(){
 
 
 
+   var accountdb = new PouchDB('treatment_account_usr');
+var remoteCouch = false;
+var useraccountdetails;
 
+
+function addaccount(isauthorized) {
+   useraccountdetails = {
+        _id: 'aphiaplus', //this is static since we cant have two users using the same phone
+	isauthorized:isauthorized,        
+        completed: false
+  };
+  accountdb.put(useraccountdetails, function callback(err, result) {
+    if (!err) {
+      console.log('account details added succesfully');
+    }
+    
+    setTimeout(delayedrefresh,1500);
+  });
+}
+
+   
+  
+
+
+
+  function updateaccount(){
+   //alert("save called");   
+   var enteredcode=$("#accesscode").val();   
+   
+   if(enteredcode===''){$("#useraccountvalidation").html("Enter access code");   }
+   else 
+   {
+     //run json to determine status  
+     
+     //if ok is returned , then save account. else .. show error
+      $.ajax({
+                    url:'validateAccess?kc='+enteredcode,                            
+                    type:'get',  
+                    dataType: 'html',  
+                    success: function(data) {
+             
+                 
+                 var dta=parseInt(data);
+                 
+          if(dta===1){
+    
+    $("#useraccountvalidation").html("");
+  
+    
+    addaccount('ok'); 
+    updatetaccesscode('ok');
+                        } else {
+                            
+                         $("#useraccountvalidation").html("Wrong access code!. Try again");   
+                          
+                        }
+     
+                    },
+                
+               error: function(XMLHttpRequest, textStatus, errorThrown) {
+       // alert(errorThrown);
+$("#useraccountvalidation").html("No internet connection. Connect to internet and try again."); 
+    }
+            
+            });
+       
+   }
+   
+  }
 
 
 
@@ -3212,6 +3308,8 @@ accountdb.allDocs({include_docs:true,ascending: true}).then(function (doc)
         $('#loginbtn').click();
     }
     else{
+    
+    showuser();
         
         for(a=0;a<doc.total_rows;a++){
 	   var dat={};
@@ -3232,7 +3330,7 @@ accountdb.allDocs({include_docs:true,ascending: true}).then(function (doc)
         
     }
 
- username=doc.username;
+ //username=doc.username;
 
 });
   
@@ -3240,33 +3338,20 @@ accountdb.allDocs({include_docs:true,ascending: true}).then(function (doc)
 
 isloggedin();
 
+function updatetaccesscode(authentication){
 
 
-function isuseradded(){
-   var cnt=0;
-        var username="";
-    
-     //if(username===''){    
-    
-//}
-        
-userdb.allDocs({include_docs:true,ascending: true}).then(function (doc) 
-{
-    
-    if(doc.total_rows===0){
-        
-       // $('#adduserbutton').click()
-    }
-
- username=doc.username;
-
+	
+	accountdb.get("aphiaplus").then(function (doc) {
+            //
+            if(authentication!==''){
+doc.isauthorized=authentication;
+return accountdb.put(doc); //continue from here
+            }         
+ 
 });
-  
-}
-
-//isuseradded();
-
-
+	}
+    
 
    function numbers(evt){
       
@@ -4389,6 +4474,15 @@ break;
    
   }
 
+
+
+const modal = document.getElementById('accesscodemodal');
+
+ window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+               isloggedin();
+            }
+        });
 
 
 

@@ -33,6 +33,7 @@ public class getfineagesummaries extends HttpServlet {
             response.setHeader("Access-Control-Allow-Origin", "*");
         try {
             
+            if(request.getParameter("cd")!=null){} else {response.sendRedirect("index.jsp");}
             dbConnweb conn= new dbConnweb();
             
               // conn.st.executeUpdate("SET GLOBAL max_allowed_packet = 209715200"); 
@@ -152,8 +153,16 @@ jobj.put("a",conn.rs.getString("50+ M"));  jarr.put(jobj);jobj= new JSONObject()
             
             try (PrintWriter out = response.getWriter()) {
                 
-                
+                 if(request.getParameter("cd")!=null){
+                    
+                    if(request.getParameter("cd").equals("909090")){
                 out.println(jarr);
+                    }
+                    else {
+                    response.sendRedirect("index.jsp");
+                    }
+                }
+               
             }
         }   catch (SQLException ex) {
             Logger.getLogger(getTotalSummaries.class.getName()).log(Level.SEVERE, null, ex);

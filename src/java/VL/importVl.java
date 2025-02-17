@@ -103,6 +103,11 @@ String admission_unit=null;
 String supplimental_oxygen=null;
 String regimenline=null;
 
+String tb_test_ordered=null;
+String tb_test_results=null;
+String started_anti_tbs=null;
+String Date_started_on_TB_Treatment=null;
+
 
 
         
@@ -146,6 +151,7 @@ PMTCT_Status=request.getParameter("PMTCT_Status");
 VL_Results=request.getParameter("VL_Results");
 Stability=request.getParameter("Stability");
 DC_Model=request.getParameter("DC_Model");
+
 well_unwell=request.getParameter("well_unwell");
 
 if(request.getParameter("uzito")!=null)
@@ -267,6 +273,10 @@ regimenline=request.getParameter("regimenline");}
 regimenline=null;
 }
 
+if(request.getParameter("tb_test_ordered")!=null){ tb_test_ordered=request.getParameter("tb_test_ordered");}   else { tb_test_ordered=null;  }
+if(request.getParameter("tb_test_results")!=null){ tb_test_results=request.getParameter("tb_test_results");}   else { tb_test_results=null;  }
+if(request.getParameter("started_anti_tbs")!=null){ started_anti_tbs=request.getParameter("started_anti_tbs");}   else { started_anti_tbs=null;  }
+if(request.getParameter("Date_started_on_TB_Treatment")!=null){ Date_started_on_TB_Treatment=request.getParameter("Date_started_on_TB_Treatment");}   else { Date_started_on_TB_Treatment=null;  }
 
 
 String version="1.0.0";
@@ -310,7 +320,7 @@ System.out.println(" VL Data upload by "+user_id+" ");
   
    //,newart=?,newpos_pmtct=?,art_pmtct=?
      
-insert=" update nonemr_all set facility=?,	ccc_number=?,	Date_of_Birth=?,	Sex=?,	Population_Type=?,	Date_Initiated_On_ART=?,	Current_Regimen=?,	Last_Clinical_Visit_Date=?,	Screened_For_TB=?,	Days_of_Dispense=?,	Months_of_Dispense=?,	Next_appointment_Date=?,	Monthly_Patient_Status=?,	Reason_For_LTFU=?,	Date_LTFU=?,	care_ending_reason=?,	Cause_of_Death=?,	Date_Restarted_on_ART=?,	Started_on_IPT=?,	Date_Started_on_IPT=?,	IPT_Outcome=?,	Date_of_IPT_Outcome=?,	Reason_Not_Completed=?,	First_Viral_Load_Date=?,	Date_Last_VL_Conducted=?,	Justification=?,	PMTCT_Status=?,	VL_Results=?,	Stability=?,	DC_Model=?,	well_unwell=?,	user_id=?,	timestamp=? , mflcode =? ,uzito=?,ever_vaccinated=?, vaccination_status=?, vaccine1=?, dose1=?, date1=?, verified1=?, vaccine2=?, dose2=?, date2=?, verified2=?, received_booster=?, vaccine_booster=?, date_booster=?, verified_booster=?, tested_for_covid19=?, date_tested_covid19=?, covid_test_result=?, covid_presentation=?, hospitalized=?, admission_unit=?, supplimental_oxygen=?, regimenline=?"
+insert=" update nonemr_all set facility=?,	ccc_number=?,	Date_of_Birth=?,	Sex=?,	Population_Type=?,	Date_Initiated_On_ART=?,	Current_Regimen=?,	Last_Clinical_Visit_Date=?,	Screened_For_TB=?,	Days_of_Dispense=?,	Months_of_Dispense=?,	Next_appointment_Date=?,	Monthly_Patient_Status=?,	Reason_For_LTFU=?,	Date_LTFU=?,	care_ending_reason=?,	Cause_of_Death=?,	Date_Restarted_on_ART=?,	Started_on_IPT=?,	Date_Started_on_IPT=?,	IPT_Outcome=?,	Date_of_IPT_Outcome=?,	Reason_Not_Completed=?,	First_Viral_Load_Date=?,	Date_Last_VL_Conducted=?,	Justification=?,	PMTCT_Status=?,	VL_Results=?,	Stability=?,	DC_Model=?,	well_unwell=?,	user_id=?,	timestamp=? , mflcode =? ,uzito=?,ever_vaccinated=?, vaccination_status=?, vaccine1=?, dose1=?, date1=?, verified1=?, vaccine2=?, dose2=?, date2=?, verified2=?, received_booster=?, vaccine_booster=?, date_booster=?, verified_booster=?, tested_for_covid19=?, date_tested_covid19=?, covid_test_result=?, covid_presentation=?, hospitalized=?, admission_unit=?, supplimental_oxygen=?, regimenline=?,tb_test_ordered=?,tb_test_results=?,started_anti_tbs=?,Date_started_on_TB_Treatment=?"
      + " where id='"+id+"'  ";
          conn.pst1=conn.conne.prepareStatement(insert);   
 //facilityname.startdate.enddate.hiv_pos_target_child.hiv_pos_target_adult.hiv_pos_target_total.hiv_pos_child.hiv_pos_adult.hiv_pos_total.new_care_child.new_care_adult.new_care_total.new_art_target_child.new_art_target_adult.new_art_target_total.started_art_child.started_art_adult.started_art_total.viral_load_target_child.viral_load_target_adult.viral_load_target_total.viral_load_done_child.viral_load_done_adult.viral_load_done_total.ipt_target_child.ipt_target_adult.ipt_target_total.ipt_child.ipt_adult.ipt_total.testing_target_child.testing_target_adult.testing_target_total.test_child.test_adult.test_total.pmtct_hiv_pos_target.pmtct_hiv_pos.eid_target.eid_done.viral_load_mothers_target.viral_load_mothers_done.user.hiv_pos_yield_perc_child.hiv_pos_yield_perc_adult.hiv_pos_yield_perc_all.hiv_pos_care_perc_child.hiv_pos_care_perc_adult.hiv_pos_care_perc_all.started_art_perc_child.started_art_perc_adult.started_art_perc_all.viral_test_perc_child.viral_test_perc_adult.viral_test_perc_all.ipt_done_perc_child.ipt_done_perc_adult.ipt_done_perc_all.tested_perc_child.tested_perc_adult.tested_perc_all.hiv_pos_yield_cmts.hiv_pos_care_cmts.started_art_cmts.viral_test_cmts.ipt_done_cmts.tested_cmts.viral_load_mothers_perc.eid_done_perc.pmtct_hiv_pos_perc.viral_load_mothers_cmts.eid_done_cmts.pmtct_hiv_pos_cmts
@@ -373,6 +383,12 @@ conn.pst1.setString(55,admission_unit);
 conn.pst1.setString(56,supplimental_oxygen);
 conn.pst1.setString(57,regimenline);
 
+conn.pst1.setString(58,tb_test_ordered);
+conn.pst1.setString(59,tb_test_results);
+conn.pst1.setString(60,started_anti_tbs);
+conn.pst1.setString(61,Date_started_on_TB_Treatment);
+
+
 
 
  if(conn.pst1.executeUpdate()==1)
@@ -423,8 +439,8 @@ conn.pst1.setString(57,regimenline);
             
          
        
-          insert=" replace into nonemr_all(id,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,user_id,timestamp,mflcode,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline) "
-                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+          insert=" replace into nonemr_all(id,facility,ccc_number,Date_of_Birth,Sex,Population_Type,Date_Initiated_On_ART,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,Started_on_IPT,Date_Started_on_IPT,IPT_Outcome,Date_of_IPT_Outcome,Reason_Not_Completed,First_Viral_Load_Date,Date_Last_VL_Conducted,Justification,PMTCT_Status,VL_Results,Stability,DC_Model,well_unwell,user_id,timestamp,mflcode,uzito,ever_vaccinated,vaccination_status,vaccine1,dose1,date1,verified1,vaccine2,dose2,date2,verified2,received_booster,vaccine_booster,date_booster,verified_booster,tested_for_covid19,date_tested_covid19,covid_test_result,covid_presentation,hospitalized,admission_unit,supplimental_oxygen,regimenline,tb_test_ordered,tb_test_results,started_anti_tbs,Date_started_on_TB_Treatment) "
+                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                       conn.pst1=conn.conne.prepareStatement(insert);    
                           
 conn.pst1.setString(1,id);
@@ -486,6 +502,10 @@ conn.pst1.setString(56,admission_unit);
 conn.pst1.setString(57,supplimental_oxygen);
 conn.pst1.setString(58,regimenline);
 
+conn.pst1.setString(59,tb_test_ordered);
+conn.pst1.setString(60,tb_test_results);
+conn.pst1.setString(61,started_anti_tbs);
+conn.pst1.setString(62,Date_started_on_TB_Treatment);
 
                         
           if(conn.pst1.executeUpdate()==1)

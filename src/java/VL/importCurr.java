@@ -65,6 +65,12 @@ String Cause_of_Death=null;
 String Date_Restarted_on_ART=null;
 String uzito=null;
 
+String tb_test_ordered=null;
+String tb_test_results=null;
+String started_anti_tbs=null;
+String Date_started_on_TB_Treatment=null;
+
+
 
 //String Started_on_IPT=null;
 //String Date_Started_on_IPT=null;
@@ -119,6 +125,13 @@ Date_Restarted_on_ART=request.getParameter("Date_Restarted_on_ART");
 if(request.getParameter("uzito")!=null){
 uzito=request.getParameter("uzito");
 }
+
+if(request.getParameter("tb_test_ordered")!=null){ tb_test_ordered=request.getParameter("tb_test_ordered");}   else { tb_test_ordered=null;  }
+if(request.getParameter("tb_test_results")!=null){ tb_test_results=request.getParameter("tb_test_results");}   else { tb_test_results=null;  }
+if(request.getParameter("started_anti_tbs")!=null){ started_anti_tbs=request.getParameter("started_anti_tbs");}   else { started_anti_tbs=null;  }
+if(request.getParameter("Date_started_on_TB_Treatment")!=null){ Date_started_on_TB_Treatment=request.getParameter("Date_started_on_TB_Treatment");}   else { Date_started_on_TB_Treatment=null;  }
+
+
 //Started_on_IPT=request.getParameter("Started_on_IPT");
 //Date_Started_on_IPT=request.getParameter("Date_Started_on_IPT");
 //IPT_Outcome=request.getParameter("IPT_Outcome");
@@ -179,7 +192,7 @@ System.out.println(" Curr Data upload by "+user_id+" ");
   
    //,newart=?,newpos_pmtct=?,art_pmtct=?
      
-insert=" update nonemr_curr set 	ccc_number=?,	Current_Regimen=?,	Last_Clinical_Visit_Date=?,	Screened_For_TB=?,	Days_of_Dispense=?,	Months_of_Dispense=?,	Next_appointment_Date=?,	Monthly_Patient_Status=?,	Reason_For_LTFU=?,	Date_LTFU=?,	care_ending_reason=?,	Cause_of_Death=?,	Date_Restarted_on_ART=?,	user_id=?,	timestamp=? , mflcode =? , uzito=?"
+insert=" update nonemr_curr set 	ccc_number=?,	Current_Regimen=?,	Last_Clinical_Visit_Date=?,	Screened_For_TB=?,	Days_of_Dispense=?,	Months_of_Dispense=?,	Next_appointment_Date=?,	Monthly_Patient_Status=?,	Reason_For_LTFU=?,	Date_LTFU=?,	care_ending_reason=?,	Cause_of_Death=?,	Date_Restarted_on_ART=?,	user_id=?,	timestamp=? , mflcode =? , uzito=? ,tb_test_ordered=?,tb_test_results=?,started_anti_tbs=?,Date_started_on_TB_Treatment=?"
      + " where id='"+id+"'  ";
          conn.pst1=conn.conne.prepareStatement(insert);   
 
@@ -203,6 +216,10 @@ conn.pst1.setString(15,timestamp);
 conn.pst1.setString(16,mflcode);
 conn.pst1.setString(17,uzito);
 
+conn.pst1.setString(18,tb_test_ordered);
+conn.pst1.setString(19,tb_test_results);
+conn.pst1.setString(20,started_anti_tbs);
+conn.pst1.setString(21,Date_started_on_TB_Treatment);
 
 
  if(conn.pst1.executeUpdate()==1)
@@ -253,8 +270,8 @@ conn.pst1.setString(17,uzito);
             
          
        
-  insert=" replace into nonemr_curr(id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,user_id,timestamp,mflcode,uzito) "
-                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  insert=" replace into nonemr_curr(id,ccc_number,Current_Regimen,Last_Clinical_Visit_Date,Screened_For_TB,Days_of_Dispense,Months_of_Dispense,Next_appointment_Date,Monthly_Patient_Status,Reason_For_LTFU,Date_LTFU,care_ending_reason,Cause_of_Death,Date_Restarted_on_ART,user_id,timestamp,mflcode,uzito,tb_test_ordered,tb_test_results,started_anti_tbs,Date_started_on_TB_Treatment) "
+                 + " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                       conn.pst1=conn.conne.prepareStatement(insert);    
                           
 conn.pst1.setString(1,id);
@@ -276,7 +293,10 @@ conn.pst1.setString(16,timestamp);
 conn.pst1.setString(17,mflcode);
 conn.pst1.setString(18,uzito);
 
-
+conn.pst1.setString(19,tb_test_ordered);
+conn.pst1.setString(20,tb_test_results);
+conn.pst1.setString(21,started_anti_tbs);
+conn.pst1.setString(22,Date_started_on_TB_Treatment);
                         
 if(conn.pst1.executeUpdate()==1)
 {
@@ -323,7 +343,7 @@ if(conn.pst1.executeUpdate()==1)
         //send an email at this point of the exception
             
             try {
-                sm.Sendemail("Facility Curr DATA IMPORT",ex.toString()+ "___ n user name: "+user_id+" Facility name: n "+id+" n "+myresponse, "MYSQL IMPORTING ERROR ","EKaunda@fhi360.org");
+                sm.Sendemail("Facility Curr DATA IMPORT",ex.toString()+ "___ n user name: "+user_id+" Facility name: n "+id+" n "+myresponse, "MYSQL IMPORTING ERROR ","Emaingi@usaidtujengejamii.org");
                 } catch (MessagingException ex1) {
                 Logger.getLogger(importVl.class.getName()).log(Level.SEVERE, null, ex1);
             }

@@ -21,6 +21,40 @@
              <link rel="stylesheet" href="../css/select2.min.css">
         
           <link rel="shortcut icon" href="../images/vl.png">
+              
+              
+              
+              <style type="text/css">
+                  
+                  
+.modal {
+    padding-top: 180px;
+            display: none;
+            position: fixed; /* Stay in place */
+            top: 0;
+            left: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+           /**z-index: 9999;  Ensure it's on top */
+        }
+
+        /* Modal content */
+        .modal-content {
+            position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+                  
+                  </style>
+              
 </head>
 
 <body>
@@ -512,6 +546,70 @@
 				
 					</div>		
 				</div> 	
+
+
+
+	<%
+
+String pw="";
+
+if(request.getParameter("p")!=null)
+{
+pw=request.getParameter("p");
+}
+
+%>
+
+
+<div class="modal" id="accesscodemodal" onclose="isloggedin();">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button type="button" id="savecodebtn" onclick="isloggedin();" class="close" data-dismiss="modal" aria-hidden="true">.</button>
+                <h4 class="modal-title">Account Details</h4>
+                <label style="color:red;" id="useraccountvalidation"></label>
+            </div>
+            <div class="modal-body">
+                <form action="#" class="userform" method="post">
+                 <div class="control-group">
+                                    <label><font color="red"><b>*</b></font>  Enter System access code</label>
+                                    <div class="controls">
+                                        <input value="<%=pw%>" type="password" size="14" placeholder=""   required name="accesscode" id="accesscode" class="form-control" >
+                                    </div>
+                                </div> 
+                    
+                       
+                    
+                                <div class="control-group">
+                                    <label></label>
+                                    <div class="controls">
+                                        <label id="sbmtac" onclick=" updateaccount();"    style="margin-left: 50%;"  class="btn-lg btn-success active">
+                                            Login
+                                        </label>
+                                    </div>
+                                </div>  
+                                 <hr/>
+                                 <br/>
+                                    <div class="control-group">
+                                      <label> Not Sure of the access code? Please <a style="text-align:center;" href="https://usaidtujengejamii.org:8443/Cohorts/index.jsp">click here </a> to open the htsrri app using your clinical imis account          </label>                                
+                                    </div>
+                                    
+                                    
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-dismiss="modal" class="btn">.</a>
+              
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dalog -->
+</div>
+
+
+
                 <!-- /. ROW  -->
 
 	   
@@ -599,8 +697,9 @@
     </ul>
   </div>
 		
-				<footer><p>AfyaNyota | USAID </p>
-				
+				<footer><p>USAID Tujenge Jamii | USAID </p>
+				 <a  title="Add Widget" data-toggle="modal"  id='loginbtn' href="#accesscodemodal">.</a>		
+	
         
 				</footer>
             </div>
@@ -1027,7 +1126,170 @@ if((data[i].hts===1 ) && data[i].isactive==='Yes' && data[i].subcounty===sbc ){
 	<script src="assets/js/easypiechart-data.js"></script>
 	<script src="../js/bootstrap-datepicker.min.js"></script>
   <script src="../js/select2.min.js"></script>        
+    <script src="../js/pouchdb-7.2.1.js"></script>
+                <script src="../js/pouchdb.upsert.js"></script>
+
+
+<script>
     
+    var accountdb = new PouchDB('treatment_account_usr');
+var remoteCouch = false;
+var useraccountdetails;
+
+function addaccount(isauthorized) {
+   useraccountdetails = {
+        _id: 'aphiaplus', //this is static since we cant have two users using the same phone
+	isauthorized:isauthorized,        
+        completed: false
+  };
+  accountdb.put(useraccountdetails, function callback(err, result) {
+    if (!err) {
+      console.log('account details added succesfully');
+    }
+    
+    setTimeout(delayedrefresh,1500);
+  });
+}
+
+
+  function updateaccount(){
+   //alert("save called");   
+   var enteredcode=$("#accesscode").val();   
+   
+   if(enteredcode===''){$("#useraccountvalidation").html("Enter access code");   }
+   else 
+   {
+     //run json to determine status  
+     
+     //if ok is returned , then save account. else .. show error
+      $.ajax({
+                    url:'../validateAccess?kc='+enteredcode,                            
+                    type:'post',  
+                    dataType: 'html',  
+                    success: function(data) {
+             
+                 
+                 var dta=parseInt(data);
+                 
+          if(dta===1){
+    
+    $("#useraccountvalidation").html("");
+  
+    
+    addaccount('ok'); 
+    updatetaccesscode('ok');
+                        } else {
+                            
+                         $("#useraccountvalidation").html("Wrong access code!. Try again");   
+                          
+                        }
+     
+                    },
+                
+               error: function(XMLHttpRequest, textStatus, errorThrown) {
+       // alert(errorThrown);
+$("#useraccountvalidation").html("No internet connection. Connect to internet and try again."); 
+    }
+            
+            });
+       
+   }
+   
+  }
+
+
+
+function isloggedin(){
+  
+  
+
+//}
+        
+accountdb.allDocs({include_docs:true,ascending: true}).then(function (doc) 
+{
+    
+    if(doc.total_rows===0){
+        
+        $('#loginbtn').click();
+        
+          
+if($("#accesscode")!==''){
+    //alert("clicked the submit button");
+    $('#sbmtac').click();
+}
+    
+    }
+    else{
+    
+    showuser();
+        
+        for(a=0;a<doc.total_rows;a++){
+	   var dat={};
+	   dat=doc.rows[a];
+	      //hoping an account can have a maximum of only 
+             
+		  var validity=dat.doc.isauthorized;
+                  if(validity==='0'){
+                     $('#accesscodemodal').click(); 
+                     
+                      
+                  }
+                  else{
+                      
+                      //isuseradded();
+                  }
+		
+            }
+        
+    }
+
+ //username=doc.username;
+
+});
+  
+}
+
+isloggedin();
+
+function updatetaccesscode(authentication){
+
+
+	
+	accountdb.get("aphiaplus").then(function (doc) {
+            //
+            if(authentication!==''){
+doc.isauthorized=authentication;
+return accountdb.put(doc); //continue from here
+            }         
+ 
+});
+	}
+        
+        
+
+const modal = document.getElementById('accesscodemodal');
+
+ window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+               isloggedin();
+            }
+        });
+
+
+function delayedrefresh()
+{
+      window.location.reload();
+    clearweeklyfields();
+}
+function refreshonly()
+{
+      window.location.reload();
+   
+}
+    
+    </script>
+
+  
 </body>
 
 </html>

@@ -61,6 +61,11 @@ var _Cause_of_Death=$('#Cause_of_Death').val();
 var _Stability=$('#Stability').val();
 var _DC_Model=$('#DC_Model').val();
 
+var _tb_test_ordered=$('#tb_test_ordered').val();
+var _tb_test_results=$('#tb_test_results').val();
+var _started_anti_tbs=$('#started_anti_tbs').val();
+var _Date_started_on_TB_Treatment=$('#Date_started_on_TB_Treatment').val();
+
 
 
         
@@ -262,18 +267,41 @@ var _DC_Model=$('#DC_Model').val();
             
             
         }
+//        else if (validateTarehe('Last_Clinical_Visit_Date','Date_started_on_TB_Treatment','Last ARV Pickup Date','Date started on TB Treatment')==='invalid') {
+//            
+//          retvl=false;  
+//            
+//            
+//        }
             else if(_Screened_For_TB==='')
         {
-       // $("#wizard-t-0").click();  
-        
-        updatemaujumbe('error','Select TB Screening Status');
-        
-        retvl=false;
-        
+       
+        updatemaujumbe('error','Select TB Screening Status');        
+        retvl=false;        
         $("#Screened_For_TB").focus();
         $("#Screened_For_TB").css('border-color','red'); 
         
         }
+            else if(_Screened_For_TB==='Presumed TB' && (_tb_test_ordered===''))
+        {
+       
+        updatemaujumbe('error','Specify TB Investigative Workup done');        
+        retvl=false;        
+        $("#tb_test_ordered").focus();
+        $("#tb_test_ordered").css('border-color','red'); 
+        
+        }
+        
+            else if(_started_anti_tbs==='Yes' && (_Date_started_on_TB_Treatment===''))
+        {
+       
+        updatemaujumbe('error','Specify Date started on TB Treatment');        
+        retvl=false;        
+        $("#Date_started_on_TB_Treatment").focus();
+        $("#Date_started_on_TB_Treatment").css('border-color','red'); 
+        
+        }
+        
         
         
         else 
@@ -405,11 +433,11 @@ var _DC_Model=$('#DC_Model').val();
         
         } 
       //If the patient ha s not completed 6 months on IPT  
-        else if(_Date_of_IPT_Outcome!=='' && _Date_Started_on_IPT!=='' && daysDiff(_Date_of_IPT_Outcome,_Date_Started_on_IPT)<178 )
+        else if(_Date_of_IPT_Outcome!=='' && _Date_Started_on_IPT!=='' && daysDiff(_Date_of_IPT_Outcome,_Date_Started_on_IPT)<88 )
         {
        // $("#wizard-t-0").click();  
         
-        updatemaujumbe('error','Client has completed '+Math.round(daysDiff(_Date_of_IPT_Outcome,_Date_Started_on_IPT)/30)+' Months i.e <font color=\'orange\'> ('+daysDiff(_Date_of_IPT_Outcome,_Date_Started_on_IPT)+' days )</font> taking IPT');
+        updatemaujumbe('error','Client has completed '+Math.round(daysDiff(_Date_of_IPT_Outcome,_Date_Started_on_IPT)/30)+' Months i.e <font color=\'orange\'> ('+daysDiff(_Date_of_IPT_Outcome,_Date_Started_on_IPT)+' days )</font> taking IPT/TPT');
         
         retvl=false;
         
